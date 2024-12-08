@@ -13,7 +13,13 @@ export default function Home() {
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between gap-4">
             <div className="text-xl font-bold">
-              <span className="text-orange-500">FUN</span> BLOCKS
+              <Image
+                src="/images/funblocks_logo.svg"
+                alt="FUN BLOCKS Logo"
+                width={120}
+                height={30}
+                priority
+              />
             </div>
             <div className="hidden md:flex relative flex-1 max-w-md">
               <Input
@@ -53,29 +59,31 @@ export default function Home() {
           {/* BOLT 卡片 */}
           <Card className="col-span-1 md:col-span-2 overflow-hidden">
             <div className="flex">
-              <div className="relative aspect-square w-full md:w-[400px]">
-                <Image
-                  src="/images/bolt-banner.jpg"
-                  alt="BOLT Game"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6 flex-1">
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-                    <span className="text-white text-xs">BOLT</span>
-                  </div>
-                  <h2 className="font-medium">BOLT</h2>
+              <div className="relative aspect-square w-full md:w-[400px] p-4">
+                <div className="relative w-full h-full rounded-lg border-2 border-gray-200 overflow-hidden">
+                  <Image
+                    src="/images/bolt-banner.jpg"
+                    alt="BOLT Game"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                <h3 className="text-2xl font-bold mb-4">
+              </div>
+              <div className="p-6 flex-1 flex flex-col">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-10 h-10 bg-black rounded-lg flex items-center justify-center">
+                    <span className="text-white text-sm">BOLT</span>
+                  </div>
+                  <h2 className="text-xl font-medium">BOLT</h2>
+                </div>
+                <h3 className="text-3xl font-bold mb-4">
                   BOLT: Solana ecological ECS full-chain game engine
                 </h3>
-                <p className="text-sm text-muted-foreground mb-6">
+                <p className="text-base text-muted-foreground flex-grow">
                   BOLT is a full-chain game engine developed by the Magicblock
                   team for the Solana ecosystem. This...
                 </p>
-                <div className="flex gap-2">
+                <div className="flex gap-2 mt-4">
                   <Button className="bg-blue-600 hover:bg-blue-700">
                     Read More
                   </Button>
@@ -85,70 +93,70 @@ export default function Home() {
           </Card>
 
           {/* 游戏列表卡片 */}
-          <Card className="bg-white">
+          <Card className="bg-white rounded-lg">
             <div className="p-4">
-              <div className="flex items-center justify-between mb-6">
-                <Badge
-                  variant="secondary"
-                  className="bg-gray-100 text-gray-900"
+              {/* 標題與按鈕 */}
+              <div className="flex items-center justify-between mb-4">
+                <div className="bg-gray-100 px-3 py-1 rounded-lg">
+                  <span className="text-sm font-semibold">GAMES</span>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-400 hover:text-black"
                 >
-                  GAMES
-                </Badge>
-                <Button variant="ghost" size="sm" className="text-gray-400">
                   →
                 </Button>
               </div>
-              <div className="space-y-6">
+
+              {/* 橫向卡片滾動列表 */}
+              <div className="flex gap-4 overflow-x-auto scrollbar-hide">
                 {[
                   {
-                    title: "RoboCop: Rogue City",
-                    rating: "8.0k",
+                    title: "Biomes",
                     tags: ["ON-CHAIN GAMES", "CRYPTO", "8+"],
-                    image: "robocop.jpg",
+                    image: "biomes.jpg",
                   },
                   {
-                    title: "Mobile Bubble Shooters",
-                    rating: "3.2k",
-                    tags: ["ETHEREUM", "9+"],
-                    image: "bubble-shooters.jpg",
+                    title: "Dope Wars",
+                    tags: ["ETHEREUM", "NPC", "9+"],
+                    image: "dopewars.jpg",
                   },
                   {
-                    title: "Champions Arena",
-                    rating: "3.2k",
+                    title: "Pirate Nation",
                     tags: ["FPS"],
-                    image: "champions-arena.jpg",
+                    image: "piratenation.jpg",
                   },
                 ].map((game, i) => (
-                  <div key={i} className="flex items-start gap-4">
-                    <div className="w-16 h-16 bg-[#FFD700] rounded-lg flex items-center justify-center">
-                      {i === 0 && <span className="text-2xl">🤖</span>}
-                      {i === 1 && <span className="text-2xl">👁️</span>}
-                      {i === 2 && <span className="text-2xl">⚔️</span>}
+                  <div key={i} className="flex-shrink-0 w-48">
+                    {/* 上方圖片 - 修改这部分 */}
+                    <div className="relative w-full aspect-square mb-3">
+                      <Image
+                        src={`/images/games/${game.image}`}
+                        alt={game.title}
+                        fill
+                        className="object-cover rounded-lg"
+                      />
                     </div>
+
+                    {/* 下方文字內容 */}
                     <div>
-                      <h3 className="font-medium text-sm mb-2">{game.title}</h3>
-                      <div className="flex flex-wrap gap-1">
-                        <span className="text-xs text-gray-500">
-                          ↓ {game.rating}
-                        </span>
-                        {game.tags.map((tag, index) => (
-                          <Badge
-                            key={index}
-                            variant="outline"
-                            className="text-xs"
-                          >
-                            {tag}
-                          </Badge>
-                        ))}
+                      <h3 className="font-semibold text-lg mb-1 h-10 line-clamp-2">
+                        {game.title}
+                      </h3>
+                      <div className="space-y-2 mt-2">
+                        <div className="flex flex-wrap gap-1.5">
+                          {game.tags.map((tag, index) => (
+                            <span
+                              key={index}
+                              className="text-xs px-2 py-0.5 bg-gray-100 rounded"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                    <Image
-                      src={`/images/games/${game.image}`}
-                      alt={game.title}
-                      width={64}
-                      height={64}
-                      className="rounded-lg"
-                    />
                   </div>
                 ))}
               </div>
@@ -167,13 +175,11 @@ export default function Home() {
                 height={150}
                 className="mb-4"
               />
-              <h3 className="font-medium mb-2">
-                Introducing Quarry: A modern computing environment for your
-                World
+              <h3 className="font-medium mb-4">
+                Quarry 簡介：為您的世界打造的現代化運算環境
               </h3>
               <div className="flex gap-2">
-                <Badge>BLOCKCHAIN</Badge>
-                <Badge>PLATFORM</Badge>
+                <Badge>Lattice</Badge>
               </div>
             </CardContent>
           </Card>
@@ -181,14 +187,14 @@ export default function Home() {
           <Card>
             <CardContent className="p-6">
               <Image
-                src="/placeholder.svg"
+                src="/images/evefrontier.jpg"
                 alt="Sky Strife"
-                width={200}
-                height={100}
+                width={400}
+                height={150}
                 className="mb-4"
               />
-              <h3 className="font-medium mb-2">
-                A quick look at Sky Strife Season 0 update content
+              <h3 className="font-medium mb-4">
+                Eve Frontier: CCP 基於以太坊的太空生存遊戲
               </h3>
               <div className="flex gap-2">
                 <Badge>ON-CHAIN GAMES</Badge>
@@ -204,14 +210,12 @@ export default function Home() {
                 src="/images/playerchain.jpg"
                 alt="Playerchain Architecture"
                 width={400}
-                height={200}
+                height={150}
                 className="mb-4"
               />
-              <h3 className="font-medium mb-2">Playerchain Architecture</h3>
+              <h3 className="font-medium mb-4">Playerchain 架構介紹</h3>
               <div className="flex gap-2">
-                <Badge>ENGINE</Badge>
                 <Badge>TECH</Badge>
-                <Badge>P2E</Badge>
               </div>
             </CardContent>
           </Card>
@@ -254,6 +258,36 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Reviews Section */}
+        <section>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold">REVIEWS</h2>
+            <Button variant="ghost" className="text-sm">
+              See More →
+            </Button>
+          </div>
+          <div className="space-y-4">
+            {[
+              "'Wreck League' Preview: A Promising Fighting Game With Mechs and NFTs",
+              "Formula E: High Voltage Is a Fun Play-to-Earn Racer That Needs a Roadmap",
+              "Raini: The Lords of Light Review",
+            ].map((title, i) => (
+              <Card key={i}>
+                <div className="flex gap-4 p-4">
+                  <div className="w-16 h-16 bg-emerald-100 rounded-lg flex-shrink-0" />
+                  <div>
+                    <h3 className="font-medium mb-2">{title}</h3>
+                    <div className="flex gap-2">
+                      <Badge>ON-CHAIN GAMES</Badge>
+                      <Badge variant="outline">CRYPTO</Badge>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </section>
+
         {/* Videos Section */}
         <section>
           <div className="flex items-center justify-between mb-4">
@@ -291,36 +325,6 @@ export default function Home() {
           </div>
           <div className="text-center mt-4">
             <Button variant="outline">Watch More Videos</Button>
-          </div>
-        </section>
-
-        {/* Reviews Section */}
-        <section>
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold">REVIEWS</h2>
-            <Button variant="ghost" className="text-sm">
-              See More →
-            </Button>
-          </div>
-          <div className="space-y-4">
-            {[
-              "'Wreck League' Preview: A Promising Fighting Game With Mechs and NFTs",
-              "Formula E: High Voltage Is a Fun Play-to-Earn Racer That Needs a Roadmap",
-              "Raini: The Lords of Light Review",
-            ].map((title, i) => (
-              <Card key={i}>
-                <div className="flex gap-4 p-4">
-                  <div className="w-16 h-16 bg-emerald-100 rounded-lg flex-shrink-0" />
-                  <div>
-                    <h3 className="font-medium mb-2">{title}</h3>
-                    <div className="flex gap-2">
-                      <Badge>ON-CHAIN GAMES</Badge>
-                      <Badge variant="outline">CRYPTO</Badge>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            ))}
           </div>
         </section>
       </main>
