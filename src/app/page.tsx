@@ -48,78 +48,211 @@ export default function Home() {
       </header>
 
       <main className="container mx-auto px-4 py-6 space-y-6">
-        {/* Featured Game */}
-        <Card className="overflow-hidden">
-          <div className="md:flex">
-            <div className="relative aspect-square w-full md:w-64 bg-black">
-              <Image
-                src="/placeholder.svg"
-                alt="BOLT Game"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <CardContent className="p-6">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h2 className="text-2xl font-bold mb-2">
-                    BOLT: Solana ecological ECS full-chain game engine
-                  </h2>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    BOLT is a full-chain game engine developed by the Magicblock
-                    team for the Solana ecosystem. This...
-                  </p>
-                </div>
+        {/* 游戏卡片网格 */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* BOLT 卡片 */}
+          <Card className="col-span-1 md:col-span-2 overflow-hidden">
+            <div className="flex">
+              <div className="relative aspect-square w-full md:w-[400px]">
                 <Image
-                  src="/placeholder.svg"
-                  alt="BOLT Icon"
-                  width={40}
-                  height={40}
-                  className="rounded-full"
+                  src="/images/bolt-banner.jpg"
+                  alt="BOLT Game"
+                  fill
+                  className="object-cover"
                 />
               </div>
+              <div className="p-6 flex-1">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
+                    <span className="text-white text-xs">BOLT</span>
+                  </div>
+                  <h2 className="font-medium">BOLT</h2>
+                </div>
+                <h3 className="text-2xl font-bold mb-4">
+                  BOLT: Solana ecological ECS full-chain game engine
+                </h3>
+                <p className="text-sm text-muted-foreground mb-6">
+                  BOLT is a full-chain game engine developed by the Magicblock
+                  team for the Solana ecosystem. This...
+                </p>
+                <div className="flex gap-2">
+                  <Button className="bg-blue-600 hover:bg-blue-700">
+                    Read More
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* 游戏列表卡片 */}
+          <Card className="bg-white">
+            <div className="p-4">
+              <div className="flex items-center justify-between mb-6">
+                <Badge
+                  variant="secondary"
+                  className="bg-gray-100 text-gray-900"
+                >
+                  GAMES
+                </Badge>
+                <Button variant="ghost" size="sm" className="text-gray-400">
+                  →
+                </Button>
+              </div>
+              <div className="space-y-6">
+                {[
+                  {
+                    title: "RoboCop: Rogue City",
+                    rating: "8.0k",
+                    tags: ["ON-CHAIN GAMES", "CRYPTO", "8+"],
+                    image: "robocop.jpg",
+                  },
+                  {
+                    title: "Mobile Bubble Shooters",
+                    rating: "3.2k",
+                    tags: ["ETHEREUM", "9+"],
+                    image: "bubble-shooters.jpg",
+                  },
+                  {
+                    title: "Champions Arena",
+                    rating: "3.2k",
+                    tags: ["FPS"],
+                    image: "champions-arena.jpg",
+                  },
+                ].map((game, i) => (
+                  <div key={i} className="flex items-start gap-4">
+                    <div className="w-16 h-16 bg-[#FFD700] rounded-lg flex items-center justify-center">
+                      {i === 0 && <span className="text-2xl">🤖</span>}
+                      {i === 1 && <span className="text-2xl">👁️</span>}
+                      {i === 2 && <span className="text-2xl">⚔️</span>}
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-sm mb-2">{game.title}</h3>
+                      <div className="flex flex-wrap gap-1">
+                        <span className="text-xs text-gray-500">
+                          ↓ {game.rating}
+                        </span>
+                        {game.tags.map((tag, index) => (
+                          <Badge
+                            key={index}
+                            variant="outline"
+                            className="text-xs"
+                          >
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                    <Image
+                      src={`/images/games/${game.image}`}
+                      alt={game.title}
+                      width={64}
+                      height={64}
+                      className="rounded-lg"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        {/* 资讯卡片网格 */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <Card>
+            <CardContent className="p-6">
+              <Image
+                src="/images/quarry-cover.jpg"
+                alt="Redstone"
+                width={400}
+                height={150}
+                className="mb-4"
+              />
+              <h3 className="font-medium mb-2">
+                Introducing Quarry: A modern computing environment for your
+                World
+              </h3>
               <div className="flex gap-2">
-                <Button>Play Now</Button>
-                <Button variant="outline">Explore</Button>
+                <Badge>BLOCKCHAIN</Badge>
+                <Badge>PLATFORM</Badge>
               </div>
             </CardContent>
-          </div>
-        </Card>
+          </Card>
 
-        {/* Games Grid */}
-        <section>
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold">GAMES</h2>
-            <Button variant="ghost" className="text-sm">
-              View All →
-            </Button>
+          <Card>
+            <CardContent className="p-6">
+              <Image
+                src="/placeholder.svg"
+                alt="Sky Strife"
+                width={200}
+                height={100}
+                className="mb-4"
+              />
+              <h3 className="font-medium mb-2">
+                A quick look at Sky Strife Season 0 update content
+              </h3>
+              <div className="flex gap-2">
+                <Badge>ON-CHAIN GAMES</Badge>
+                <Badge>UPDATE</Badge>
+                <Badge>P2E</Badge>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-6">
+              <Image
+                src="/images/playerchain.jpg"
+                alt="Playerchain Architecture"
+                width={400}
+                height={200}
+                className="mb-4"
+              />
+              <h3 className="font-medium mb-2">Playerchain Architecture</h3>
+              <div className="flex gap-2">
+                <Badge>ENGINE</Badge>
+                <Badge>TECH</Badge>
+                <Badge>P2E</Badge>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Banner Section */}
+        <div className="bg-blue-400 rounded-lg p-8 relative overflow-hidden">
+          <div className="max-w-2xl relative z-10">
+            <h2 className="text-2xl font-bold text-black mb-2">
+              Level up your gaming experience!
+            </h2>
+            <p className="text-black/80">
+              Explore a universe of gaming content. Discover new games, learn
+              from experts, and stay updated with the latest trends and news.
+            </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {[
-              { title: "RoboCop: Rogue City", rating: "9.4" },
-              { title: "Mobile Bubble Shooters", rating: "8.7" },
-              { title: "Champions Arena", rating: "8.9" },
-            ].map((game, i) => (
-              <Card key={i} className="overflow-hidden">
-                <div className="aspect-square relative bg-black">
-                  <Image
-                    src="/placeholder.svg"
-                    alt={game.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <CardContent className="p-4">
-                  <h3 className="font-medium mb-2">{game.title}</h3>
-                  <div className="flex items-center gap-2">
-                    <Badge variant="secondary">★ {game.rating}</Badge>
-                    <Badge variant="outline">NFT</Badge>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+
+          {/* Pixel Art Icons */}
+          <div className="absolute top-0 right-0 w-64 h-full">
+            <div className="relative w-full h-full">
+              <div className="absolute top-4 right-4 animate-pulse">
+                <span className="text-3xl">⚡</span>
+              </div>
+              <div className="absolute top-12 right-12 animate-bounce">
+                <span className="text-3xl">⭐</span>
+              </div>
+              <div className="absolute top-8 right-24">
+                <span className="text-3xl">❤️</span>
+              </div>
+              <div className="absolute top-20 right-8">
+                <span className="text-3xl">💎</span>
+              </div>
+              <div className="absolute top-16 right-20">
+                <span className="text-3xl">🗡️</span>
+              </div>
+              <div className="absolute top-4 right-32">
+                <span className="text-3xl">🛡️</span>
+              </div>
+            </div>
           </div>
-        </section>
+        </div>
 
         {/* Videos Section */}
         <section>
