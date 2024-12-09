@@ -4,10 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#faf7f2]">
+    <div className="min-h-screen bg-[#faf7f2] bg-[url('/images/background.svg')] bg-repeat">
       {/* Header */}
       <header className="border-b bg-white">
         <div className="container mx-auto px-4 py-3">
@@ -28,22 +29,31 @@ export default function Home() {
               />
               <Search className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
             </div>
-            <nav className="hidden md:flex items-center gap-6">
-              <a href="#" className="text-sm font-medium">
-                Home
-              </a>
-              <a href="#" className="text-sm font-medium">
+            <nav className="hidden md:flex items-center gap-6 ml-auto">
+              <Link
+                href="/game"
+                className="text-sm font-medium hover:text-blue-600"
+              >
                 Games
-              </a>
-              <a href="#" className="text-sm font-medium">
-                Reviews
-              </a>
-              <a href="#" className="text-sm font-medium">
+              </Link>
+              <Link
+                href="/articles"
+                className="text-sm font-medium hover:text-blue-600"
+              >
+                Article
+              </Link>
+              <Link
+                href="/videos"
+                className="text-sm font-medium hover:text-blue-600"
+              >
                 Videos
-              </a>
-              <a href="#" className="text-sm font-medium">
+              </Link>
+              <Link
+                href="/events"
+                className="text-sm font-medium hover:text-blue-600"
+              >
                 Events
-              </a>
+              </Link>
             </nav>
             <Button className="bg-blue-600 hover:bg-blue-700">Play Now</Button>
             <button className="md:hidden">
@@ -57,7 +67,7 @@ export default function Home() {
         {/* 游戏卡片网格 */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* BOLT 卡片 */}
-          <Card className="col-span-1 md:col-span-2 overflow-hidden">
+          <Card className="col-span-1 md:col-span-2 overflow-hidden border border-black rounded-none">
             <div className="flex">
               <div className="relative aspect-square w-full md:w-[400px] p-4">
                 <div className="relative w-full h-full rounded-lg border-2 border-gray-200 overflow-hidden">
@@ -93,7 +103,7 @@ export default function Home() {
           </Card>
 
           {/* 游戏列表卡片 */}
-          <Card className="bg-white rounded-lg">
+          <Card className="bg-white border border-black rounded-none">
             <div className="p-4">
               {/* 標題與按鈕 */}
               <div className="flex items-center justify-between mb-4">
@@ -166,14 +176,14 @@ export default function Home() {
 
         {/* 资讯卡片网格 */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card>
-            <CardContent className="p-6">
+          <Card className="border border-black rounded-none">
+            <CardContent className="p-4">
               <Image
                 src="/images/quarry-cover.jpg"
                 alt="Redstone"
                 width={400}
                 height={150}
-                className="mb-4"
+                className="mb-4 rounded-lg"
               />
               <h3 className="font-medium mb-4">
                 Quarry 簡介：為您的世界打造的現代化運算環境
@@ -184,14 +194,14 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <Card>
-            <CardContent className="p-6">
+          <Card className="border border-black rounded-none">
+            <CardContent className="p-4">
               <Image
                 src="/images/evefrontier.jpg"
                 alt="Sky Strife"
                 width={400}
                 height={150}
-                className="mb-4"
+                className="mb-4 rounded-lg"
               />
               <h3 className="font-medium mb-4">
                 Eve Frontier: CCP 基於以太坊的太空生存遊戲
@@ -204,14 +214,14 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <Card>
-            <CardContent className="p-6">
+          <Card className="border border-black rounded-none">
+            <CardContent className="p-4">
               <Image
                 src="/images/playerchain.jpg"
                 alt="Playerchain Architecture"
                 width={400}
                 height={150}
-                className="mb-4"
+                className="mb-4 rounded-lg"
               />
               <h3 className="font-medium mb-4">Playerchain 架構介紹</h3>
               <div className="flex gap-2">
@@ -222,7 +232,7 @@ export default function Home() {
         </div>
 
         {/* Banner Section */}
-        <div className="bg-blue-400 rounded-lg p-8 relative overflow-hidden">
+        <div className="bg-blue-400 p-8 relative overflow-hidden border border-black rounded-none">
           <div className="max-w-2xl relative z-10">
             <h2 className="text-2xl font-bold text-black mb-2">
               Level up your gaming experience!
@@ -260,72 +270,95 @@ export default function Home() {
 
         {/* Reviews Section */}
         <section>
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold">REVIEWS</h2>
-            <Button variant="ghost" className="text-sm">
-              See More →
-            </Button>
-          </div>
-          <div className="space-y-4">
-            {[
-              "'Wreck League' Preview: A Promising Fighting Game With Mechs and NFTs",
-              "Formula E: High Voltage Is a Fun Play-to-Earn Racer That Needs a Roadmap",
-              "Raini: The Lords of Light Review",
-            ].map((title, i) => (
-              <Card key={i}>
-                <div className="flex gap-4 p-4">
-                  <div className="w-16 h-16 bg-emerald-100 rounded-lg flex-shrink-0" />
-                  <div>
-                    <h3 className="font-medium mb-2">{title}</h3>
-                    <div className="flex gap-2">
-                      <Badge>ON-CHAIN GAMES</Badge>
-                      <Badge variant="outline">CRYPTO</Badge>
+          <Card className="border border-black rounded-none">
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-semibold">REVIEWS</h2>
+                <Button variant="ghost" className="text-sm">
+                  See More →
+                </Button>
+              </div>
+              <div className="space-y-4">
+                {[
+                  "'Wreck League' Preview: A Promising Fighting Game With Mechs and NFTs",
+                  "Formula E: High Voltage Is a Fun Play-to-Earn Racer That Needs a Roadmap",
+                  "Raini: The Lords of Light Review",
+                ].map((title, i) => (
+                  <Card key={i} className="">
+                    <div className="flex gap-4 p-4">
+                      <div className="w-16 h-16 bg-emerald-100 rounded-lg flex-shrink-0" />
+                      <div>
+                        <h3 className="font-medium mb-2">{title}</h3>
+                        <div className="flex gap-2">
+                          <Badge>ON-CHAIN GAMES</Badge>
+                          <Badge variant="outline">CRYPTO</Badge>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
+                  </Card>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </section>
 
         {/* Videos Section */}
         <section>
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold">VIDEOS</h2>
-          </div>
-          <div className="space-y-4">
-            {[
-              "Loot Survivor and the Emergence of Onchain Arcades",
-              "The Four Reasons We Must Pay Attention to the Autonomous World",
-              "PixeLAW: A pixel autonomous world on the entire chain",
-            ].map((title, i) => (
-              <Card key={i}>
-                <div className="flex gap-4 p-4">
-                  <div className="relative w-40 aspect-video bg-black flex-shrink-0">
-                    <Button
-                      size="icon"
-                      variant="secondary"
-                      className="absolute inset-0 m-auto"
-                    >
-                      ▶
-                    </Button>
-                  </div>
-                  <div>
-                    <h3 className="font-medium mb-2">{title}</h3>
-                    <div className="flex gap-2">
-                      <Button size="sm">Watch Video</Button>
-                      <Button size="sm" variant="outline">
-                        More
+          <Card className="border border-black rounded-none">
+            <CardContent className="p-4">
+              <h2 className="text-lg font-semibold mb-4">VIDEOS</h2>
+              <div className="space-y-4">
+                {[
+                  {
+                    title: "Loot Survivor and the Emergence of Onchain Arcades",
+                    description:
+                      "Loot Survivor[1] is the first game in the Realms Autonomous Worlds ecosystem. It was developed...",
+                  },
+                  {
+                    title:
+                      "The Four Reasons We Must Pay Attention to the Autonomous World",
+                    description:
+                      "During the last crypto bull bubble cycle, decentralized finance (DeFi) was undoubtedly ce...",
+                  },
+                  {
+                    title:
+                      "PixeLAW: A pixel autonomous world on the entire chain",
+                    description:
+                      "What exactly is PixeLAW? If you think that PixelLAW is just a pixel game on the entire chain...",
+                  },
+                ].map((video, i) => (
+                  <div key={i} className="flex gap-4">
+                    <div className="relative w-[400px] aspect-video bg-black flex-shrink-0">
+                      <Button
+                        size="icon"
+                        variant="secondary"
+                        className="absolute inset-0 m-auto"
+                      >
+                        ▶
                       </Button>
                     </div>
+                    <div className="flex-1">
+                      <h3 className="font-medium mb-2">{video.title}</h3>
+                      <p className="text-muted-foreground mb-4">
+                        {video.description}
+                      </p>
+                      <div className="flex gap-2">
+                        <Button className="bg-blue-600 hover:bg-blue-700">
+                          Watch Video
+                        </Button>
+                        <Button variant="outline">More</Button>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-          <div className="text-center mt-4">
-            <Button variant="outline">Watch More Videos</Button>
-          </div>
+                ))}
+              </div>
+              <div className="text-center mt-8">
+                <Button variant="outline" className="border-2">
+                  Watch More Videos
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </section>
       </main>
 
