@@ -8,21 +8,21 @@ const games = [
     title: "Biomes",
     downloads: "6.0 k",
     tags: ["ON-CHAIN GAMES", "CRYPTO", "8+"],
-    icon: "/images/games/biomes.jpg",
+    image: "/images/games/biomes.jpg",
     bgColor: "bg-yellow-400",
   },
   {
     title: "Dopewars",
     downloads: "3.2 k",
     tags: ["ETHEREUM", "NPC", "9+"],
-    icon: "/images/games/dopewars.jpg",
+    image: "/images/games/dopewars.jpg",
     bgColor: "bg-emerald-500",
   },
   {
     title: "Pirates Nation",
     downloads: "3.2 k",
     tags: ["FPS", "MMORPG"],
-    icon: "/images/games/piratenation.jpg",
+    image: "/images/games/piratenation.jpg",
     bgColor: "bg-purple-400",
   },
 ];
@@ -32,27 +32,28 @@ export default function GamesList() {
     <Card className="bg-white border border-black rounded-none">
       <CardContent className="p-4">
         <div className="flex items-center justify-between mb-6">
-          <div className="bg-[#E5E1D8] px-4 py-1.5 rounded-sm">
-            <span className="text-sm font-bold font-mono">GAMES</span>
+          <div className="flex items-center gap-2">
+            <span className="text-lg font-bold">Games</span>
           </div>
           <Button
-            variant="ghost"
+            variant="link"
             size="sm"
-            className="font-mono hover:bg-transparent hover:text-black p-0"
+            className="text-muted-foreground hover:text-black hover:no-underline p-0"
           >
-            ⋯⋯→
+            See More →
           </Button>
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="flex overflow-x-auto space-x-4">
           {games.map((game, i) => (
-            <div key={i} className="flex flex-col gap-2">
-              <div className={`aspect-square rounded-lg ${game.bgColor} p-6`}>
+            <div key={i} className="flex flex-col gap-2 min-w-[140px]">
+              <div className="aspect-square rounded-lg overflow-hidden">
                 <div className="relative w-full h-full">
                   <Image
-                    src={game.icon}
+                    src={game.image}
                     alt={game.title}
-                    fill
-                    className="object-contain"
+                    width={140}
+                    height={140}
+                    className="object-cover w-full h-full"
                   />
                 </div>
               </div>

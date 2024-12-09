@@ -24,17 +24,21 @@ export default function ArticleGrid() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {articles.map((article, index) => (
-        <Card key={index} className="border border-black rounded-none">
-          <CardContent className="p-4">
-            <Image
-              src={`/images/${article.image}`}
-              alt={article.title}
-              width={400}
-              height={150}
-              className="mb-4 rounded-lg"
-            />
-            <h3 className="font-medium mb-4">{article.title}</h3>
-            <div className="flex gap-2">
+        <Card key={index} className="border border-black rounded-none h-full">
+          <CardContent className="p-4 flex flex-col">
+            <div className="w-full h-[200px] overflow-hidden mb-4">
+              <Image
+                src={`/images/${article.image}`}
+                alt={article.title}
+                width={400}
+                height={150}
+                className="object-cover w-full h-full rounded-lg"
+              />
+            </div>
+            <h3 className="font-medium mb-4 min-h-[3rem] line-clamp-2">
+              {article.title}
+            </h3>
+            <div className="flex gap-2 mt-auto">
               {article.tags.map((tag, i) => (
                 <Badge key={i}>{tag}</Badge>
               ))}

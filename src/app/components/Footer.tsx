@@ -4,6 +4,15 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="border-t bg-white mt-12">
+      <div className="w-full">
+        <Image
+          src="/images/header.svg"
+          alt="Header SVG"
+          width={1440}
+          height={200}
+          className="w-full"
+        />
+      </div>
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
@@ -29,10 +38,10 @@ export default function Footer() {
                 Games
               </Link>
               <Link
-                href="/reviews"
+                href="/articles"
                 className="block text-sm text-muted-foreground"
               >
-                Reviews
+                Articles
               </Link>
               <Link
                 href="/about"

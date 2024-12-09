@@ -39,8 +39,10 @@ export default function Header() {
               Articles
             </Link>
             <Link
-              href="/videos"
+              href="https://www.youtube.com/@0xfunblocks"
               className="text-sm font-medium hover:text-blue-600"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Videos
             </Link>
@@ -51,11 +53,22 @@ export default function Header() {
               Events
             </Link>
           </nav>
-          <Button className="bg-blue-600 hover:bg-blue-700">Play Now</Button>
+          <Link href="/funcraftguild">
+            <Button className="bg-blue-600 hover:bg-blue-700">Play Now</Button>
+          </Link>
           <button className="md:hidden">
             <Search className="h-6 w-6" />
           </button>
         </div>
+      </div>
+      <div className="w-full">
+        <Image
+          src="/images/header.svg"
+          alt="Header SVG"
+          width={1440}
+          height={200}
+          className="w-full"
+        />
       </div>
     </header>
   );

@@ -3,19 +3,22 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const videos = [
   {
-    title: "Loot Survivor and the Emergence of Onchain Arcades",
+    title: "Fully On-Chain Game: Force Prime v0.3",
     description:
       "Loot Survivor[1] is the first game in the Realms Autonomous Worlds ecosystem. It was developed...",
+    link: "https://www.youtube.com/watch?v=_WS8-keJyNs",
   },
   {
-    title: "The Four Reasons We Must Pay Attention to the Autonomous World",
+    title: "Life @AW House DENVER Highlights Recap!",
     description:
       "During the last crypto bull bubble cycle, decentralized finance (DeFi) was undoubtedly ce...",
+    link: "https://www.youtube.com/watch?v=3a2OxvKWYeo",
   },
   {
-    title: "PixeLAW: A pixel autonomous world on the entire chain",
+    title: "Fully On-Chain Game: Sky Strife 0.1",
     description:
       "What exactly is PixeLAW? If you think that PixelLAW is just a pixel game on the entire chain...",
+    link: "https://www.youtube.com/watch?v=48VaVnPz1cA",
   },
 ];
 

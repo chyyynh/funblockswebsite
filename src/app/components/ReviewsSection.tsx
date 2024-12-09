@@ -24,7 +24,7 @@ export default function ReviewsSection() {
     <Card className="border border-black rounded-none">
       <CardContent className="p-4">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold">REVIEWS</h2>
+          <h2 className="text-lg font-semibold">Articles</h2>
           <Button variant="ghost" className="text-sm">
             See More →
           </Button>
