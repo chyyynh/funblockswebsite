@@ -9,19 +9,25 @@ import { RelatedArticles } from "@/app/components/articles/related-articles";
 import { RelatedVideos } from "@/app/components/articles/related-videos";
 
 export async function generateStaticParams() {
-  const files = fs.readdirSync(path.join("src", "contents"));
-
-  return files.map((filename) => ({
-    slug: filename.replace(".mdx", ""),
-  }));
+  const files = fs.readdirSync(path.join("src/contents"));
+  return files
+    .filter((filename) => filename.endsWith(".mdx"))
+    .map((filename) => ({
+      slug: filename.replace(".mdx", ""),
+    }));
 }
 
-export default async function Post({ params }: { params: { slug: string } }) {
+type Params = Promise<{ slug: string }>;
+
+export default async function ArticlePage({ params }: { params: Params }) {
   const { slug } = await params;
-  const filePath = path.join(process.cwd(), "src", "contents", `${slug}.mdx`);
-  const fileContent = fs.readFileSync(filePath, "utf8");
+  const fileContent = fs.readFileSync(
+    path.join(process.cwd(), `src/contents/${slug}.mdx`),
+    "utf-8"
+  );
 
   const { content, data } = matter(fileContent);
+  console.log(`data: ${data}\n\n`);
 
   const { content: mdxContent } = await compileMDX({
     source: content,
@@ -42,7 +48,6 @@ export default async function Post({ params }: { params: { slug: string } }) {
                   <span>•</span>
                   <span>{data.date}</span>
                 </div>
-
                 <div className="space-y-4 text-[15px] leading-relaxed text-gray-700">
                   {mdxContent}
                 </div>
