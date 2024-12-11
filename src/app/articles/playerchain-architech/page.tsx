@@ -29,13 +29,13 @@ export default function ArticlePage() {
                     The journey of multiplayer gaming is a fascinating saga of
                     innovation, community, and the ever-evolving relationship
                     between technology and social interaction. From the humble
-                    beginnings of couch co-op to today's vast networks of global
+                    beginnings of couch co-op to todays vast networks of global
                     connectivity, multiplayer gaming has transformed in ways
                     that early gamers could hardly have imagined. Multiplayer
                     gaming has its roots in the local co-op and competitive
-                    experiences of the late 20th century. Games like "Pong" laid
-                    the foundations, but it was titles such as "Contra" and
-                    "Street Fighter II" that truly epitomized the era of couch
+                    experiences of the late 20th century. Games like Pong laid
+                    the foundations, but it was titles such as Contra and Street
+                    Fighter II that truly epitomized the era of couch
                     multiplayer gaming. These games required players to be
                     physically present in the same room, sharing a screen and
                     often, in the case of co-op games, working together to
@@ -59,15 +59,14 @@ export default function ArticlePage() {
                   <p>
                     Multiplayer gaming has its roots in the local co-op and
                     competitive experiences of the late 20th century. Games like
-                    "Pong" laid the foundations, but it was titles such as
-                    "Contra" and "Street Fighter II" that truly epitomized the
-                    era of couch multiplayer gaming. These games required
-                    players to be physically present in the same room, sharing a
-                    screen and often, in the case of co-op games, working
-                    together to achieve a common goal. This format fostered a
-                    sense of camaraderie and immediate social interaction that
-                    became a defining characteristic of early video gaming
-                    culture.
+                    Pong laid the foundations, but it was titles such as Contra
+                    and Street Fighter II that truly epitomized the era of couch
+                    multiplayer gaming. These games required players to be
+                    physically present in the same room, sharing a screen and
+                    often, in the case of co-op games, working together to
+                    achieve a common goal. This format fostered a sense of
+                    camaraderie and immediate social interaction that became a
+                    defining characteristic of early video gaming culture.
                   </p>
 
                   <h2 className="text-lg font-bold mt-6 mb-3">
@@ -77,13 +76,13 @@ export default function ArticlePage() {
                     The advent of the internet revolutionized many aspects of
                     daily life, and gaming was no exception. Online multiplayer
                     gaming has gained massive attention in the 1990s with the
-                    rise of PC gaming platforms. Games like "Doom" allowed
-                    players to connect via local networks (LANs) or even over
-                    primitive internet connections for global play. This era saw
-                    the birth of massively multiplayer online games (MMOs), like
-                    "EverQuest" and "World of Warcraft", which broadened gaming
-                    horizons and let players share their virtual worlds with
-                    thousands of other players in real-time.
+                    rise of PC gaming platforms. Games like Doom allowed players
+                    to connect via local networks (LANs) or even over primitive
+                    internet connections for global play. This era saw the birth
+                    of massively multiplayer online games (MMOs), like EverQuest
+                    and World of Warcraft, which broadened gaming horizons and
+                    let players share their virtual worlds with thousands of
+                    other players in real-time.
                   </p>
 
                   <h2 className="text-lg font-bold mt-6 mb-3">
@@ -102,7 +101,7 @@ export default function ArticlePage() {
                   <h2 className="text-lg font-bold mt-6 mb-3">Conclusion</h2>
                   <p>
                     The evolution of multiplayer gaming from couch co-op to
-                    global connectivity reflects broader changes in society's
+                    global connectivity reflects broader changes in societys
                     relationship with technology, entertainment, and each other.
                     As multiplayer gaming continues to evolve, it remains a
                     testament to the human desire for connection, competition,
