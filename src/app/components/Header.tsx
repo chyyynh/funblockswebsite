@@ -1,16 +1,20 @@
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Search } from "lucide-react";
+import { Menu } from "lucide-react";
+import { MobileMenu } from "./MobileMenu";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 
 export default function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
-    <header className="border-b bg-white">
+    <header className="border-b bg-white relative">
       <div className="container mx-auto px-4 py-3">
-        <div className="flex items-center justify-between gap-4">
-          <div className="text-xl font-bold">
-            <Link href="/" aria-label="Go to homepage">
+        <div className="flex items-center justify-between md:justify-start gap-4">
+          <div className="md:w-auto w-full text-center md:text-left">
+            <Link href="/" aria-label="Go to homepage" className="inline-block">
               <Image
                 src="/images/funblocks_logo.svg"
                 alt="FUN BLOCKS Logo"
@@ -20,25 +24,18 @@ export default function Header() {
               />
             </Link>
           </div>
-          <div className="hidden md:flex relative flex-1 max-w-md">
-            <Input
-              className="pl-10 bg-[#f5f5f5]"
-              placeholder="Search for anything"
-            />
-            <Search className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
-          </div>
-          <nav className="hidden md:flex items-center gap-6 ml-auto">
+          <nav className="hidden md:flex items-center gap-6 flex-1 justify-end">
             <Link
               href="/games"
               className="text-sm font-medium hover:text-blue-600"
             >
-              Games
+              遊戲
             </Link>
             <Link
               href="/articles"
               className="text-sm font-medium hover:text-blue-600"
             >
-              Articles
+              文章
             </Link>
             <Link
               href="https://www.youtube.com/@0xfunblocks"
@@ -46,23 +43,31 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Videos
+              影片
             </Link>
             <Link
-              href="/events"
+              href="/tutorials"
               className="text-sm font-medium hover:text-blue-600"
             >
-              Events
+              攻略
             </Link>
+            <div className="hidden md:block">
+              <Link href="/funcraftguild">
+                <Button className="bg-blue-600 hover:bg-blue-700">
+                  立即遊玩
+                </Button>
+              </Link>
+            </div>
           </nav>
-          <Link href="/funcraftguild">
-            <Button className="bg-blue-600 hover:bg-blue-700">Play Now</Button>
-          </Link>
-          <button className="md:hidden">
-            <Search className="h-6 w-6" />
+          <button
+            className="md:hidden"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <Menu className="h-6 w-6" />
           </button>
         </div>
       </div>
+      <MobileMenu isOpen={isMobileMenuOpen} />
       <div className="w-full">
         <Image
           src="/images/header.svg"

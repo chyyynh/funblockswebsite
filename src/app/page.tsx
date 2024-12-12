@@ -4,7 +4,7 @@ import FeaturedGame from "./components/FeaturedGame";
 import GamesList from "./components/GamesList";
 import ArticleGrid from "./components/ArticleGrid";
 import LevelUpBanner from "./components/LevelUpBanner";
-import ReviewsSection from "./components/ReviewsSection";
+import ArticlesSection from "./components/ArticlesSection";
 import VideosSection from "./components/VideosSection";
 import GuidesSection from "./components/GuidesSection";
 
@@ -23,7 +23,7 @@ export default function Home() {
         <LevelUpBanner />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <ReviewsSection />
+          <ArticlesSection />
           <VideosSection />
         </div>
 
