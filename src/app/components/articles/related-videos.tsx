@@ -5,7 +5,7 @@ import { PlayCircle } from "lucide-react";
 export function RelatedVideos() {
   return (
     <section className="bg-white border border-gray-200 py-6 px-6">
-      <h2 className="text-lg font-bold mb-4">RELATED VIDEOS</h2>
+      <h2 className="text-lg font-bold mb-4">Related Games</h2>
       <div className="space-y-6">
         {[1, 2].map((i) => (
           <Link key={i} href="#" className="group block">

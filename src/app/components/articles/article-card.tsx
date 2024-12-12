@@ -1,9 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 
 interface ArticleCardProps {
   title: string;
-  image: string;
   date: string;
   author: string;
   excerpt?: string;
@@ -12,7 +10,6 @@ interface ArticleCardProps {
 
 export function ArticleCard({
   title,
-  image,
   date,
   author,
   excerpt,
@@ -21,18 +18,6 @@ export function ArticleCard({
   return (
     <Link href="#" className="group block">
       <div className={`flex ${isCompact ? "gap-3" : "flex-col gap-4"}`}>
-        <div
-          className={`relative overflow-hidden rounded-lg ${
-            isCompact ? "w-20 h-20" : "w-full aspect-[16/9]"
-          }`}
-        >
-          <Image
-            src={image}
-            alt={title}
-            fill
-            className="object-cover transition-transform group-hover:scale-105"
-          />
-        </div>
         <div className="flex-1">
           <h3
             className={`font-semibold ${

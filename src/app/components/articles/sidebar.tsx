@@ -6,15 +6,15 @@ export function Sidebar() {
   return (
     <div className="space-y-8">
       <section>
-        <h2 className="mb-4 text-lg font-semibold">RELATED GAME</h2>
+        <h2 className="mb-4 text-lg font-semibold">推薦遊戲</h2>
         <Link
           href="#"
-          className="group block overflow-hidden rounded-lg border p-4"
+          className="group block overflow-hidden rounded-none border p-4"
         >
           <div className="flex items-center gap-4">
-            <div className="relative h-16 w-16">
+            <div className="relative w-20 aspect-square">
               <Image
-                src="/placeholder.svg"
+                src="/images/games/dopewars.jpg"
                 alt="Game cover"
                 fill
                 className="rounded-md object-cover"
@@ -24,39 +24,30 @@ export function Sidebar() {
               <h3 className="font-medium group-hover:text-primary">
                 Dope War - Roll Your Own
               </h3>
-              <div className="mt-1 flex items-center gap-2">
-                <span className="rounded bg-muted px-2 py-1 text-xs">
-                  GAMING
-                </span>
-                <span className="rounded bg-muted px-2 py-1 text-xs">8.2</span>
-              </div>
             </div>
           </div>
         </Link>
       </section>
 
       <section>
-        <h2 className="mb-4 text-lg font-semibold">FEATURED ARTICLES</h2>
+        <h2 className="mb-4 text-lg font-semibold">推薦文章</h2>
         <div className="space-y-4">
           <ArticleCard
             isCompact
-            title="Next-Gen Graphics: How Photorealism is Shaping the Future of Gaming"
-            image="/placeholder.svg"
-            author="Jason Will"
+            title="[新聞] EVE Online 星戰前夜開發商宣布 Prject Awakening 更名 EVE Frontier 和第四階段測試"
+            author="CCP Games"
             date="February 24, 2024"
           />
           <ArticleCard
             isCompact
-            title="The Evolution of Multiplayer Gaming: From Couch Co-op to Global Connectivity"
-            image="/placeholder.svg"
-            author="Jason Will"
+            title="[Funblock 翻譯文章] 自主世界中的“自然可组合性”"
+            author="Funblocks"
             date="February 24, 2024"
           />
           <ArticleCard
             isCompact
-            title="Retro Revival: Why Classic Games Are Making a Comeback"
-            image="/placeholder.svg"
-            author="Jason Will"
+            title="[開發] Redstone 宣布主網將在 5/1 正式上線並舉辦 Race to Mainnet"
+            author="Lattice"
             date="February 24, 2024"
           />
         </div>

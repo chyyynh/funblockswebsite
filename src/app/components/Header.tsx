@@ -10,13 +10,15 @@ export default function Header() {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between gap-4">
           <div className="text-xl font-bold">
-            <Image
-              src="/images/funblocks_logo.svg"
-              alt="FUN BLOCKS Logo"
-              width={120}
-              height={30}
-              priority
-            />
+            <Link href="/" aria-label="Go to homepage">
+              <Image
+                src="/images/funblocks_logo.svg"
+                alt="FUN BLOCKS Logo"
+                width={120}
+                height={30}
+                priority
+              />
+            </Link>
           </div>
           <div className="hidden md:flex relative flex-1 max-w-md">
             <Input

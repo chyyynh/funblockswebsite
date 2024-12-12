@@ -27,7 +27,6 @@ export default async function ArticlePage({ params }: { params: Params }) {
   );
 
   const { content, data } = matter(fileContent);
-  console.log(`data: ${data}\n\n`);
 
   const { content: mdxContent } = await compileMDX({
     source: content,
@@ -40,28 +39,36 @@ export default async function ArticlePage({ params }: { params: Params }) {
       <div className="flex-grow container mx-auto px-4 py-6">
         <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
           <main>
-            <article className="bg-white py-6 px-6 border border-gray-200">
-              <div className="max-w-none">
-                <h1 className="text-2xl font-bold mb-2">{data.title}</h1>
-                <div className="flex items-center gap-2 text-sm text-gray-500 mb-6">
-                  <span>By {data.author}</span>
-                  <span>•</span>
-                  <span>{data.date}</span>
-                </div>
-                <div className="space-y-4 text-[15px] leading-relaxed text-gray-700">
-                  {mdxContent}
+            <article className="bg-white py-6 px-4 sm:px-6 border border-gray-200 rounded-none">
+              <div className="flex-grow container mx-auto">
+                <div className="max-w-none">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-gray-900">
+                    {data.title}
+                  </h1>
+                  <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 mb-6">
+                    <span>By {data.author}</span>
+                    <span className="hidden sm:inline">•</span>
+                    <span>Translated by {data.translateBy}</span>
+                    <span className="hidden sm:inline">•</span>
+                    <span>{data.publishedAt}</span>
+                  </div>
+                  <div className="space-y-4 text-base sm:text-lg leading-relaxed text-gray-700">
+                    <div className="prose max-w-none prose-sm sm:prose-base overflow-hidden">
+                      {mdxContent}
+                    </div>
+                  </div>
                 </div>
               </div>
             </article>
 
-            <div className="mt-8">
+            <div className="mt-8 space-y-8">
               <RelatedArticles />
               <RelatedVideos />
             </div>
           </main>
 
           <aside className="space-y-6">
-            <div className="bg-white border border-gray-200 py-4 px-4">
+            <div className="bg-white border border-gray-200 py-4 px-4 rounded-none">
               <Sidebar />
             </div>
           </aside>
