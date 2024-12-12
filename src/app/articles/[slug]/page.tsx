@@ -60,11 +60,6 @@ export default async function ArticlePage({ params }: { params: Params }) {
                 </div>
               </div>
             </article>
-
-            <div className="mt-8 space-y-8">
-              <RelatedArticles />
-              <RelatedVideos />
-            </div>
           </main>
 
           <aside className="space-y-6">
