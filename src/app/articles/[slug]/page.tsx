@@ -5,8 +5,8 @@ import matter from "gray-matter";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { Sidebar } from "@/app/components/articles/sidebar";
-import { RelatedArticles } from "@/app/components/articles/related-articles";
-import { RelatedVideos } from "@/app/components/articles/related-videos";
+// import { RelatedArticles } from "@/app/components/articles/related-articles";
+// import { RelatedVideos } from "@/app/components/articles/related-videos";
 
 export async function generateStaticParams() {
   const files = fs.readdirSync(path.join("src/contents"));
