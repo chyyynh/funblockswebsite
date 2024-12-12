@@ -15,7 +15,6 @@
     "@radix-ui/react-checkbox": "^1.1.2",
     "@radix-ui/react-select": "^2.1.2",
     "@radix-ui/react-slot": "^1.1.0",
-    "@react-three/drei": "^9.120.4",
     "@react-three/fiber": "^8.17.10",
     "@tailwindcss/typography": "^0.5.15",
     "@types/mdx": "^2.0.13",
