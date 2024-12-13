@@ -5,21 +5,27 @@ import Link from "next/link";
 const articles = [
   {
     title: "Quarry 簡介：為您的世界打造的現代化運算環境",
+    author: "",
     image: "quarry-cover.jpg",
     tags: ["Lattice"],
     link: "these-arent-the-bot-you-looking-for",
+    summary: "",
   },
   {
     title: "Eve Frontier: CCP 基於以太坊的太空生存遊戲",
+    author: "",
     image: "evefrontier.jpg",
     tags: ["ON-CHAIN GAMES", "UPDATE", "P2E"],
     link: "",
+    summary: "",
   },
   {
     title: "Playerchain 架構介紹",
+    author: "",
     image: "playerchain.jpg",
     tags: ["TECH"],
     link: "",
+    summary: "",
   },
 ];
 
@@ -39,7 +45,7 @@ export default function ArticleGrid() {
                   className="object-cover w-full h-full rounded-lg"
                 />
               </div>
-              <h2 className="text-lg mb-4 min-h-[3rem] line-clamp-2">
+              <h2 className="text-lg font-semibold mb-4 min-h-[3rem] line-clamp-2">
                 {article.title}
               </h2>
             </CardContent>

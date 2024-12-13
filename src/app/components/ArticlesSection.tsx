@@ -39,7 +39,11 @@ export default function ReviewsSection() {
       <CardContent className="p-4">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold">文章</h2>
-          <Button variant="ghost" className="text-sm">
+          <Button
+            variant="link"
+            size="sm"
+            className="text-muted-foreground hover:text-black hover:no-underline p-0"
+          >
             <Link href={"/articles"}>→</Link>
           </Button>
         </div>

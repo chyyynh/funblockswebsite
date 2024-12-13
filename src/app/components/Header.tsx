@@ -10,7 +10,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="border-b bg-white relative">
+    <header className="border-b bg-white relative z-20">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between md:justify-start gap-4">
           <div className="md:w-auto w-full text-center md:text-left">
