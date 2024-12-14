@@ -5,14 +5,17 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { Sidebar } from "@/app/components/articles/sidebar";
 import { compileMDX } from "next-mdx-remote/rsc";
+import { getBlogPosts } from "../../../lib/post";
 
 export async function generateStaticParams() {
-  const files = fs.readdirSync(path.join("src/contents"));
-  return files
-    .filter((filename) => filename.endsWith(".mdx"))
-    .map((filename) => ({
-      slug: filename.replace(".mdx", ""),
-    }));
+  // 使用 getBlogPosts 獲取文章列表
+  const blogPosts = getBlogPosts();
+  // console.log(blogPosts.data);
+
+  // 從每篇文章中提取 slug，並轉換為路由參數格式
+  return blogPosts.map((post) => ({
+    slug: post.slug, // 將 slug 傳遞給靜態路由參數
+  }));
 }
 
 type Params = Promise<{ slug: string }>;
