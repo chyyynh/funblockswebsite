@@ -1,12 +1,10 @@
 import fs from "fs";
 import path from "path";
-import { compileMDX } from "next-mdx-remote/rsc";
 import matter from "gray-matter";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { Sidebar } from "@/app/components/articles/sidebar";
-// import { RelatedArticles } from "@/app/components/articles/related-articles";
-// import { RelatedVideos } from "@/app/components/articles/related-videos";
+import { compileMDX } from "next-mdx-remote/rsc";
 
 export async function generateStaticParams() {
   const files = fs.readdirSync(path.join("src/contents"));
@@ -42,7 +40,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
             <article className="bg-white py-6 px-4 sm:px-6 border border-gray-200 rounded-none">
               <div className="flex-grow container mx-auto">
                 <div className="max-w-none">
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-gray-900">
+                  <h1 className="text-4xl sm:text-3xl md:text-4xl font-bold mb-2 text-gray-900">
                     {data.title}
                   </h1>
                   <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 mb-6">
@@ -53,7 +51,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
                     <span>{data.publishedAt}</span>
                   </div>
                   <div className="space-y-4 text-base sm:text-lg leading-relaxed text-gray-700">
-                    <div className="prose max-w-none prose-sm sm:prose-base overflow-hidden">
+                    <div className="prose max-w-none sm:prose-lg overflow-hidden">
                       {mdxContent}
                     </div>
                   </div>
