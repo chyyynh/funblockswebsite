@@ -2,6 +2,7 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { Sidebar } from "@/app/components/articles/sidebar";
 import { getBlogPosts, getBlogPostbySlug } from "../../../lib/post";
+import { compileMDX } from "next-mdx-remote/rsc";
 
 export async function generateStaticParams() {
   // 使用 getBlogPosts 獲取文章列表
@@ -19,6 +20,11 @@ type Params = Promise<{ slug: string }>;
 export default async function ArticlePage({ params }: { params: Params }) {
   const { slug } = await params;
   const fileContent = getBlogPostbySlug(slug);
+
+  const { content: mdxContent } = await compileMDX({
+    source: fileContent.content,
+    options: { parseFrontmatter: true },
+  });
 
   return (
     <div className="flex flex-col min-h-screen bg-[#f9f6f1]">
@@ -41,7 +47,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
                   </div>
                   <div className="space-y-4 text-base sm:text-lg leading-relaxed text-gray-700">
                     <div className="prose max-w-none sm:prose-lg overflow-hidden">
-                      {fileContent.content}
+                      {mdxContent}
                     </div>
                   </div>
                 </div>
