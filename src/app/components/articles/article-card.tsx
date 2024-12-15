@@ -20,8 +20,12 @@ export function ArticleCard({
   isCompact,
 }: ArticleCardProps) {
   return (
-    <Link href={`/articles/${link}`} className="group block">
-      <div className={`flex ${isCompact ? "gap-3" : "flex-col gap-4"}`}>
+    <Link href={`/articles/${link}`} className="group block hover:underline">
+      <div
+        className={`flex ${
+          isCompact ? "gap-3" : "flex-col gap-4"
+        } group-hover:bg-[#F3B43B]`}
+      >
         <div className="flex-1">
           <h3
             className={`font-semibold ${

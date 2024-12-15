@@ -5,11 +5,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { getBlogPosts, formatDate } from "../../lib/post";
 
-const allBlogs = getBlogPosts();
+const allBlogs = getBlogPosts().sort((a, b) => {
+  if (new Date(a.data.publishedAt) > new Date(b.data.publishedAt)) {
+    return -1;
+  }
+  return 1;
+});
 
 export default function ArticlesPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#f9f6f1]">
+    <div className="flex flex-col min-h-screen bg-[#f9f6f1] bg-[url('/images/background.svg')]">
       <Header />
       <div className="flex-grow container mx-auto px-4 py-6">
         <div className="grid gap-6 lg:grid-cols-[1fr_350px]">
@@ -27,7 +32,7 @@ export default function ArticlesPage() {
                 .map((article, i) => (
                   <article
                     key={i}
-                    className="flex flex-col md:flex-row gap-6 bg-white p-6 border border-gray-200 hover:bg-gray-50 transition-colors overflow-hidden"
+                    className="flex flex-col md:flex-row gap-6 bg-white p-6 border border-gray-200 hover:bg-[#F3B43B] transition-colors overflow-hidden"
                   >
                     <div className="flex-1 min-w-0 order-last md:order-first">
                       <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
@@ -74,6 +79,7 @@ export default function ArticlesPage() {
           </aside>
         </div>
       </div>
+
       <Footer />
     </div>
   );

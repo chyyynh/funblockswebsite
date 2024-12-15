@@ -27,10 +27,10 @@ export default async function ArticlePage({ params }: { params: Params }) {
   });
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#f9f6f1]">
+    <div className="flex flex-col min-h-screen bg-[#f9f6f1] bg-[url('/images/background.svg')]">
       <Header />
       <div className="flex-grow container mx-auto px-4 py-6">
-        <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
+        <div className="grid gap-6 lg:grid-cols-[1fr_350px]">
           <main>
             <article className="bg-white py-6 px-4 sm:px-6 border border-gray-200 rounded-none">
               <div className="flex-grow container mx-auto">

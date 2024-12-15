@@ -74,7 +74,14 @@ export default function Header() {
           alt="Header SVG"
           width={1440}
           height={200}
-          className="w-full"
+          className="hidden sm:block w-full"
+        />
+        <Image
+          src="/images/header_mobile.svg"
+          alt="Header Mobile SVG"
+          width={768}
+          height={200}
+          className="block sm:hidden w-full" // 手機版顯示
         />
       </div>
     </header>
