@@ -28,3 +28,15 @@ function getMDXData(dir: string) {
 export function getBlogPosts() {
   return getMDXData(path.join(process.cwd(), "src/contents"));
 }
+
+export function getBlogPostbySlug(slug: string) {
+  const { data, content } = readMDXFile(
+    path.join(process.cwd(), `src/contents/${slug}.mdx`)
+  );
+
+  return {
+    data,
+    slug,
+    content,
+  };
+}

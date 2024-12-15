@@ -1,11 +1,7 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { Sidebar } from "@/app/components/articles/sidebar";
-import { compileMDX } from "next-mdx-remote/rsc";
-import { getBlogPosts } from "../../../lib/post";
+import { getBlogPosts, getBlogPostbySlug } from "../../../lib/post";
 
 export async function generateStaticParams() {
   // 使用 getBlogPosts 獲取文章列表
@@ -22,17 +18,7 @@ type Params = Promise<{ slug: string }>;
 
 export default async function ArticlePage({ params }: { params: Params }) {
   const { slug } = await params;
-  const fileContent = fs.readFileSync(
-    path.join(process.cwd(), `src/contents/${slug}.mdx`),
-    "utf-8"
-  );
-
-  const { content, data } = matter(fileContent);
-
-  const { content: mdxContent } = await compileMDX({
-    source: content,
-    options: { parseFrontmatter: true },
-  });
+  const fileContent = getBlogPostbySlug(slug);
 
   return (
     <div className="flex flex-col min-h-screen bg-[#f9f6f1]">
@@ -44,18 +30,18 @@ export default async function ArticlePage({ params }: { params: Params }) {
               <div className="flex-grow container mx-auto">
                 <div className="max-w-none">
                   <h1 className="text-4xl sm:text-3xl md:text-4xl font-bold mb-2 text-gray-900">
-                    {data.title}
+                    {fileContent.data.title}
                   </h1>
                   <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 mb-6">
-                    <span>By {data.author}</span>
+                    <span>By {fileContent.data.author}</span>
                     <span className="hidden sm:inline">•</span>
-                    <span>Translated by {data.translateBy}</span>
+                    <span>Translated by {fileContent.data.translateBy}</span>
                     <span className="hidden sm:inline">•</span>
-                    <span>{data.publishedAt}</span>
+                    <span>{fileContent.data.publishedAt}</span>
                   </div>
                   <div className="space-y-4 text-base sm:text-lg leading-relaxed text-gray-700">
                     <div className="prose max-w-none sm:prose-lg overflow-hidden">
-                      {mdxContent}
+                      {fileContent.content}
                     </div>
                   </div>
                 </div>
