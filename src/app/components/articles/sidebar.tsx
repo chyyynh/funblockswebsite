@@ -1,12 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArticleCard } from "./article-card";
+import { getBlogPosts, formatDate } from "../../../lib/post";
+
+const allBlogs = getBlogPosts();
 
 export function Sidebar() {
   return (
     <div className="space-y-8">
       <section>
-        <h2 className="mb-4 text-lg font-semibold">推薦遊戲</h2>
+        <h2 className="mb-4 text-xl font-semibold">推薦遊戲</h2>
         <Link
           href="#"
           className="group block overflow-hidden rounded-none border p-4"
@@ -30,26 +33,26 @@ export function Sidebar() {
       </section>
 
       <section>
-        <h2 className="mb-4 text-lg font-semibold">推薦文章</h2>
+        <h2 className="mb-4 text-xl font-semibold">推薦文章</h2>
         <div className="space-y-4">
-          <ArticleCard
-            isCompact
-            title="[新聞] EVE Online 星戰前夜開發商宣布 Prject Awakening 更名 EVE Frontier 和第四階段測試"
-            author="CCP Games"
-            date="February 24, 2024"
-          />
-          <ArticleCard
-            isCompact
-            title="[Funblock 翻譯文章] 自主世界中的“自然可组合性”"
-            author="Funblocks"
-            date="February 24, 2024"
-          />
-          <ArticleCard
-            isCompact
-            title="[開發] Redstone 宣布主網將在 5/1 正式上線並舉辦 Race to Mainnet"
-            author="Lattice"
-            date="February 24, 2024"
-          />
+          {allBlogs
+            .sort((a, b) => {
+              if (new Date(a.data.publishedAt) > new Date(b.data.publishedAt)) {
+                return -1;
+              }
+              return 1;
+            })
+            .slice(0, 5) // 只選前三篇文章
+            .map((article, i) => (
+              <ArticleCard
+                key={i}
+                isCompact
+                title={article.data.title} // 使用動態資料
+                author={article.data.author}
+                link={article.data.link}
+                publishedAt={formatDate(article.data.publishedAt, false)} // 格式化日期
+              />
+            ))}
         </div>
       </section>
     </div>

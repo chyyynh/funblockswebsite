@@ -17,6 +17,11 @@ const nextConfig = {
         hostname: "substackcdn.com",
         pathname: "/image/fetch/**", // 匹配圖片 fetch API 的所有路徑
       },
+      {
+        protocol: "https",
+        hostname: "miro.medium.com",
+        pathname: "/v2/**", // 適配 Medium 的圖片連結
+      },
     ],
   },
 };
