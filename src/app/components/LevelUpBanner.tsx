@@ -2,12 +2,9 @@ export default function LevelUpBanner() {
   return (
     <div className="bg-blue-400 p-8 relative overflow-hidden border border-black rounded-none">
       <div className="max-w-2xl relative z-10">
-        <h2 className="text-2xl font-bold text-black mb-2">
-          Level up your gaming experience!
-        </h2>
+        <h2 className="text-2xl font-bold text-black mb-2">增強遊戲體驗!</h2>
         <p className="text-black/80">
-          Explore a universe of gaming content. Discover new games, learn from
-          experts, and stay updated with the latest trends and news.
+          探索遊戲內容的世界。發現新遊戲、向專家學習並了解最新趨勢和新聞。
         </p>
       </div>
       <div className="absolute top-0 right-0 w-64 h-full">
