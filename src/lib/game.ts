@@ -47,4 +47,34 @@ export const games = [
     engine: "Starknet",
     tags: ["PROMOTION", "PLATFORM", "2+"],
   },
+  {
+    title: "Biomes",
+    image: "/images/games/dopewarsbanner.jpg",
+    engine: "Starknet",
+    tags: ["PROMOTION", "PLATFORM", "2+"],
+  },
+  {
+    title: "Eve Frontier",
+    image: "/images/evefrontier.jpg",
+    engine: "Starknet",
+    tags: ["PROMOTION", "PLATFORM", "2+"],
+  },
+  {
+    title: "Influence",
+    image: "/images/games/influence.jpg",
+    engine: "Starknet",
+    tags: ["PROMOTION", "PLATFORM", "2+"],
+  },
+  {
+    title: "This Cursed Machine",
+    image: "/images/games/tcm.jpg",
+    engine: "Starknet",
+    tags: ["PROMOTION", "PLATFORM", "2+"],
+  },
+  {
+    title: "Pixelaw",
+    image: "/images/games/pixelaw.jpg",
+    engine: "Starknet",
+    tags: ["PROMOTION", "PLATFORM", "2+"],
+  },
 ];

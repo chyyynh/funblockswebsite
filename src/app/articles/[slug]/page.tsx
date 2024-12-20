@@ -3,6 +3,7 @@ import Footer from "@/app/components/Footer";
 import { Sidebar } from "@/app/components/articles/sidebar";
 import { getBlogPosts, getBlogPostbySlug } from "../../../lib/post";
 import { compileMDX } from "next-mdx-remote/rsc";
+import { Metadata } from "next"; // 需要從 next 中導入 Metadata 類型
 
 export async function generateStaticParams() {
   // 使用 getBlogPosts 獲取文章列表
@@ -15,7 +16,33 @@ export async function generateStaticParams() {
   }));
 }
 
-type Params = Promise<{ slug: string }>;
+export type Params = Promise<{ slug: string }>;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Params;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const blogPost = getBlogPostbySlug(slug); // 根據 slug 獲取文章資料
+  return {
+    title: `Funblocks | ${blogPost.data.title}`, // 設定動態標題
+    description: "單頁面描述",
+    openGraph: {
+      title: "單頁面標題 (OG)",
+      description: "單頁面描述 (OG)",
+      url: "https://你的網站網址.com/特定頁面",
+      images: [
+        {
+          url: "/specific-og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: "單頁面圖片描述",
+        },
+      ],
+    },
+  };
+}
 
 export default async function ArticlePage({ params }: { params: Params }) {
   const { slug } = await params;
