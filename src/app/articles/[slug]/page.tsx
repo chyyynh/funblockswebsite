@@ -1,19 +1,22 @@
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { Sidebar } from "@/app/components/articles/sidebar";
-import { getBlogPosts, getBlogPostbySlug } from "../../../lib/post";
+// import { createClient } from "@supabase/supabase-js";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { Metadata } from "next"; // 需要從 next 中導入 Metadata 類型
+import { getStaticProps, getStaticParams } from "@/lib/supabase/getStaticProps";
+// import { getBlogPosts, getBlogPostbySlug } from "../../../lib/post";
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error("Missing Supabase URL or Key");
+}
+// const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function generateStaticParams() {
-  // 使用 getBlogPosts 獲取文章列表
-  const blogPosts = getBlogPosts();
-  // console.log(blogPosts.data);
-
-  // 從每篇文章中提取 slug，並轉換為路由參數格式
-  return blogPosts.map((post) => ({
-    slug: post.slug, // 將 slug 傳遞給靜態路由參數
-  }));
+  const allslug = await getStaticParams();
+  return allslug;
 }
 
 export type Params = Promise<{ slug: string }>;
@@ -24,9 +27,25 @@ export async function generateMetadata({
   params: Params;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const blogPost = getBlogPostbySlug(slug); // 根據 slug 獲取文章資料
+
+  // 根據 slug 獲取文章資料
+  /*
+  const { data: article, error } = await supabase
+    .from("articles")
+    .select("*")
+    .eq("metadata->>link", slug)
+    .single();
+  */
+
+  const { props } = await getStaticProps(slug);
+  const article = props.article;
+
+  if (!article) {
+    console.error("Error fetching blog posts:", props.error);
+  }
+
   return {
-    title: `Funblocks | ${blogPost.data.title}`, // 設定動態標題
+    title: `Funblocks | ${article.metadata.title}`, // 設定動態標題
     description: "單頁面描述",
     openGraph: {
       title: "單頁面標題 (OG)",
@@ -46,10 +65,24 @@ export async function generateMetadata({
 
 export default async function ArticlePage({ params }: { params: Params }) {
   const { slug } = await params;
-  const fileContent = getBlogPostbySlug(slug);
+
+  /*
+  const { data: article, error } = await supabase
+    .from("articles")
+    .select("*")
+    .eq("metadata->>link", slug)
+    .single();
+  */
+  const { props } = await getStaticProps(slug);
+  const article = props.article;
+
+  if (!article) {
+    console.error("Error fetching blog post:", props.error);
+    return <div>{article}</div>;
+  }
 
   const { content: mdxContent } = await compileMDX({
-    source: fileContent.content,
+    source: article.content,
     options: { parseFrontmatter: true },
   });
 
@@ -63,14 +96,14 @@ export default async function ArticlePage({ params }: { params: Params }) {
               <div className="flex-grow container mx-auto">
                 <div className="max-w-none">
                   <h1 className="text-4xl sm:text-3xl md:text-4xl font-bold mb-2 text-gray-900">
-                    {fileContent.data.title}
+                    {article.metadata.title}
                   </h1>
                   <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 mb-6">
-                    <span>By {fileContent.data.author}</span>
+                    <span>By {article.metadata.author}</span>
                     <span className="hidden sm:inline">•</span>
-                    <span>Translated by {fileContent.data.translateBy}</span>
+                    <span>Translated by {article.metadata.translateBy}</span>
                     <span className="hidden sm:inline">•</span>
-                    <span>{fileContent.data.publishedAt}</span>
+                    <span>{article.metadata.publishedAt}</span>
                   </div>
                   <div className="space-y-4 text-base sm:text-lg leading-relaxed text-gray-700">
                     <div className="prose max-w-none sm:prose-lg overflow-hidden">

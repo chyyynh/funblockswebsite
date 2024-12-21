@@ -17,7 +17,7 @@ export function Sidebar() {
       <div className="space-y-4">
         <h3 className="font-semibold">ENGINE</h3>
         <div className="space-y-2">
-          {["Aragus", "Dojo", "Keystone", "MUD v1", "MUD v2", "Paima"].map(
+          {["MUD", "Dojo", "Self built", "MUD v1", "MUD v2", "Paima"].map(
             (engine) => (
               <div key={engine} className="flex items-center space-x-2">
                 <Checkbox id={engine} />

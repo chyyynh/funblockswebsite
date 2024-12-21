@@ -1,7 +1,7 @@
 import Header from "@/app/components/Header";
 import { Sidebar } from "@/app/components/games/sidebar";
 import { GameCard } from "@/app/components/games/game-card";
-import GameCarousel from "@/app/components/games/game-carousel";
+// import GameCarousel from "@/app/components/games/game-carousel";
 // import Head from "next/head";
 import {
   Select,
@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { games } from "../../lib/game";
 
+/*
 const carouselGames = [
   {
     id: "Biomes",
@@ -29,6 +30,7 @@ const carouselGames = [
     type: "立即遊玩",
   },
 ];
+*/
 
 export default function Page() {
   return (
@@ -39,13 +41,13 @@ export default function Page() {
           <Sidebar />
           <div className="flex-1 space-y-8">
             {/* Carousel Section */}
-
+            {/*
             <div className="bg-[#f3b43b] rounded-lg shadow-md overflow-hidden">
               <div className="p-6">
                 <GameCarousel title="精選與推薦" games={carouselGames} />
               </div>
             </div>
-
+            *}
             {/* Game Cards Section */}
             <div className="bg-white rounded-none overflow-hidden">
               <div className="p-6">
