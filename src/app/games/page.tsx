@@ -13,7 +13,16 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import { Search, Filter } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 export interface Game {
   id: number;
@@ -30,7 +39,7 @@ export interface Game {
 }
 
 type FilterType = {
-  engine: string[]; // 假設 engine 是 string
+  engine: string[];
   blockchain: string[];
   gameStudio: string[];
 };
@@ -45,6 +54,7 @@ export default function Page() {
     blockchain: [],
     gameStudio: [],
   });
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -58,14 +68,12 @@ export default function Page() {
   useEffect(() => {
     let result = allGames;
 
-    // Apply search
     if (searchTerm) {
       result = result.filter((game) =>
         game.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
-    // Apply filters
     if (filters.engine.length > 0) {
       result = result.filter((game) => filters.engine.includes(game.engine));
     }
@@ -83,27 +91,15 @@ export default function Page() {
     setFilteredGames(result);
   }, [allGames, searchTerm, sortBy, filters]);
 
-  interface HandleSearch {
-    (e: React.ChangeEvent<HTMLInputElement>): void;
-  }
-
-  const handleSearch: HandleSearch = (e) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
-  interface HandleSort {
-    (value: string): void;
-  }
-
-  const handleSort: HandleSort = (value) => {
+  const handleSort = (value: string) => {
     setSortBy(value);
   };
 
-  interface HandleFilterChange {
-    (category: keyof FilterType, value: string): void;
-  }
-
-  const handleFilterChange: HandleFilterChange = (category, value) => {
+  const handleFilterChange = (category: keyof FilterType, value: string) => {
     setFilters((prev) => ({
       ...prev,
       [category]: prev[category].includes(value)
@@ -126,17 +122,53 @@ export default function Page() {
     <div className="min-h-screen bg-[#FAF9F6] bg-[url('/images/background.svg')] bg-repeat">
       <Header />
       <main className="container mx-auto px-4 py-8">
-        <div className="flex gap-8">
-          <Sidebar
-            filters={filters}
-            onFilterChange={handleFilterChange}
-            onClearAll={clearAllFilters}
-          />
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Desktop Sidebar */}
+          <div className="hidden lg:block">
+            <Sidebar
+              filters={filters}
+              onFilterChange={handleFilterChange}
+              onClearAll={clearAllFilters}
+            />
+          </div>
+
+          {/* Mobile Filter Button */}
+          <div className="lg:hidden mb-4">
+            <Sheet
+              open={isMobileFilterOpen}
+              onOpenChange={setIsMobileFilterOpen}
+            >
+              <SheetTrigger asChild>
+                <Button variant="outline" className="w-full">
+                  <Filter className="mr-2 h-4 w-4" /> Filters
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+                <SheetHeader>
+                  <SheetTitle>Filters</SheetTitle>
+                  <SheetDescription>
+                    Apply filters to refine your game search.
+                  </SheetDescription>
+                </SheetHeader>
+                <div className="mt-4">
+                  <Sidebar
+                    filters={filters}
+                    onFilterChange={handleFilterChange}
+                    onClearAll={() => {
+                      clearAllFilters();
+                      setIsMobileFilterOpen(false);
+                    }}
+                  />
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
+
           <div className="flex-1 space-y-8">
-            <div className="bg-white rounded-none overflow-hidden">
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <div className="p-6">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="relative w-[300px]">
+                <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">
+                  <div className="relative w-full sm:w-[300px]">
                     <Input
                       className="pl-8"
                       placeholder="Search Games"
@@ -147,7 +179,7 @@ export default function Page() {
                     <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
                   </div>
                   <Select value={sortBy} onValueChange={handleSort}>
-                    <SelectTrigger className="w-[180px]">
+                    <SelectTrigger className="w-full sm:w-[180px]">
                       <SelectValue placeholder="Sort By" />
                     </SelectTrigger>
                     <SelectContent>
@@ -158,7 +190,7 @@ export default function Page() {
                   </Select>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredGames.map((game) => (
                     <GameCard key={game.id} {...game} />
                   ))}

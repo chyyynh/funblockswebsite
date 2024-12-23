@@ -1,9 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-// import { FilterType } from "@/app/games/page";
 
 type FilterType = {
-  engine: string[]; // 假設 engine 是 string
+  engine: string[];
   blockchain: string[];
   gameStudio: string[];
 };
@@ -31,11 +30,15 @@ export function Sidebar({ filters, onFilterChange, onClearAll }: SidebarProps) {
           {["MUD", "Dojo", "Self built"].map((engine) => (
             <div key={engine} className="flex items-center space-x-2">
               <Checkbox
-                id={engine}
+                id={`engine-${engine}`}
                 checked={filters.engine.includes(engine)}
-                onChange={() => onFilterChange("engine", engine)}
+                onCheckedChange={() => onFilterChange("engine", engine)}
               />
-              <label htmlFor={engine} className="text-sm">
+              <label
+                htmlFor={`engine-${engine}`}
+                className="text-sm cursor-pointer select-none"
+                onClick={() => onFilterChange("engine", engine)}
+              >
                 {engine}
               </label>
             </div>
@@ -48,11 +51,15 @@ export function Sidebar({ filters, onFilterChange, onClearAll }: SidebarProps) {
           {["Redstone", "Starknet", "Self Built"].map((item) => (
             <div key={item} className="flex items-center space-x-2">
               <Checkbox
-                id={item}
+                id={`blockchain-${item}`}
                 checked={filters.blockchain.includes(item)}
-                onChange={() => onFilterChange("blockchain", item)}
+                onCheckedChange={() => onFilterChange("blockchain", item)}
               />
-              <label htmlFor={item} className="text-sm">
+              <label
+                htmlFor={`blockchain-${item}`}
+                className="text-sm cursor-pointer select-none"
+                onClick={() => onFilterChange("blockchain", item)}
+              >
                 {item}
               </label>
             </div>
@@ -65,11 +72,15 @@ export function Sidebar({ filters, onFilterChange, onClearAll }: SidebarProps) {
           {["Lattice", "Moving Castle", "Curio"].map((studio) => (
             <div key={studio} className="flex items-center space-x-2">
               <Checkbox
-                id={studio}
+                id={`studio-${studio}`}
                 checked={filters.gameStudio.includes(studio)}
-                onChange={() => onFilterChange("gameStudio", studio)}
+                onCheckedChange={() => onFilterChange("gameStudio", studio)}
               />
-              <label htmlFor={studio} className="text-sm">
+              <label
+                htmlFor={`studio-${studio}`}
+                className="text-sm cursor-pointer select-none"
+                onClick={() => onFilterChange("gameStudio", studio)}
+              >
                 {studio}
               </label>
             </div>
