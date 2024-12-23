@@ -3,13 +3,21 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
 interface GameCardProps {
+  id: number;
   title: string;
   image: string;
+  blockchain: string;
   engine: string;
-  tags: string[];
 }
 
-export function GameCard({ title, image, engine, tags }: GameCardProps) {
+export function GameCard(props: GameCardProps) {
+  const {
+    title = "Unknown",
+    image = "/images/default.jpg",
+    blockchain = "N/A",
+    engine = "N/A",
+  } = props;
+
   return (
     <Card className="overflow-hidden">
       <CardContent className="p-0">
@@ -28,11 +36,8 @@ export function GameCard({ title, image, engine, tags }: GameCardProps) {
         <div className="p-4">
           <h3 className="mb-2 font-semibold">{title}</h3>
           <div className="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <Badge key={tag} variant="secondary">
-                {tag}
-              </Badge>
-            ))}
+            <Badge variant="secondary">{blockchain}</Badge>
+            <Badge variant="secondary">{engine}</Badge>
           </div>
         </div>
       </CardContent>

@@ -1,15 +1,26 @@
-import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
+// import { FilterType } from "@/app/games/page";
 
-export function Sidebar() {
+type FilterType = {
+  engine: string[]; // 假設 engine 是 string
+  blockchain: string[];
+  gameStudio: string[];
+};
+
+interface SidebarProps {
+  filters: FilterType;
+  onFilterChange: (category: keyof FilterType, value: string) => void;
+  onClearAll: () => void;
+}
+
+export function Sidebar({ filters, onFilterChange, onClearAll }: SidebarProps) {
   return (
-    <div className="w-64 space-y-6 p-4">
+    <div className="w-64 space-y-6 p-4 bg-white">
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="font-semibold">FILTERS</h3>
-          <Button variant="link" className="text-blue-600">
+          <Button variant="link" className="text-blue-600" onClick={onClearAll}>
             Clear All
           </Button>
         </div>
@@ -17,34 +28,30 @@ export function Sidebar() {
       <div className="space-y-4">
         <h3 className="font-semibold">ENGINE</h3>
         <div className="space-y-2">
-          {["MUD", "Dojo", "Self built", "MUD v1", "MUD v2", "Paima"].map(
-            (engine) => (
-              <div key={engine} className="flex items-center space-x-2">
-                <Checkbox id={engine} />
-                <label htmlFor={engine} className="text-sm">
-                  {engine}
-                </label>
-              </div>
-            )
-          )}
+          {["MUD", "Dojo", "Self built"].map((engine) => (
+            <div key={engine} className="flex items-center space-x-2">
+              <Checkbox
+                id={engine}
+                checked={filters.engine.includes(engine)}
+                onChange={() => onFilterChange("engine", engine)}
+              />
+              <label htmlFor={engine} className="text-sm">
+                {engine}
+              </label>
+            </div>
+          ))}
         </div>
-        <Button variant="link" className="text-blue-600 text-sm">
-          +32 More
-        </Button>
       </div>
       <div className="space-y-4">
-        <div className="relative">
-          <Input
-            className="pl-8"
-            placeholder="Search Blockchain"
-            type="search"
-          />
-          <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-        </div>
+        <h3 className="font-semibold">Blockchain</h3>
         <div className="space-y-2">
-          {["Play-to-Earn", "Decentralized", "DAOs"].map((item) => (
+          {["Redstone", "Starknet", "Self Built"].map((item) => (
             <div key={item} className="flex items-center space-x-2">
-              <Checkbox id={item} />
+              <Checkbox
+                id={item}
+                checked={filters.blockchain.includes(item)}
+                onChange={() => onFilterChange("blockchain", item)}
+              />
               <label htmlFor={item} className="text-sm">
                 {item}
               </label>
@@ -53,20 +60,21 @@ export function Sidebar() {
         </div>
       </div>
       <div className="space-y-4">
-        <h3 className="font-semibold">GAME STUDIO</h3>
+        <h3 className="font-semibold">Game Studio</h3>
         <div className="space-y-2">
-          {["Aragus", "Curio", "Dojo", "MUD", "Obelisk"].map((studio) => (
+          {["Lattice", "Moving Castle", "Curio"].map((studio) => (
             <div key={studio} className="flex items-center space-x-2">
-              <Checkbox id={studio} />
+              <Checkbox
+                id={studio}
+                checked={filters.gameStudio.includes(studio)}
+                onChange={() => onFilterChange("gameStudio", studio)}
+              />
               <label htmlFor={studio} className="text-sm">
                 {studio}
               </label>
             </div>
           ))}
         </div>
-        <Button variant="link" className="text-blue-600 text-sm">
-          +32 More
-        </Button>
       </div>
     </div>
   );

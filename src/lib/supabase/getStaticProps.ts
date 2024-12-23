@@ -33,3 +33,11 @@ export async function getStaticParams() {
 
   return allslug;
 }
+
+export async function getAllGames() {
+  const { data: games, error } = await supabase.from("games").select("*");
+  if (!games) {
+    console.log(error);
+  }
+  return games || []; // 確保返回值是陣列
+}

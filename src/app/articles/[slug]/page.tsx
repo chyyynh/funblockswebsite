@@ -1,10 +1,10 @@
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { Sidebar } from "@/app/components/articles/sidebar";
-// import { createClient } from "@supabase/supabase-js";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { Metadata } from "next"; // 需要從 next 中導入 Metadata 類型
 import { getStaticProps, getStaticParams } from "@/lib/supabase/getStaticProps";
+// import { createClient } from "@supabase/supabase-js";
 // import { getBlogPosts, getBlogPostbySlug } from "../../../lib/post";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -12,7 +12,6 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 if (!supabaseUrl || !supabaseKey) {
   throw new Error("Missing Supabase URL or Key");
 }
-// const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function generateStaticParams() {
   const allslug = await getStaticParams();
@@ -27,16 +26,6 @@ export async function generateMetadata({
   params: Params;
 }): Promise<Metadata> {
   const { slug } = await params;
-
-  // 根據 slug 獲取文章資料
-  /*
-  const { data: article, error } = await supabase
-    .from("articles")
-    .select("*")
-    .eq("metadata->>link", slug)
-    .single();
-  */
-
   const { props } = await getStaticProps(slug);
   const article = props.article;
 
@@ -65,14 +54,6 @@ export async function generateMetadata({
 
 export default async function ArticlePage({ params }: { params: Params }) {
   const { slug } = await params;
-
-  /*
-  const { data: article, error } = await supabase
-    .from("articles")
-    .select("*")
-    .eq("metadata->>link", slug)
-    .single();
-  */
   const { props } = await getStaticProps(slug);
   const article = props.article;
 
