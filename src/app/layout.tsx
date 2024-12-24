@@ -13,26 +13,32 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  title: "Funblocks",
-  description: "Gaming Media Focusing on Onchain Game",
-  openGraph: {
-    title: "網站標題 (OG)",
-    description: "網站描述 (OG)",
-    url: "https://你的網站網址.com",
-    siteName: "網站名稱",
-    images: [
-      {
-        url: "/path-to-image.jpg", // 放在 public 資料夾的圖片
-        width: 1200,
-        height: 630,
-        alt: "圖片描述",
-      },
-    ],
-    locale: "zh-TW",
-    type: "website",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    metadataBase: new URL("https://funblocks.xyz"), // 替換為你的實際域名
+    title: "Funblocks",
+    description: "Your Page Description",
+    openGraph: {
+      title: "Funblocks",
+      description: "Open Graph Description",
+      url: "/your-page",
+      images: [
+        {
+          url: "/images/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: "Open Graph Image Alt Text",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Twitter Title",
+      description: "Twitter Description",
+      images: ["/images/twitter-image.png"],
+    },
+  };
+}
 
 export default function RootLayout({
   children,

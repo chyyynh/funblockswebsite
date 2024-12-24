@@ -34,20 +34,19 @@ export async function generateMetadata({
   }
 
   return {
-    title: `Funblocks | ${article.metadata.title}`, // 設定動態標題
-    description: "單頁面描述",
+    metadataBase: new URL("https://funblocks.xyz"), // 替換為你的實際域名
+    title: "Funblocks",
+    description: "Funblocks 專注於全鏈遊戲的媒體",
     openGraph: {
-      title: "單頁面標題 (OG)",
-      description: "單頁面描述 (OG)",
-      url: "https://你的網站網址.com/特定頁面",
-      images: [
-        {
-          url: "/specific-og-image.jpg",
-          width: 1200,
-          height: 630,
-          alt: "單頁面圖片描述",
-        },
-      ],
+      title: "Funblocks",
+      description: "Open Graph Description",
+      url: `/${slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Twitter Title",
+      description: "Twitter Description",
+      images: ["/images/twitter-image.png"],
     },
   };
 }
@@ -87,7 +86,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
                     <span>{article.metadata.publishedAt}</span>
                   </div>
                   <div className="space-y-4 text-base sm:text-lg leading-relaxed text-gray-700">
-                    <div className="prose max-w-none sm:prose-lg overflow-hidden">
+                    <div className="prose max-w-none sm:prose-lg overflow-hidden prose-img:max-w-[80%] prose-img:mx-auto">
                       {mdxContent}
                     </div>
                   </div>

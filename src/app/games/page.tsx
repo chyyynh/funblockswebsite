@@ -27,15 +27,13 @@ import {
 export interface Game {
   id: number;
   title: string;
-  status: string;
-  type: string;
   image: string;
   engine: string;
   blockchain: string;
   gameStudio: string;
+  releaseDate: string;
   popularity?: number;
   rating?: number;
-  releaseDate: string;
 }
 
 type FilterType = {

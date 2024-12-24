@@ -34,6 +34,13 @@ export async function getStaticParams() {
   return allslug;
 }
 
+export async function gerRelated(game: string) {
+  const { data: relatedData } = await supabase
+    .from("articles")
+    .select("relatedTags,relatedTags");
+  return relatedData;
+}
+
 export async function getAllGames() {
   const { data: games, error } = await supabase.from("games").select("*");
   if (!games) {
