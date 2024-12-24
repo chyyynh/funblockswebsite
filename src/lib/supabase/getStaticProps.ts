@@ -34,7 +34,7 @@ export async function getStaticParams() {
   return allslug;
 }
 
-export async function gerRelated(game: string) {
+export async function gerRelated() {
   const { data: relatedData } = await supabase
     .from("articles")
     .select("relatedTags,relatedTags");

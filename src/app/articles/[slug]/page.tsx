@@ -2,7 +2,7 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { Sidebar } from "@/app/components/articles/sidebar";
 import { compileMDX } from "next-mdx-remote/rsc";
-import { Metadata } from "next"; // 需要從 next 中導入 Metadata 類型
+import { Metadata } from "next";
 import { getStaticProps, getStaticParams } from "@/lib/supabase/getStaticProps";
 // import { createClient } from "@supabase/supabase-js";
 // import { getBlogPosts, getBlogPostbySlug } from "../../../lib/post";

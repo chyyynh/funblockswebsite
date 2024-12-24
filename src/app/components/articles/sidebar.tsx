@@ -5,10 +5,12 @@ import { getBlogPosts, formatDate } from "../../../lib/post";
 
 const allBlogs = getBlogPosts();
 
+/*
 interface SidebarProps {
   related_game: string;
   related_tag: string[];
 }
+*/
 
 export function Sidebar() {
   return (
