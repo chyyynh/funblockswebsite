@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -27,7 +28,7 @@ export default function GuidesSection() {
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold">Tutorials</h2>
           <Button variant="ghost" className="text-sm">
-            See More →
+            →
           </Button>
         </div>
         <div className="space-y-4">
@@ -45,7 +46,7 @@ export default function GuidesSection() {
                 <h3 className="font-medium text-sm">{guide.title}</h3>
               </div>
               <Button variant="ghost" size="sm">
-                →
+                <Link href={"/tutorials"}>→</Link>
               </Button>
             </div>
           ))}
