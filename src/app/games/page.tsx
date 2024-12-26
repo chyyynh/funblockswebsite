@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Header from "@/app/components/Header";
-import { Sidebar } from "@/app/components/games/sidebar";
-import { GameCard } from "@/app/components/games/game-card";
-import { getAllGames } from "@/lib/supabase/getStaticProps";
+import { Search, Filter } from "lucide-react";
+
+// shadcn components
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -12,9 +13,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import { Search, Filter } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
@@ -23,11 +21,18 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import Link from "next/link";
+
+// self built components
+import Header from "@/app/components/Header";
+import { Sidebar } from "@/app/components/games/sidebar";
+import { GameCard } from "@/app/components/games/game-card";
+import { NewTabLink } from "@/app/components/NewTabLink";
+import { getAllGames } from "@/lib/supabase/getStaticProps";
 
 export interface Game {
   id: number;
   title: string;
+  type: string;
   image: string;
   engine: string;
   blockchain: string;
@@ -196,9 +201,9 @@ export default function Page() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredGames.map((game) =>
                     game.link && game.link.twitter ? (
-                      <Link key={game.id} href={game.link.twitter}>
+                      <NewTabLink key={game.id} href={game.link.twitter}>
                         <GameCard {...game} />
-                      </Link>
+                      </NewTabLink>
                     ) : (
                       <GameCard key={game.id} {...game} />
                     )

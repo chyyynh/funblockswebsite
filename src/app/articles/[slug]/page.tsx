@@ -7,12 +7,6 @@ import { getStaticProps, getStaticParams } from "@/lib/supabase/getStaticProps";
 // import { createClient } from "@supabase/supabase-js";
 // import { getBlogPosts, getBlogPostbySlug } from "../../../lib/post";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-if (!supabaseUrl || !supabaseKey) {
-  throw new Error("Missing Supabase URL or Key");
-}
-
 export async function generateStaticParams() {
   const allslug = await getStaticParams();
   return allslug;

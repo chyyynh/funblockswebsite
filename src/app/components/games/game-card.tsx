@@ -8,6 +8,7 @@ interface GameCardProps {
   image: string;
   blockchain: string;
   engine: string;
+  type: string;
 }
 
 export function GameCard(props: GameCardProps) {
@@ -16,6 +17,7 @@ export function GameCard(props: GameCardProps) {
     image = "/images/default.jpg",
     blockchain = "N/A",
     engine = "N/A",
+    type = "unknown",
   } = props;
 
   return (
@@ -24,7 +26,7 @@ export function GameCard(props: GameCardProps) {
         <CardContent className="p-0">
           <div className="relative">
             <div className="absolute left-2 top-2 bg-white px-2 py-1 text-xs font-semibold">
-              {engine}
+              {type}
             </div>
             <Image
               src={image}

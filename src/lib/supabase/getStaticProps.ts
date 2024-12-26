@@ -41,6 +41,14 @@ export async function gerRelated() {
   return relatedData;
 }
 
+export async function getAllArticles() {
+  const { data: articles, error } = await supabase.from("articles").select("*");
+  if (!articles) {
+    console.log(error);
+  }
+  return articles || []; // 確保返回值是陣列
+}
+
 export async function getAllGames() {
   const { data: games, error } = await supabase.from("games").select("*");
   if (!games) {
