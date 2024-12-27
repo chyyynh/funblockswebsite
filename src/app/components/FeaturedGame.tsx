@@ -7,9 +7,9 @@ export default function FeaturedGame() {
     <Card className="col-span-1 md:col-span-2 overflow-hidden border border-black rounded-none">
       <div className="flex flex-col md:flex-row">
         <div className="relative aspect-square w-full md:w-[400px] p-4">
-          <div className="relative w-full h-full rounded-lg border-2 border-gray-200 overflow-hidden">
+          <div className="relative aspect-[3:4] h-full rounded-lg overflow-hidden">
             <Image
-              src="/images/bolt-banner.jpg"
+              src="/images/evefrontier.jpg"
               alt="BOLT Game"
               fill
               className="object-cover"

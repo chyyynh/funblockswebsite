@@ -1,7 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import Image from "next/image";
 
 const articles = [
   {
@@ -38,15 +39,16 @@ export default function ReviewsSection() {
     <Card className="border border-black rounded-none">
       <CardContent className="p-4">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold">文章</h2>
+          <h2 className="text-lg font-semibold">攻略</h2>
           <Button
             variant="link"
             size="sm"
             className="text-muted-foreground hover:text-black hover:no-underline p-0"
           >
-            <Link href={"/articles"}>→</Link>
+            <Link href={"/tutorials"}>→</Link>
           </Button>
         </div>
+
         <div className="space-y-4">
           {articles.map((articles, i) => (
             <div key={i} className="flex gap-4">

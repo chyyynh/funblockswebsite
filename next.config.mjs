@@ -23,6 +23,11 @@ const nextConfig = {
         hostname: "miro.medium.com",
         pathname: "/v2/**", // 適配 Medium 的圖片連結
       },
+      {
+        protocol: "https",
+        hostname: "pbs.twimg.com",
+        pathname: "/**", // 匹配所有路徑
+      },
     ],
   },
 };

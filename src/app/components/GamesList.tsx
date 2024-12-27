@@ -1,35 +1,22 @@
 import Image from "next/image";
-import { Download } from "lucide-react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
-const games = [
-  {
-    title: "Biomes",
-    downloads: "6.0 k",
-    tags: ["Redstone", "MUD", "openworld"],
-    image: "/images/games/biomes.jpg",
-    bgColor: "bg-yellow-400",
-  },
-  {
-    title: "Dopewars",
-    downloads: "3.2 k",
-    tags: ["Starknet", "Dojo", "9+"],
-    image: "/images/games/dopewars.jpg",
-    bgColor: "bg-emerald-500",
-  },
-  {
-    title: "Pirates Nation",
-    downloads: "3.2 k",
-    tags: ["FPS", "MMORPG"],
-    image: "/images/games/piratenation.jpg",
-    bgColor: "bg-purple-400",
-  },
-];
+import { getAllGames } from "@/lib/supabase/getStaticProps";
+
+const games = await getAllGames();
 
 export default function GamesList() {
   return (
-    <Card className="bg-white border border-black rounded-none">
+    <Card className="bg-white border border-black rounded-none relative group">
       <CardContent className="p-4">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
@@ -40,45 +27,56 @@ export default function GamesList() {
             size="sm"
             className="text-muted-foreground hover:text-black hover:no-underline p-0"
           >
-            →
+            <Link href={"/games"}>→</Link>
           </Button>
         </div>
-        <div className="flex overflow-x-auto space-x-4">
-          {games.map((game, i) => (
-            <div key={i} className="flex flex-col gap-2 min-w-[140px]">
-              <div className="aspect-square rounded-lg overflow-hidden">
-                <div className="relative w-full h-full">
-                  <Image
-                    src={game.image}
-                    alt={game.title}
-                    width={200}
-                    height={200}
-                    className="object-cover w-full h-full"
-                  />
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="w-full"
+        >
+          <CarouselContent>
+            {games.map((game, i) => (
+              <CarouselItem key={i} className="md:basis-1/2">
+                <div className="flex flex-col gap-2 p-1">
+                  <div className="aspect-square rounded-lg overflow-hidden">
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={game.twitter_img.pfp}
+                        alt={game.title}
+                        width={250}
+                        height={250}
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg mb-1 line-clamp-2">
+                      {game.title}
+                    </h3>
+                    <div className="flex flex-wrap gap-1.5">
+                      <span className="text-xs px-2 py-0.5 border border-black rounded-none">
+                        {game.engine}
+                      </span>
+                      <span className="text-xs px-2 py-0.5 border border-black rounded-none">
+                        {game.blockchain}
+                      </span>
+                      <span className="text-xs px-2 py-0.5 border border-black rounded-none">
+                        {game.game_studio}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <h3 className="font-bold text-lg mb-1 line-clamp-2">
-                  {game.title}
-                </h3>
-                <div className="flex items-center gap-1 text-sm text-muted-foreground mb-2">
-                  <Download className="h-4 w-4" />
-                  <span>{game.downloads}</span>
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {game.tags.map((tag, index) => (
-                    <span
-                      key={index}
-                      className="text-xs px-2 py-0.5 border border-black rounded-none"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <div className="absolute top-1/2 left-0 right-0 flex justify-between items-center px-4 -mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <CarouselPrevious className="relative pointer-events-auto h-8 w-8 border-black" />
+            <CarouselNext className="relative pointer-events-auto h-8 w-8 border-black" />
+          </div>
+        </Carousel>
       </CardContent>
     </Card>
   );

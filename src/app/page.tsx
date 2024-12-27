@@ -4,9 +4,8 @@ import FeaturedGame from "./components/FeaturedGame";
 import GamesList from "./components/GamesList";
 import ArticleGrid from "./components/ArticleGrid";
 import LevelUpBanner from "./components/LevelUpBanner";
-import ArticlesSection from "./components/ArticlesSection";
+import ArticlesSection from "./components/TutorialSection";
 import VideosSection from "./components/VideosSection";
-import GuidesSection from "./components/GuidesSection";
 import Head from "next/head";
 
 export default function Home() {
@@ -38,10 +37,7 @@ export default function Home() {
           <ArticlesSection />
           <VideosSection />
         </div>
-
-        <GuidesSection />
       </main>
-
       <Footer />
     </div>
   );
