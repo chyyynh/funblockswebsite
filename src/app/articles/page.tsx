@@ -34,7 +34,7 @@ export default function ArticlesPage() {
                   href={`/articles/${article.metadata.link}`}
                   className="block group"
                 >
-                  <article className="flex flex-row gap-6 bg-white p-6 border border-gray-200 group-hover:bg-[#F3B43B] transition-colors overflow-hidden">
+                  <article className="flex flex-col md:flex-row gap-6 bg-white p-6 border border-gray-200 group-hover:bg-[#F3B43B] transition-colors overflow-hidden">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
                         <span>{formatDate(article.created_at, false)}</span>
@@ -52,7 +52,7 @@ export default function ArticlesPage() {
                     </div>
 
                     {article.metadata.image && (
-                      <div className="relative w-32 md:w-48 shrink-0 aspect-[16/9]">
+                      <div className="relative w-full md:w-48 shrink-0 aspect-[16/9]">
                         <Image
                           src={article.metadata.image}
                           alt=""
@@ -67,7 +67,7 @@ export default function ArticlesPage() {
             </div>
           </main>
 
-          <aside className="space-y-6">
+          <aside className="hidden lg:block space-y-6">
             <div className="bg-white border border-gray-200 py-4 px-4 rounded-none">
               <Sidebar />
             </div>
