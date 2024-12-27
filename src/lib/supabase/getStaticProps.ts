@@ -41,9 +41,19 @@ export async function gerRelated() {
   return relatedData;
 }
 
-export async function getAllArticles() {
+export async function getAllArticles(num?: number) {
   const { data: articles, error } = await supabase.from("articles").select("*");
-  if (!articles) {
+  if (articles) {
+    articles.sort((a, b) => {
+      if (new Date(a.created_at) > new Date(b.created_at)) {
+        return -1;
+      }
+      return 1;
+    });
+    if (num) {
+      return articles.slice(0, num);
+    }
+  } else {
     console.log(error);
   }
   return articles || []; // 確保返回值是陣列
