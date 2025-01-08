@@ -66,27 +66,6 @@ export function Sidebar({ filters, onFilterChange, onClearAll }: SidebarProps) {
           ))}
         </div>
       </div>
-      <div className="space-y-4">
-        <h3 className="font-semibold">Game Studio</h3>
-        <div className="space-y-2">
-          {["Lattice", "Moving Castle", "Curio"].map((studio) => (
-            <div key={studio} className="flex items-center space-x-2">
-              <Checkbox
-                id={`studio-${studio}`}
-                checked={filters.gameStudio.includes(studio)}
-                onCheckedChange={() => onFilterChange("gameStudio", studio)}
-              />
-              <label
-                htmlFor={`studio-${studio}`}
-                className="text-sm cursor-pointer select-none"
-                onClick={() => onFilterChange("gameStudio", studio)}
-              >
-                {studio}
-              </label>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }

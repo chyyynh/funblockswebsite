@@ -9,7 +9,7 @@ export default function FeaturedGame() {
         <div className="relative aspect-square w-full md:w-[400px] p-4">
           <div className="relative aspect-[3:4] h-full rounded-lg overflow-hidden">
             <Image
-              src="/images/evefrontier.jpg"
+              src="/images/bolt-banner.jpg"
               alt="BOLT Game"
               fill
               className="object-cover"

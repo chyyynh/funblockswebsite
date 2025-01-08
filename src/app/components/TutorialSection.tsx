@@ -6,30 +6,31 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const articles = [
   {
-    title: "Quarry 簡介：為您的世界打造的現代化運算環境",
-    author: "Lattice",
+    title: "社交戰爭遊戲 Duper 介紹",
+    author: "Funblock",
     translateBy: "chiny",
     publishedAt: "2024-10-17",
     image: "/images/articles/duper.jpg",
-    summary: "uuuuu",
+    summary: "介紹一款名為 Duper 的社交戰爭類型遊戲，獨特玩法或特色",
     link: "",
   },
   {
-    title: "链上现实最大主义",
-    author: "Raf (from 1kx)",
+    title: "全鏈遊戲 Pirate Nation 介紹",
+    author: "Funblock",
     translateBy: "chiny",
     publishedAt: "2024-10-17",
-    image: "/images/articles/duper.jpg",
-    summary: "uuuuu",
+    image: "/images/tutorials/piratenation.jpeg",
+    summary:
+      "分析或介紹 Pirate Nation 這款全鏈遊戲，聚焦其核心機制或與區塊鏈相關的創新。",
     link: "",
   },
   {
-    title: "社交战争游戏Duper玩法介绍",
-    author: "chiny",
+    title: "全鏈遊戲 Realms.World 第一季玩法",
+    author: "Funblock",
     translateBy: "N/A",
     publishedAt: "2024-10-17",
-    image: "/images/articles/duper.jpg",
-    summary: "uuuuu",
+    image: "/images/tutorials/realmsworld.jpeg",
+    summary: "專注於說明 Realms.World 的第一季玩法設計和可能的策略要素。",
     link: "duper-introduction",
   },
 ];
