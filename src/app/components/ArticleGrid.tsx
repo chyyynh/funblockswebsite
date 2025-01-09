@@ -7,29 +7,33 @@ const articles = await getAllArticles(3);
 
 export default function ArticleGrid() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-3 md:gap-6">
       {articles.map((article, index: number) => (
         <Card key={index} className="border border-black rounded-none h-full">
           <Link
             href={`/articles/${article.metadata.link}`}
             className="hover:underline"
           >
-            <CardContent className="p-4 flex flex-col">
-              <div className="w-full h-[200px] overflow-hidden mb-4">
-                <Image
-                  src={article.metadata.image}
-                  alt={article.metadata.title}
-                  width={400}
-                  height={150}
-                  className="object-cover w-full h-full rounded-lg"
-                />
+            <CardContent className="p-4">
+              <div className="flex flex-row gap-4 md:flex-col">
+                <div className="flex-1 min-w-0">
+                  <h2 className="text-lg font-semibold mb-2 line-clamp-2">
+                    {article.metadata.title}
+                  </h2>
+                  <p className="text-gray-600 line-clamp-2 text-sm">
+                    {article.metadata.summary}
+                  </p>
+                </div>
+
+                <div className="relative w-24 shrink-0 aspect-[16/9] md:w-full md:h-[200px] md:mb-4 md:order-first">
+                  <Image
+                    src={article.metadata.image}
+                    alt={article.metadata.title}
+                    fill
+                    className="object-cover rounded-none"
+                  />
+                </div>
               </div>
-              <h2 className="text-lg font-semibold mb-1 min-h-1 line-clamp-2">
-                {article.metadata.title}
-              </h2>
-              <p className="text-gray-600 mt-2 line-clamp-2">
-                {article.metadata.summary}
-              </p>
             </CardContent>
           </Link>
         </Card>

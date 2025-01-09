@@ -34,25 +34,27 @@ export default function ArticlesPage() {
                   href={`/articles/${article.metadata.link}`}
                   className="block group"
                 >
-                  <article className="flex flex-col md:flex-row gap-6 bg-white p-6 border border-gray-200 group-hover:bg-[#F3B43B] transition-colors overflow-hidden">
+                  <article className="flex items-center gap-4 bg-white p-4 border border-gray-200 group-hover:bg-[#F3B43B] transition-colors overflow-hidden">
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                      <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 mb-2">
                         <span>{formatDate(article.created_at, false)}</span>
-                        <span> • </span>
-                        <span>by {article.metadata.author}</span>
+                        <span className="hidden sm:inline"> • </span>
+                        <span className="hidden sm:inline">
+                          by {article.metadata.author}
+                        </span>
                       </div>
 
-                      <h2 className="text-xl md:text-2xl font-bold mb-2 line-clamp-2">
+                      <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 line-clamp-2">
                         {article.metadata.title}
                       </h2>
 
-                      <p className="text-gray-600 mb-4 line-clamp-2 group-hover:text-gray-700">
+                      <p className="text-gray-600 mb-4 line-clamp-2 group-hover:text-gray-700 text-sm sm:text-base">
                         {article.metadata.summary}
                       </p>
                     </div>
 
                     {article.metadata.image && (
-                      <div className="relative w-full md:w-48 shrink-0 aspect-[16/9]">
+                      <div className="relative w-24 sm:w-32 md:w-48 shrink-0 aspect-[16/9]">
                         <Image
                           src={article.metadata.image}
                           alt=""

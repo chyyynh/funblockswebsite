@@ -5,13 +5,60 @@ import { Card } from "@/components/ui/card";
 export default function FeaturedGame() {
   return (
     <Card className="col-span-1 md:col-span-2 overflow-hidden border border-black rounded-none">
-      <div className="flex flex-col md:flex-row">
-        <div className="relative aspect-square w-full md:w-[400px] p-4">
-          <div className="relative aspect-[3:4] h-full rounded-lg overflow-hidden">
+      {/* 移動端布局 */}
+      <div className="md:hidden">
+        <div className="flex p-4 gap-4">
+          <div className="relative w-36 h-36 shrink-0 flex items-center justify-center">
             <Image
               src="/images/bolt-banner.jpg"
               alt="BOLT Game"
               fill
+              objectFit="cover"
+              className="object-cover rounded-lg"
+            />
+          </div>
+          <div className="flex-1 min-w-0 flex flex-col">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-6 h-6 bg-black rounded-lg flex items-center justify-center">
+                <span className="text-white text-xs">BOLT</span>
+              </div>
+              <h2 className="text-base font-medium">BOLT</h2>
+            </div>
+            <h3 className="text-sm font-bold mb-1 line-clamp-2">
+              BOLT: Solana ecological ECS full-chain game engine
+            </h3>
+            <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
+              BOLT is a full-chain game engine developed by the Magicblock team
+              for the Solana ecosystem. This...
+            </p>
+            <div className="flex gap-2 mt-auto">
+              <Button
+                size="sm"
+                className="text-xs px-2 py-1 h-7 bg-blue-600 hover:bg-blue-700"
+              >
+                Play
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                className="text-xs px-2 py-1 h-7"
+              >
+                Explore
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 桌面端布局 */}
+      <div className="hidden md:flex md:flex-row">
+        <div className="relative aspect-square w-[400px] p-4">
+          <div className="relative aspect-square h-full rounded-lg overflow-hidden flex items-center justify-center">
+            <Image
+              src="/images/bolt-banner.jpg"
+              alt="BOLT Game"
+              fill
+              objectFit="cover"
               className="object-cover"
             />
           </div>

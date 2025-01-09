@@ -28,7 +28,7 @@ export async function generateMetadata({
   return {
     metadataBase: new URL("https://funblocks.xyz"), // 替換為你的實際域名
     title: "Funblocks",
-    description: "Funblocks 專注於全鏈遊戲的媒體",
+    description: article.metadata.summary || "Funblocks 专注于全链游戏的媒体",
     openGraph: {
       title: "Funblocks",
       description: "Open Graph Description",
@@ -59,12 +59,12 @@ export default async function ArticlePage({ params }: { params: Params }) {
   });
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#f9f6f1] bg-[url('/images/background.svg')]">
+    <div className="flex flex-col min-h-screen bg-[#f9f6f1] md:bg-[url('/images/background.svg')]">
       <Header />
       <div className="flex-grow container mx-auto px-4 py-6">
         <div className="grid gap-6 lg:grid-cols-[1fr_350px]">
           <main>
-            <article className="bg-white py-6 px-4 sm:px-6 border border-gray-200 rounded-none">
+            <article className="bg-white py-6 px-4 md:px-6">
               <div className="flex-grow container mx-auto">
                 <div className="max-w-none">
                   <h1 className="text-4xl sm:text-3xl md:text-4xl font-bold mb-2 text-gray-900">
