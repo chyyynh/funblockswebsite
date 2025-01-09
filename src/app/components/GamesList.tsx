@@ -9,6 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Badge } from "@/app/components/games/badge";
 
 import { getAllGames } from "@/lib/supabase/getStaticProps";
 
@@ -20,7 +21,7 @@ export default function GamesList() {
       <CardContent className="p-4">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
-            <span className="text-2xl sm:text-lg font-bold ">遊戲</span>
+            <span className="text-2xl sm:text-lg font-bold">遊戲</span>
           </div>
           <Button
             variant="link"
@@ -55,19 +56,15 @@ export default function GamesList() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg sm:text-lg mb-1 line-clamp-2">
+                    <h2 className="font-bold text-lg sm:text-lg mb-1 line-clamp-2">
                       {game.title}
-                    </h3>
+                    </h2>
                     <div className="flex flex-wrap gap-1">
-                      <span className="text-[10px] sm:text-xs px-1 sm:px-2 py-0.5 border border-black rounded-none">
-                        {game.engine}
-                      </span>
-                      <span className="text-[10px] sm:text-xs px-1 sm:px-2 py-0.5 border border-black rounded-none">
-                        {game.blockchain}
-                      </span>
-                      <span className="text-[10px] sm:text-xs px-1 sm:px-2 py-0.5 border border-black rounded-none">
-                        {game.game_studio}
-                      </span>
+                      <Badge type={game.engine} />
+                      <Badge type={game.blockchain} />
+                      <h3 className="font-normal text-sm sm:text-sm mb-1 line-clamp-3">
+                        {game.description}
+                      </h3>
                     </div>
                   </div>
                 </div>

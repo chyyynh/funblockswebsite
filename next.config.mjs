@@ -28,6 +28,11 @@ const nextConfig = {
         hostname: "pbs.twimg.com",
         pathname: "/**", // 匹配所有路徑
       },
+      {
+        protocol: "https",
+        hostname: "hackmd.io",
+        pathname: "/**", // 匹配所有路徑
+      },
     ],
   },
 };

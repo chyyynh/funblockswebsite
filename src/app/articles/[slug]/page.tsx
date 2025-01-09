@@ -73,7 +73,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
                   <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 mb-6">
                     <span>By {article.metadata.author}</span>
                     <span className="hidden sm:inline">•</span>
-                    <span>Translated by {article.metadata.translateBy}</span>
+                    <span>Translated by {article.metadata.translatedBy}</span>
                     <span className="hidden sm:inline">•</span>
                     <span>{article.metadata.publishedAt}</span>
                   </div>
