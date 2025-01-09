@@ -62,7 +62,7 @@ export default function ReviewsSection() {
                 />
               </div>
               <div className="flex-1">
-                <h3 className="text-lg mb-2">
+                <h3 className="text-lg mb-2 line-clamp-2">
                   <Link
                     href={`/articles/${articles.link}`}
                     className="hover:underline"
@@ -70,7 +70,7 @@ export default function ReviewsSection() {
                     {articles.title}
                   </Link>
                 </h3>
-                <p className="text-sm text-muted-foreground mb-4">
+                <p className="text-sm text-muted-foreground mb-4  line-clamp-3">
                   {articles.summary}
                 </p>
               </div>

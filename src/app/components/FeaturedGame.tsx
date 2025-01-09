@@ -20,11 +20,10 @@ export default function FeaturedGame() {
           <div className="flex-1 min-w-0 flex flex-col">
             <div className="flex items-center gap-2 mb-2"></div>
             <h3 className="text-lg font-bold mb-1 line-clamp-2">
-              BOLT: Solana ecological ECS full-chain game engine
+              BOLT：Solana生態ECS全鏈遊戲引擎
             </h3>
             <p className="text-sm text-muted-foreground line-clamp-2 mb-2">
-              BOLT is a full-chain game engine developed by the Magicblock team
-              for the Solana ecosystem. This...
+              BOLT是Magicblock團隊為Solana生態開發的全鏈遊戲引擎。
             </p>
             <div className="flex gap-2 mt-auto">
               <Button
@@ -66,11 +65,10 @@ export default function FeaturedGame() {
             <h2 className="text-xl font-medium">BOLT</h2>
           </div>
           <h3 className="text-3xl font-bold mb-4">
-            BOLT: Solana ecological ECS full-chain game engine
+            BOLT：Solana生態ECS全鏈遊戲引擎
           </h3>
           <p className="text-base text-muted-foreground flex-grow">
-            BOLT is a full-chain game engine developed by the Magicblock team
-            for the Solana ecosystem. This...
+            BOLT是Magicblock團隊為Solana生態開發的全鏈遊戲引擎。
           </p>
           <div className="flex gap-2 mt-4">
             <Button className="bg-blue-600 hover:bg-blue-700">Play</Button>

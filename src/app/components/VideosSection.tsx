@@ -55,7 +55,7 @@ export default function ReviewsSection() {
                 />
               </div>
               <div className="flex-1">
-                <h3 className="text-lg mb-2">
+                <h3 className="text-lg mb-2 line-clamp-2">
                   <Link
                     href={`/articles/${video.link}`}
                     className="hover:underline"
@@ -63,7 +63,7 @@ export default function ReviewsSection() {
                     {video.title}
                   </Link>
                 </h3>
-                <p className="text-sm text-muted-foreground mb-4">
+                <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
                   {video.description}
                 </p>
               </div>
