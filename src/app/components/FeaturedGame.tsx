@@ -18,16 +18,11 @@ export default function FeaturedGame() {
             />
           </div>
           <div className="flex-1 min-w-0 flex flex-col">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-6 h-6 bg-black rounded-lg flex items-center justify-center">
-                <span className="text-white text-xs">BOLT</span>
-              </div>
-              <h2 className="text-base font-medium">BOLT</h2>
-            </div>
-            <h3 className="text-sm font-bold mb-1 line-clamp-2">
+            <div className="flex items-center gap-2 mb-2"></div>
+            <h3 className="text-lg font-bold mb-1 line-clamp-2">
               BOLT: Solana ecological ECS full-chain game engine
             </h3>
-            <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
+            <p className="text-sm text-muted-foreground line-clamp-2 mb-2">
               BOLT is a full-chain game engine developed by the Magicblock team
               for the Solana ecosystem. This...
             </p>

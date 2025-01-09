@@ -20,7 +20,7 @@ export default function GamesList() {
       <CardContent className="p-4">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
-            <span className="text-lg font-bold">遊戲</span>
+            <span className="text-2xl sm:text-lg font-bold ">遊戲</span>
           </div>
           <Button
             variant="link"
@@ -55,7 +55,7 @@ export default function GamesList() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-bold text-sm sm:text-lg mb-1 line-clamp-2">
+                    <h3 className="font-bold text-lg sm:text-lg mb-1 line-clamp-2">
                       {game.title}
                     </h3>
                     <div className="flex flex-wrap gap-1">

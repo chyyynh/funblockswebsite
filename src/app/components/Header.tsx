@@ -13,7 +13,7 @@ export default function Header() {
     <header className="border-b bg-white relative z-20">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between md:justify-start gap-4">
-          <div className="md:w-auto w-full text-center md:text-left">
+          <div className="md:w-auto w-full text-left">
             <Link href="/" aria-label="Go to homepage" className="inline-block">
               <Image
                 src="/images/funblocks_logo.svg"

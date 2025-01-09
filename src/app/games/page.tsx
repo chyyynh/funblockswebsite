@@ -141,7 +141,7 @@ export default function Page() {
           </div>
 
           {/* Mobile Filter Button */}
-          <div className="lg:hidden mb-4">
+          <div className="hidden mb-4">
             <Sheet
               open={isMobileFilterOpen}
               onOpenChange={setIsMobileFilterOpen}
@@ -175,7 +175,7 @@ export default function Page() {
           <div className="flex-1 space-y-8">
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <div className="p-6">
-                <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">
+                <div className="hidden sm:flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">
                   <div className="relative w-full sm:w-[300px]">
                     <Input
                       className="pl-8"
