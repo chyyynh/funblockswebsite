@@ -26,19 +26,19 @@ export async function generateMetadata({
   }
 
   return {
-    metadataBase: new URL("https://funblocks.xyz"), // 替換為你的實際域名
-    title: "Funblocks",
+    metadataBase: new URL("https://funblocks.xyz"),
+    title: `Funblocks | ${article.metadata.title}`,
     description: article.metadata.summary || "Funblocks 专注于全链游戏的媒体",
     openGraph: {
-      title: "Funblocks",
-      description: "Open Graph Description",
+      title: article.metadata.title,
+      description: article.metadata.summary || "Funblocks 专注于全链游戏的媒体",
       url: `/${slug}`,
     },
     twitter: {
       card: "summary_large_image",
-      title: "Twitter Title",
-      description: "Twitter Description",
-      images: [""],
+      title: article.metadata.title,
+      description: article.metadata.summary || "Funblocks 专注于全链游戏的媒体",
+      images: [article.metadata.image || ""],
     },
   };
 }
@@ -50,7 +50,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
 
   if (!article) {
     console.error("Error fetching blog post:", props.error);
-    return <div>{article}</div>;
+    return <div>Article not found</div>;
   }
 
   const { content: mdxContent } = await compileMDX({
@@ -61,38 +61,29 @@ export default async function ArticlePage({ params }: { params: Params }) {
   return (
     <div className="flex flex-col min-h-screen bg-[#f9f6f1] md:bg-[url('/images/background.svg')]">
       <Header />
-      <div className="flex-grow container mx-auto px-4 py-6">
-        <div className="grid gap-6 lg:grid-cols-[1fr_350px]">
-          <main>
-            <article className="bg-white py-6 px-4 md:px-6">
-              <div className="flex-grow container mx-auto">
-                <div className="max-w-none">
-                  <h1 className="text-4xl sm:text-3xl md:text-4xl font-bold mb-2 text-gray-900">
-                    {article.metadata.title}
-                  </h1>
-                  <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 mb-6">
-                    <span>By {article.metadata.author}</span>
-                    <span className="hidden sm:inline">•</span>
-                    <span>Translated by {article.metadata.translatedBy}</span>
-                    <span className="hidden sm:inline">•</span>
-                    <span>{article.metadata.publishedAt}</span>
-                  </div>
-                  <div className="space-y-4 text-base sm:text-lg leading-relaxed text-gray-700">
-                    <div className="prose max-w-none sm:prose-lg overflow-hidden prose-img:max-w-[80%] prose-img:mx-auto">
-                      {mdxContent}
-                    </div>
-                  </div>
-                </div>
+      <div className="flex-grow container mx-auto px-4 py-6 max-w-4xl">
+        <main>
+          <article className="bg-white py-8 px-6 rounded-none mb-8">
+            <div className="max-w-none">
+              <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900">
+                {article.metadata.title}
+              </h1>
+              <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 mb-6">
+                <span>By {article.metadata.author}</span>
+                <span className="hidden sm:inline">•</span>
+                <span>Translated by {article.metadata.translatedBy}</span>
+                <span className="hidden sm:inline">•</span>
+                <span>{article.metadata.publishedAt}</span>
               </div>
-            </article>
-          </main>
-
-          <aside className="space-y-6">
-            <div className="bg-white border border-gray-200 py-4 px-4 rounded-none">
-              <Sidebar />
+              <div className="prose max-w-none sm:prose-lg prose-img:rounded-none overflow-hidden">
+                {mdxContent}
+              </div>
             </div>
-          </aside>
-        </div>
+          </article>
+        </main>
+        <aside className="bg-white p-6 rounded-none shadow-md">
+          <Sidebar />
+        </aside>
       </div>
       <Footer />
     </div>

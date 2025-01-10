@@ -26,7 +26,7 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "pbs.twimg.com",
-        pathname: "/**", // 匹配所有路徑
+        pathname: "/profile_images/**", // 適配 Twitter 的圖片連結
       },
       {
         protocol: "https",
