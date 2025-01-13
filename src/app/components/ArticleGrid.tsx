@@ -9,11 +9,12 @@ export default function ArticleGrid() {
   return (
     <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-3 md:gap-6">
       {articles.map((article, index: number) => (
-        <Card key={index} className="border border-black rounded-none h-full">
-          <Link
-            href={`/articles/${article.metadata.link}`}
-            className="hover:underline"
-          >
+        <Link
+          key={index} // Add key prop here
+          href={`/articles/${article.metadata.link}`}
+          className="hover:underline"
+        >
+          <Card className="border border-black rounded-none h-full hover:bg-[#F3B43B]">
             <CardContent className="p-4">
               <div className="flex flex-row gap-4 md:flex-col">
                 <div className="flex-1 min-w-0">
@@ -35,8 +36,8 @@ export default function ArticleGrid() {
                 </div>
               </div>
             </CardContent>
-          </Link>
-        </Card>
+          </Card>
+        </Link>
       ))}
     </div>
   );

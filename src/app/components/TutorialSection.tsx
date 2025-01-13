@@ -51,28 +51,29 @@ export default function ReviewsSection() {
         </div>
 
         <div className="space-y-4">
-          {articles.map((articles, i) => (
-            <div key={i} className="flex gap-4">
-              <div className="relative w-[160px] aspect-video bg-black flex-shrink-0">
+          {articles.map((article, i) => (
+            <div key={i} className="flex gap-4 hover:bg-[#F3B43B]">
+              <Link
+                href={`/articles/${article.link}`}
+                className="relative w-[160px] aspect-video bg-black flex-shrink-0"
+              >
                 <Image
-                  src={articles.image}
+                  src={article.image}
                   alt=""
                   fill
                   className="object-cover rounded-none"
                 />
-              </div>
+              </Link>
               <div className="flex-1">
-                <h3 className="text-lg mb-2 line-clamp-2">
-                  <Link
-                    href={`/articles/${articles.link}`}
-                    className="hover:underline"
-                  >
-                    {articles.title}
-                  </Link>
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4  line-clamp-3">
-                  {articles.summary}
-                </p>
+                <Link
+                  href={`/articles/${article.link}`}
+                  className="hover:underline"
+                >
+                  <h3 className="text-lg mb-2 line-clamp-2">{article.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
+                    {article.summary}
+                  </p>
+                </Link>
               </div>
             </div>
           ))}

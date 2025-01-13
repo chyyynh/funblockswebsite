@@ -37,6 +37,13 @@ export default function Header() {
             >
               文章
             </Link>
+
+            <Link
+              href="/tutorials"
+              className="text-sm font-medium hover:text-blue-600"
+            >
+              攻略
+            </Link>
             <Link
               href="https://www.youtube.com/@0xfunblocks"
               className="text-sm font-medium hover:text-blue-600"
@@ -45,16 +52,14 @@ export default function Header() {
             >
               影片
             </Link>
-            <Link
-              href="/tutorials"
-              className="text-sm font-medium hover:text-blue-600"
-            >
-              攻略
-            </Link>
             <div className="hidden md:block">
-              <Link href="/funcraftguild">
+              <Link
+                href="https://t.me/funblockschat"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button className="bg-blue-600 hover:bg-blue-700">
-                  立即遊玩
+                  立即加入
                 </Button>
               </Link>
             </div>

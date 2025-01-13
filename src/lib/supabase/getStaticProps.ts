@@ -24,9 +24,34 @@ export async function getStaticProps(slug: string) {
   return { props: { article } };
 }
 
+export async function getTuStaticProps(slug: string) {
+  const { data: article, error } = await supabase
+    .from("articles")
+    .select("*")
+    .eq("metadata->>link", slug)
+    .single();
+
+  if (error) {
+    console.error("Error fetching blog post:", error);
+    return { props: { article: null, error: "Article not found" } };
+  }
+
+  return { props: { article } };
+}
+
 export async function getStaticParams() {
   const { data: link } = await supabase
     .from("articles")
+    .select("metadata->link");
+
+  const allslug = link ? link.map((item) => ({ slug: item.link })) : [];
+
+  return allslug;
+}
+
+export async function getTuStaticParams() {
+  const { data: link } = await supabase
+    .from("tutorial")
     .select("metadata->link");
 
   const allslug = link ? link.map((item) => ({ slug: item.link })) : [];
@@ -65,4 +90,24 @@ export async function getAllGames() {
     console.log(error);
   }
   return games || []; // 確保返回值是陣列
+}
+
+export async function getAllTutorials(num?: number) {
+  const { data: tutorials, error } = await supabase
+    .from("tutorials")
+    .select("*");
+  if (tutorials) {
+    tutorials.sort((a, b) => {
+      if (new Date(a.created_at) > new Date(b.created_at)) {
+        return -1;
+      }
+      return 1;
+    });
+    if (num) {
+      return tutorials.slice(0, num);
+    }
+  } else {
+    console.log(error);
+  }
+  return tutorials || []; // 確保返回值是陣列
 }
