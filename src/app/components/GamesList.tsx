@@ -44,30 +44,33 @@ export default function GamesList() {
                 key={i}
                 className="pl-2 md:pl-4 basis-1/3 sm:basis-1/2"
               >
-                <div className="flex flex-col gap-2 p-1">
-                  <div className="aspect-square rounded-lg overflow-hidden">
-                    <div className="relative w-full h-full">
-                      <Image
-                        src={game.twitter_img.pfp}
-                        alt={game.title}
-                        fill
-                        className="object-cover"
-                      />
+                <Link href={`/games/${game.id}`} key={i}>
+                  <div className="flex flex-col gap-2 p-1 hover:bg-[#F3B43B] rounded-lg">
+                    <div className="aspect-square rounded-lg overflow-hidden">
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={game.twitter_img.pfp}
+                          alt={game.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <h2 className="font-bold text-lg sm:text-lg mb-1 line-clamp-2">
+                        {game.title}
+                      </h2>
+                      <div className="flex flex-wrap gap-1">
+                        <Badge type={game.engine} />
+                        <Badge type={game.blockchain} />
+                        <h3 className="font-normal text-sm sm:text-sm mb-1 line-clamp-3">
+                          {game.description}
+                        </h3>
+                      </div>
                     </div>
                   </div>
-                  <div>
-                    <h2 className="font-bold text-lg sm:text-lg mb-1 line-clamp-2">
-                      {game.title}
-                    </h2>
-                    <div className="flex flex-wrap gap-1">
-                      <Badge type={game.engine} />
-                      <Badge type={game.blockchain} />
-                      <h3 className="font-normal text-sm sm:text-sm mb-1 line-clamp-3">
-                        {game.description}
-                      </h3>
-                    </div>
-                  </div>
-                </div>
+                </Link>
               </CarouselItem>
             ))}
           </CarouselContent>
