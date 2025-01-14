@@ -32,7 +32,7 @@ export default function ReviewsSection() {
   return (
     <Card className="border border-black rounded-none">
       <CardContent className="p-4">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-2">
           <h2 className="text-lg font-semibold">影片</h2>
           <Button
             variant="link"
@@ -43,30 +43,40 @@ export default function ReviewsSection() {
           </Button>
         </div>
 
-        <div className="space-y-4">
+        <div className="md:space-y-4">
           {videos.map((video, i) => (
-            <div key={i} className="flex gap-4">
-              <div className="relative w-[160px] aspect-video bg-black flex-shrink-0">
-                <Image
-                  src={video.image}
-                  alt=""
-                  fill
-                  className="aspect-video object-cover rounded-none"
-                />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-lg mb-2 line-clamp-2">
-                  <Link
-                    href={`/articles/${video.link}`}
-                    className="hover:underline"
-                  >
-                    {video.title}
-                  </Link>
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
-                  {video.description}
-                </p>
-              </div>
+            <div key={i} className="grid-cols-3">
+              <Card className="h-full hover:bg-[#F3B43B] border sm:border border-none rounded-none shadow-none">
+                <CardContent className="p-0">
+                  <div className="flex flex-row gap-y-0 items-center">
+                    <Link href={`/articles/${video.link}`}>
+                      <div className="relative w-24 md:w-48 shrink-0 aspect-[4/3] flex items-center justify-center">
+                        <Image
+                          src={video.image}
+                          alt=""
+                          fill
+                          className="object-cover rounded-none"
+                        />
+                      </div>
+                    </Link>
+                    <div className="p-4">
+                      <div className="flex-2">
+                        <Link
+                          href={`/articles/${video.link}`}
+                          className="hover:underline line-clamp-1"
+                        >
+                          <h2 className="text-lg font-semibold mb-2 line-clamp-1">
+                            {video.title}
+                          </h2>
+                          <p className="text-gray-600 line-clamp-2 text-sm">
+                            {video.description}
+                          </p>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           ))}
         </div>

@@ -10,7 +10,12 @@ const techLogos: Record<string, string> = {
   Starknet: "/images/starknet_logo.png",
   MUD: "/images/mud.jpg",
   Redstone: "/images/redstone.png",
-  ProofofPlay: "/images/proofofplay.png",
+  PoP: "/images/proofofplay.png",
+  Custom: "/images/selfbuild.png",
+  unknown: "/images/unknown.svg",
+  Keystone: "/images/keystone.png",
+  Abstract: "/images/abstract.png",
+  Base: "/images/base.png",
   // 可以繼續添加更多的技術 logo
 };
 
@@ -19,18 +24,18 @@ export function Badge({ type, className = "" }: TechBadgeProps) {
 
   return (
     <span
-      className={`text-[15px] sm:text-sm px-1 sm:px-2 py-0.5 rounded-none inline-flex items-center gap-1 ${className}`}
+      className={`text-xs md:text-sm p-1 rounded-none inline-flex items-center gap-1 ${className}`}
     >
       {hasLogo && (
         <Image
           src={techLogos[type]}
           alt={type}
-          width={12}
-          height={12}
+          width={15}
+          height={15}
           className="object-contain"
         />
       )}
-      {type}
+      <div className="text-sm">{type}</div>
     </span>
   );
 }

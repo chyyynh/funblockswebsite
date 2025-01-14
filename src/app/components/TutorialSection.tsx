@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const articles = [
   {
-    title: "社交戰爭遊戲 Duper 介紹",
+    title: "社交戰爭遊戲 Duper 簡介",
     author: "Funblock",
     translateBy: "chiny",
     publishedAt: "2024-10-17",
@@ -15,7 +15,7 @@ const articles = [
     link: "",
   },
   {
-    title: "全鏈遊戲 Pirate Nation 介紹",
+    title: "Pirate Nation 介紹",
     author: "Funblock",
     translateBy: "chiny",
     publishedAt: "2024-10-17",
@@ -25,7 +25,7 @@ const articles = [
     link: "",
   },
   {
-    title: "全鏈遊戲 Realms.World 第一季玩法",
+    title: "Realms s1 玩法",
     author: "Funblock",
     translateBy: "N/A",
     publishedAt: "2024-10-17",
@@ -39,7 +39,7 @@ export default function ReviewsSection() {
   return (
     <Card className="border border-black rounded-none">
       <CardContent className="p-4">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-2">
           <h2 className="text-lg font-semibold">攻略</h2>
           <Button
             variant="link"
@@ -50,31 +50,40 @@ export default function ReviewsSection() {
           </Button>
         </div>
 
-        <div className="space-y-4">
+        <div className="md:space-y-4">
           {articles.map((article, i) => (
-            <div key={i} className="flex gap-4 hover:bg-[#F3B43B]">
-              <Link
-                href={`/articles/${article.link}`}
-                className="relative w-[160px] aspect-video bg-black flex-shrink-0"
-              >
-                <Image
-                  src={article.image}
-                  alt=""
-                  fill
-                  className="object-cover rounded-none"
-                />
-              </Link>
-              <div className="flex-1">
-                <Link
-                  href={`/articles/${article.link}`}
-                  className="hover:underline"
-                >
-                  <h3 className="text-lg mb-2 line-clamp-2">{article.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
-                    {article.summary}
-                  </p>
-                </Link>
-              </div>
+            <div key={i} className="grid-cols-3">
+              <Card className="h-full hover:bg-[#F3B43B] border sm:border border-none rounded-none shadow-none">
+                <CardContent className="p-0">
+                  <div className="flex flex-row gap-y-0 items-center">
+                    <Link href={`/articles/${article.link}`}>
+                      <div className="relative w-24 md:w-48 shrink-0 aspect-[4/3] flex items-center justify-center">
+                        <Image
+                          src={article.image}
+                          alt=""
+                          fill
+                          className="object-cover rounded-none"
+                        />
+                      </div>
+                    </Link>
+                    <div className="p-4">
+                      <div className="flex-2">
+                        <Link
+                          href={`/articles/${article.link}`}
+                          className="hover:underline line-clamp-1"
+                        >
+                          <h2 className="text-lg font-semibold mb-2 line-clamp-1">
+                            {article.title}
+                          </h2>
+                          <p className="text-gray-600 line-clamp-2 text-sm">
+                            {article.summary}
+                          </p>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           ))}
         </div>

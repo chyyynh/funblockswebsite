@@ -19,7 +19,7 @@ export default function GamesList() {
   return (
     <Card className="bg-white border border-black rounded-none relative group">
       <CardContent className="p-4">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
             <span className="text-2xl sm:text-lg font-bold">遊戲</span>
           </div>
@@ -38,14 +38,14 @@ export default function GamesList() {
           }}
           className="w-full"
         >
-          <CarouselContent className="-ml-2 md:-ml-4">
+          <CarouselContent className="-ml-2 md:-ml-2">
             {games.map((game, i) => (
               <CarouselItem
                 key={i}
-                className="pl-2 md:pl-4 basis-1/3 sm:basis-1/2"
+                className="pl-2 md:pl-4 basis-5/12 sm:basis-1/2"
               >
                 <Link href={`/games/${game.id}`} key={i}>
-                  <div className="flex flex-col gap-2 p-1 hover:bg-[#F3B43B] rounded-lg">
+                  <div className="flex flex-col gap-2 p-1 hover:bg-[#F3B43B] rounded-lg h-full">
                     <div className="aspect-square rounded-lg overflow-hidden">
                       <div className="relative w-full h-full">
                         <Image
@@ -56,18 +56,17 @@ export default function GamesList() {
                         />
                       </div>
                     </div>
-
                     <div>
-                      <h2 className="font-bold text-lg sm:text-lg mb-1 line-clamp-2">
+                      <div className="font-bold text-base md:text-lg mb-1 line-clamp-1">
                         {game.title}
-                      </h2>
-                      <div className="flex flex-wrap gap-1">
+                      </div>
+                      <div className="flex flex-wrap ">
                         <Badge type={game.engine} />
                         <Badge type={game.blockchain} />
-                        <h3 className="font-normal text-sm sm:text-sm mb-1 line-clamp-3">
-                          {game.description}
-                        </h3>
                       </div>
+                    </div>
+                    <div className="font-normal hidden md:block text-sm line-clamp-2">
+                      {game.description}
                     </div>
                   </div>
                 </Link>
