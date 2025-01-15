@@ -9,15 +9,16 @@ interface GameCardProps {
   blockchain: string;
   engine: string;
   type: string;
+  twitter_img: { pfp: string; banner: string };
 }
 
 export function GameCard(props: GameCardProps) {
   const {
     title = "Unknown",
-    image = "/images/default.jpg",
     blockchain = "N/A",
     engine = "N/A",
     type = "unknown",
+    twitter_img,
   } = props;
 
   return (
@@ -29,7 +30,7 @@ export function GameCard(props: GameCardProps) {
               {type}
             </div>
             <Image
-              src={image}
+              src={twitter_img.banner}
               alt={title}
               width={400}
               height={225}

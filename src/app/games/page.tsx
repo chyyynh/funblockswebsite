@@ -1,11 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Search, Filter } from "lucide-react";
+import { Search } from "lucide-react";
 
 // shadcn components
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -13,14 +12,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 
 // self built components
 import Header from "@/app/components/Header";
@@ -44,6 +35,10 @@ export interface Game {
   };
   popularity?: number;
   rating?: number;
+  twitter_img: {
+    pfp: string;
+    banner: string;
+  };
 }
 
 type FilterType = {
@@ -62,7 +57,6 @@ export default function Page() {
     blockchain: [],
     gameStudio: [],
   });
-  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -138,38 +132,6 @@ export default function Page() {
               onFilterChange={handleFilterChange}
               onClearAll={clearAllFilters}
             />
-          </div>
-
-          {/* Mobile Filter Button */}
-          <div className="hidden mb-4">
-            <Sheet
-              open={isMobileFilterOpen}
-              onOpenChange={setIsMobileFilterOpen}
-            >
-              <SheetTrigger asChild>
-                <Button variant="outline" className="w-full">
-                  <Filter className="mr-2 h-4 w-4" /> Filters
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-                <SheetHeader>
-                  <SheetTitle>Filters</SheetTitle>
-                  <SheetDescription>
-                    Apply filters to refine your game search.
-                  </SheetDescription>
-                </SheetHeader>
-                <div className="mt-4">
-                  <Sidebar
-                    filters={filters}
-                    onFilterChange={handleFilterChange}
-                    onClearAll={() => {
-                      clearAllFilters();
-                      setIsMobileFilterOpen(false);
-                    }}
-                  />
-                </div>
-              </SheetContent>
-            </Sheet>
           </div>
 
           <div className="flex-1 space-y-8">

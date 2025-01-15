@@ -24,7 +24,7 @@ export function Sidebar() {
           <div className="flex items-center gap-4">
             <div className="relative w-20 aspect-square">
               <Image
-                src="/images/games/dopewars.jpg"
+                src="/images/dopewars.jpg"
                 alt="Game cover"
                 fill
                 className="rounded-md object-cover"
