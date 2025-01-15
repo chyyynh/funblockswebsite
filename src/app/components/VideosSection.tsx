@@ -10,21 +10,21 @@ const videos = [
     description:
       "Loot Survivor[1] is the first game in the Realms Autonomous Worlds ecosystem. It was developed...",
     link: "https://www.youtube.com/watch?v=_WS8-keJyNs",
-    image: "/images/articles/duper.jpg",
+    image: "/images/video/forceprime.jpg",
   },
   {
     title: "Life @AW House DENVER Highlights Recap!",
     description:
       "During the last crypto bull bubble cycle, decentralized finance (DeFi) was undoubtedly ce...",
     link: "https://www.youtube.com/watch?v=3a2OxvKWYeo",
-    image: "/images/articles/duper.jpg",
+    image: "/images/video/komohouse.jpg",
   },
   {
     title: "Fully On-Chain Game: Sky Strife 0.1",
     description:
       "What exactly is PixeLAW? If you think that PixelLAW is just a pixel game on the entire chain...",
     link: "https://www.youtube.com/watch?v=48VaVnPz1cA",
-    image: "/images/articles/duper.jpg",
+    image: "/images/video/skystrife.jpg",
   },
 ];
 

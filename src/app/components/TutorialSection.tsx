@@ -10,7 +10,7 @@ const articles = [
     author: "Funblock",
     translateBy: "chiny",
     publishedAt: "2024-10-17",
-    image: "/images/articles/duper.jpg",
+    image: "/images/tutorials/duper.webp",
     summary: "介紹一款名為 Duper 的社交戰爭類型遊戲，獨特玩法或特色",
     link: "",
   },
