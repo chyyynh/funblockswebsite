@@ -17,7 +17,7 @@ import {
 import Header from "@/app/components/Header";
 import { Sidebar } from "@/app/components/games/sidebar";
 import { GameCard } from "@/app/components/games/game-card";
-import { NewTabLink } from "@/app/components/NewTabLink";
+// import { NewTabLink } from "@/app/components/NewTabLink";
 import { getAllGames } from "@/lib/supabase/getStaticProps";
 
 export interface Game {
@@ -163,9 +163,9 @@ export default function Page() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredGames.map((game) =>
                     game.link && game.link.twitter ? (
-                      <NewTabLink key={game.id} href={game.link.twitter}>
+                      <div key={game.id}>
                         <GameCard {...game} />
-                      </NewTabLink>
+                      </div>
                     ) : (
                       <GameCard key={game.id} {...game} />
                     )
