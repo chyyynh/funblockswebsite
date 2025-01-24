@@ -1,5 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
+// import Image from "next/image";
+import { YouTubeEmbed } from "@next/third-parties/google";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,6 +12,7 @@ const videos = [
       "Loot Survivor[1] is the first game in the Realms Autonomous Worlds ecosystem. It was developed...",
     link: "https://www.youtube.com/watch?v=_WS8-keJyNs",
     image: "/images/video/forceprime.jpg",
+    id: "_WS8-keJyNs",
   },
   {
     title: "Life @AW House DENVER Highlights Recap!",
@@ -18,6 +20,7 @@ const videos = [
       "During the last crypto bull bubble cycle, decentralized finance (DeFi) was undoubtedly ce...",
     link: "https://www.youtube.com/watch?v=3a2OxvKWYeo",
     image: "/images/video/komohouse.jpg",
+    id: "3a2OxvKWYeo",
   },
   {
     title: "Fully On-Chain Game: Sky Strife 0.1",
@@ -25,6 +28,7 @@ const videos = [
       "What exactly is PixeLAW? If you think that PixelLAW is just a pixel game on the entire chain...",
     link: "https://www.youtube.com/watch?v=48VaVnPz1cA",
     image: "/images/video/skystrife.jpg",
+    id: "48VaVnPz1cA",
   },
 ];
 
@@ -49,16 +53,9 @@ export default function ReviewsSection() {
               <Card className="h-full hover:bg-[#F3B43B] border sm:border border-none rounded-none shadow-none">
                 <CardContent className="p-0">
                   <div className="flex flex-row gap-y-0 items-center">
-                    <Link href={`/articles/${video.link}`}>
-                      <div className="relative w-24 md:w-48 shrink-0 aspect-[4/3] flex items-center justify-center">
-                        <Image
-                          src={video.image}
-                          alt=""
-                          fill
-                          className="object-cover rounded-none"
-                        />
-                      </div>
-                    </Link>
+                    <div className="relative w-24 md:w-48 shrink-0 items-center justify-center ">
+                      <YouTubeEmbed videoid={video.id} params="controls=1" />
+                    </div>
                     <div className="p-4">
                       <div className="flex-2">
                         <Link
