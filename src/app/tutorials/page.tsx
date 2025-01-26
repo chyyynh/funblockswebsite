@@ -1,24 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { Sidebar } from "@/app/components/articles/sidebar";
-import { formatDate } from "../../lib/post";
+import { formatDate } from "../../lib/utils";
 import { getAllTutorials } from "@/lib/supabase/getStaticProps";
 
-async function fetchAndSort() {
-  const articles = await getAllTutorials();
-  articles.sort((a, b) => {
-    if (new Date(a.created_at) > new Date(b.created_at)) {
-      return -1;
-    }
-    return 1;
-  });
-  return articles;
-}
-
-const allTutorials = await fetchAndSort();
+const allTutorials = await getAllTutorials();
 
 export default function ArticlesPage() {
   return (

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { Sidebar } from "@/app/components/articles/sidebar";
-import { formatDate } from "../../lib/post";
+import { formatDate } from "../../lib/utils";
 import { getServerSideProps } from "@/lib/supabase/getStaticProps";
 
 const allBlogs = await getServerSideProps();
