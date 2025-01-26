@@ -1,16 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArticleCard } from "./article-card";
-import { getBlogPosts, formatDate } from "../../../lib/post";
+import { formatDate } from "../../../lib/post";
+import { getServerSideProps } from "@/lib/supabase/getStaticProps";
 
-const allBlogs = getBlogPosts();
-
-/*
-interface SidebarProps {
-  related_game: string;
-  related_tag: string[];
-}
-*/
+const allBlogs = await getServerSideProps(5);
 
 export function Sidebar() {
   return (
@@ -42,24 +36,16 @@ export function Sidebar() {
       <section>
         <h2 className="mb-4 text-xl font-semibold">推薦文章</h2>
         <div className="space-y-4">
-          {allBlogs
-            .sort((a, b) => {
-              if (new Date(a.data.publishedAt) > new Date(b.data.publishedAt)) {
-                return -1;
-              }
-              return 1;
-            })
-            .slice(0, 5) // 只選前三篇文章
-            .map((article, i) => (
-              <ArticleCard
-                key={i}
-                isCompact
-                title={article.data.title} // 使用動態資料
-                author={article.data.author}
-                link={article.data.link}
-                publishedAt={formatDate(article.data.publishedAt, false)} // 格式化日期
-              />
-            ))}
+          {allBlogs.map((article, i) => (
+            <ArticleCard
+              key={i}
+              isCompact
+              title={article.metadata.title} // 使用動態資料
+              author={article.metadata.author}
+              link={article.metadata.link}
+              publishedAt={formatDate(article.metadata.publishedAt, false)} // 格式化日期
+            />
+          ))}
         </div>
       </section>
     </div>
