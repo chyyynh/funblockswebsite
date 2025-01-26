@@ -16,7 +16,7 @@ const geistMono = localFont({
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    metadataBase: new URL("https://funblocks.xyz"), // 替換為你的實際域名
+    metadataBase: new URL("https://funblocks.website"), // 替換為你的實際域名
     title: "Funblocks",
     description: "Your Page Description",
     openGraph: {

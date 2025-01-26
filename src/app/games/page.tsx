@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Search } from "lucide-react";
 
 // shadcn components
@@ -67,7 +67,20 @@ export default function Page() {
     fetchGames();
   }, []);
 
-  useEffect(() => {
+  const filterGamesByCategory = (
+    games: Game[],
+    category: keyof FilterType,
+    filterValues: string[]
+  ) => {
+    if (filterValues.length === 0) {
+      return games;
+    }
+    return games.filter((game) =>
+      filterValues.includes(game[category] as string)
+    );
+  };
+
+  useMemo(() => {
     let result = allGames;
 
     if (searchTerm) {
@@ -76,22 +89,13 @@ export default function Page() {
       );
     }
 
-    if (filters.engine.length > 0) {
-      result = result.filter((game) => filters.engine.includes(game.engine));
-    }
-    if (filters.blockchain.length > 0) {
-      result = result.filter((game) =>
-        filters.blockchain.includes(game.blockchain)
-      );
-    }
-    if (filters.gameStudio.length > 0) {
-      result = result.filter((game) =>
-        filters.gameStudio.includes(game.gameStudio)
-      );
-    }
+    result = filterGamesByCategory(result, "engine", filters.engine);
+    result = filterGamesByCategory(result, "blockchain", filters.blockchain);
+    result = filterGamesByCategory(result, "gameStudio", filters.gameStudio);
 
-    setFilteredGames(result);
-  }, [allGames, searchTerm, sortBy, filters]);
+    setFilteredGames(result); // 使用 setFilteredGames 更新狀態
+    return result; // 返回 result
+  }, [allGames, searchTerm, filters]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
