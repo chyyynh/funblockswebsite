@@ -18,17 +18,17 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL("https://funblocks.website"), // 替換為你的實際域名
     title: "Funblocks",
-    description: "Your Page Description",
+    description: "focus on the fully on chain game & autonomous world",
     openGraph: {
       title: "Funblocks",
-      description: "Open Graph Description",
-      url: "/your-page",
+      description: "focus on the fully on chain game & autonomous world",
+      url: "https://funblocks.website",
       images: [
         {
-          url: "/images/og-image.png",
+          url: "/images/funblocksvisual.jpg",
           width: 1200,
           height: 630,
-          alt: "Open Graph Image Alt Text",
+          alt: "Funblocks Visual",
         },
       ],
     },
@@ -36,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "Funblocks",
       description: "focus on the fully on chain game & autonomous world",
-      images: ["/images/twitter-image.png"],
+      images: ["/images/funblocksvisual.jpg"],
     },
   };
 }
