@@ -54,7 +54,7 @@ export default function Header() {
             </Link>
             <div className="hidden md:block">
               <Link
-                href="https://t.me/funblockschat"
+                href="https://t.me/FunBlocks_TC"
                 target="_blank"
                 rel="noopener noreferrer"
               >

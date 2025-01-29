@@ -44,7 +44,7 @@ export default function GamesList() {
                 key={i}
                 className="pl-2 md:pl-4 basis-5/12 sm:basis-1/2"
               >
-                <Link href={`/games/${game.id}`} key={i}>
+                <Link href="/games">
                   <div className="flex flex-col gap-2 p-1 hover:bg-[#F3B43B] rounded-lg h-full">
                     <div className="aspect-square rounded-lg overflow-hidden">
                       <div className="relative w-full h-full">
