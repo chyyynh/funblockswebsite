@@ -26,7 +26,7 @@ export async function getStaticProps(slug: string) {
 
 export async function getTuStaticProps(slug: string) {
   const { data: article, error } = await supabase
-    .from("tutorial")
+    .from("tutorials")
     .select("*")
     .eq("metadata->>link", slug)
     .single();
@@ -51,7 +51,7 @@ export async function getStaticParams() {
 
 export async function getTuStaticParams() {
   const { data: link } = await supabase
-    .from("tutorial")
+    .from("tutorials")
     .select("metadata->link");
 
   const allslug = link ? link.map((item) => ({ slug: item.link })) : [];
