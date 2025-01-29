@@ -1,9 +1,10 @@
 # *
 User-agent: *
-Allow: /sitemap.xml
+Allow: /
 
 # Host
 Host: https://funblocks.website
 
 # Sitemaps
 Sitemap: https://funblocks.website/sitemap.xml
+Sitemap: https://funblocks.website/sitemap-0.xml
