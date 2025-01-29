@@ -26,7 +26,7 @@ export async function getStaticProps(slug: string) {
 
 export async function getTuStaticProps(slug: string) {
   const { data: article, error } = await supabase
-    .from("articles")
+    .from("tutorial")
     .select("*")
     .eq("metadata->>link", slug)
     .single();
