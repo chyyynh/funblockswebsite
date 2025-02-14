@@ -33,6 +33,11 @@ const nextConfig = {
         hostname: "hackmd.io",
         pathname: "/**", // 匹配所有路徑
       },
+      {
+        protocol: "https",
+        hostname: "www.evefrontier.com",
+        pathname: "/**", // 匹配所有路徑
+      },
     ],
   },
 };

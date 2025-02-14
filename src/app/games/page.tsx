@@ -17,7 +17,6 @@ import {
 import Header from "@/app/components/Header";
 import { Sidebar } from "@/app/components/games/sidebar";
 import { GameCard } from "@/app/components/games/game-card";
-// import { NewTabLink } from "@/app/components/NewTabLink";
 import { getAllGames } from "@/lib/supabase/getStaticProps";
 
 export interface Game {

@@ -16,7 +16,7 @@ export default function ArticleGrid() {
         >
           <Card className="border border-black rounded-none h-full hover:bg-[#F3B43B]">
             <CardContent className="p-4">
-              <div className="flex flex-row gap-4 md:flex-col md:gap-6">
+              <div className="flex flex-row gap-4 md:flex-col md:gap-0">
                 <div className="flex-1 min-w-0">
                   <h2 className="text-lg font-semibold mb-2 line-clamp-2">
                     {article.metadata.title}
