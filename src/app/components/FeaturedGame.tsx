@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link"; // Add this import
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
@@ -65,14 +66,19 @@ export default function FeaturedGame() {
             <h2 className="text-xl font-medium">BOLT</h2>
           </div>
           <h3 className="text-3xl font-bold mb-4">
-            BOLT：Solana生態ECS全鏈遊戲引擎
+            BOLT：Solana 生態 ECS 全鏈遊戲引擎
           </h3>
           <p className="text-base text-muted-foreground flex-grow">
-            BOLT是Magicblock團隊為Solana生態開發的全鏈遊戲引擎。
+            BOLT 是 Magicblock 團隊為 Solana 生態開發的全鏈遊戲引擎。
           </p>
           <div className="flex gap-2 mt-4">
-            <Button className="bg-blue-600 hover:bg-blue-700">Play</Button>
-            <Button variant="outline">Explore</Button>
+            <Link
+              href="https://docs.magicblock.gg/Build/Bolt/introduction"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button className="bg-blue-600 hover:bg-blue-700">Explore</Button>
+            </Link>
           </div>
         </div>
       </div>
