@@ -27,19 +27,21 @@ export async function generateMetadata({
   }
 
   return {
-    metadataBase: new URL("https://funblocks.xyz"),
+    metadataBase: new URL("https://funblocks.website"),
     title: `Funblocks | ${article.metadata.title}`,
     description: article.metadata.summary || "Funblocks 专注于全链游戏的媒体",
     openGraph: {
       title: article.metadata.title,
       description: article.metadata.summary || "Funblocks 专注于全链游戏的媒体",
-      url: `/${slug}`,
+      url: `/articles/${slug}`,
     },
     twitter: {
       card: "summary_large_image",
+      site: "@FunblocksXYZ", // 你的 Twitter 帳號
+      creator: "@FunblocksXYZ", // 你的 Twitter 作者帳號
       title: article.metadata.title,
-      description: article.metadata.summary || "Funblocks 专注于全链游戏的媒体",
-      images: [article.metadata.image || ""],
+      description: article.metadata.summary,
+      images: [article.metadata.image],
     },
   };
 }
