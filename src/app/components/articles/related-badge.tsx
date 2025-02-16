@@ -20,7 +20,10 @@ export default async function RelatedBadges({
 
   return (
     <div className="mb-4 space-y-4 rounded-lg bg-[#f9f6f1] p-4">
-      <Link href={game.link.twitter || "#"} target="_blank">
+      <Link
+        href={game.link.website || game.link.twitter || "#"}
+        target="_blank"
+      >
         <div className="flex flex-wrap gap-5">
           <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
             <Image
