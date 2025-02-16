@@ -1,5 +1,6 @@
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
+import RelatedBadges from "@/app/components/articles/related-badge";
 import { Sidebar } from "@/app/components/articles/sidebar";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { Metadata } from "next";
@@ -68,13 +69,14 @@ export default async function ArticlePage({ params }: { params: Params }) {
               <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900">
                 {article.metadata.title}
               </h1>
-              <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 mb-3">
-                <span>By {article.metadata.author}</span>
+              <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 mb-4">
+                <span>原文 {article.metadata.author}</span>
                 <span className="hidden sm:inline">•</span>
-                <span>Translated by {article.metadata.translatedBy}</span>
+                <span>編輯 {article.metadata.translatedBy}</span>
                 <span className="hidden sm:inline">•</span>
                 <span>{article.metadata.publishedAt}</span>
               </div>
+              <RelatedBadges related_game={article.related_game} />
               <div className="prose max-w-none sm:prose-lg prose-img:rounded-none overflow-hidden">
                 {mdxContent}
               </div>

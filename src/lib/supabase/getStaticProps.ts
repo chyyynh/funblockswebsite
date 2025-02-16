@@ -92,6 +92,17 @@ export async function getAllGames() {
   return games || []; // 確保返回值是陣列
 }
 
+export async function getGameByID(id: number) {
+  const { data: games, error } = await supabase
+    .from("games")
+    .select("*")
+    .eq("id", id);
+  if (!games) {
+    console.log(error);
+  }
+  return games || []; // 確保返回值是陣列
+}
+
 export async function getAllTutorials(num?: number) {
   const { data: tutorials, error } = await supabase
     .from("tutorials")
