@@ -1,12 +1,13 @@
+import "./globals.css";
+
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { useEffect } from "react";
 import localFont from "next/font/local";
-import TagManager from "react-gtm-module";
 import Script from "next/script";
-import "./globals.css";
 import { Noto_Sans_TC, Noto_Sans_JP } from "next/font/google";
+
+import { GoogleAnalytics } from "./components/GoogleAnalytics";
 
 const notoSansTC = Noto_Sans_TC({
   weight: ["400", "700"],
@@ -66,22 +67,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  useEffect(() => {
-    TagManager.initialize({ gtmId: "GTM-XXXXXXX" });
-  }, []);
-
   return (
     <html lang="en">
       <head>
         <Script
-          id="gtm-script"
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=G-MF8WPB5P`}
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-MF8WPB5P');
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-MF8WPB5P', {
+                page_path: window.location.pathname,
+              });
             `,
           }}
         />
@@ -89,14 +92,7 @@ export default function RootLayout({
       <body
         className={`${notoSansTC.className} ${notoSansJP.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <noscript
-          dangerouslySetInnerHTML={{
-            __html: `
-              <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MF8WPB5P"
-              height="0" width="0" style="display:none;visibility:hidden"></iframe>
-            `,
-          }}
-        />
+        <GoogleAnalytics GA_TRACKING_ID="G-MF8WPB5P" />
         {children}
         <Analytics />
         <SpeedInsights />
