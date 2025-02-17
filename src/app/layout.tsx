@@ -72,7 +72,7 @@ export default function RootLayout({
       <head>
         <Script
           strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=G-MF8WPB5P`}
+          src={`https://www.googletagmanager.com/gtag/js?id=G-9CCVHKK8W2`}
         />
         <Script
           id="google-analytics"
@@ -82,7 +82,7 @@ export default function RootLayout({
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-MF8WPB5P', {
+              gtag('config', 'G-9CCVHKK8W2', {
                 page_path: window.location.pathname,
               });
             `,
@@ -92,7 +92,7 @@ export default function RootLayout({
       <body
         className={`${notoSansTC.className} ${notoSansJP.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <GoogleAnalytics GA_TRACKING_ID="G-MF8WPB5P" />
+        <GoogleAnalytics GA_TRACKING_ID="G-9CCVHKK8W2" />
         {children}
         <Analytics />
         <SpeedInsights />
