@@ -71,11 +71,10 @@ export default {
       DEFAULT: {
         css: {
           color: "#333",
-          fontFamily: ["Noto Sans CJK", "sans-serif"], // 直接設置字型
+          fontFamily: ["Noto Sans CJK", "Noto Sans", "sans-serif"], // 直接設置字型
           fontWeight: "400",
           lineHeight: "1.75", // 增加行距讓中文更易讀
           letterSpacing: "0.02em", // 微調字距
-
           h1: {
             fontSize: "2rem",
             fontWeight: "800",
@@ -101,6 +100,7 @@ export default {
             marginBottom: "1.5rem",
           },
           strong: {
+            fontSize: "1.1rem",
             fontWeight: "1200",
           },
           a: {
@@ -111,18 +111,32 @@ export default {
             },
           },
           blockquote: {
-            fontStyle: "italic",
+            paddingLeft: "1rem",
             borderLeftWidth: "4px",
             borderLeftColor: "#60a5fa",
-            paddingLeft: "1rem",
             color: "#374151",
           },
-          ul: {
-            paddingLeft: "20px", // 確保列表項目有足夠的內邊距
+          "blockquote > p": {
+            fontSize: "1.1rem",
           },
-
+          ol: {
+            paddingLeft: "0.75rem",
+            fontSize: "1.1rem",
+            marginBottom: "1.5rem",
+          },
+          "ol > li": {
+            listStyleType: "decimal", // 強制顯示數字標號
+            listStylePosition: "inside", // 確保數字標號在列表項內部
+            fontSize: "1.1rem",
+          },
+          ul: {
+            paddingLeft: "0.75rem",
+            fontSize: "1.1rem",
+            marginBottom: "1.5rem",
+          },
           "ul > li": {
-            listStyleType: "none", // 禁用預設的列表符號
+            listStyleType: "disc", // 恢復圓點符號
+            listStylePosition: "inside", // 確保數字標號在列表項內部
             position: "relative", // 讓 ::before 可以正確定位
             fontSize: "1.1rem",
           },
@@ -137,27 +151,25 @@ export default {
             padding: "1rem",
             borderRadius: "6px",
           },
+          table: {
+            borderCollapse: "collapse", // 確保表格邊框不重疊
+            width: "relative", // 讓表格寬度自適應
+            marginBottom: "1.5rem",
+          },
+          "th, td": {
+            padding: "0.15rem 0.5rem", // 單元格的內邊距
+            border: "1px solid #e2e8f0", // 輕微的邊框
+            textAlign: "left", // 文字左對齊
+          },
+          thead: {
+            backgroundColor: "#f7fafc", // 表頭背景色
+          },
+          "tbody tr:hover": {
+            backgroundColor: "#e2e8f0", // 滑鼠懸停行的背景色
+          },
         },
       },
     },
   },
-  plugins: [
-    require("@tailwindcss/typography"),
-    function (options: { addComponents: any }) {
-      const { addComponents } = options;
-      addComponents({
-        ".prose ul > li::before": {
-          content: '"•"', // 使用圓點符號
-          color: "black", // 設定圓點顏色為黑色
-          fontSize: "16px", // 圓點大小
-          marginRight: "10px", // 文字與圓點的間距
-          marginLeft: "-20px", // 圓點位置的水平偏移
-          position: "absolute", // 設定圓點為絕對定位
-          left: "0", // 保證圓點在左邊
-          top: "50%", // 垂直居中
-          transform: "translateY(-50%)", // 完全垂直居中
-        },
-      });
-    },
-  ],
+  plugins: [require("@tailwindcss/typography")],
 } satisfies Config;

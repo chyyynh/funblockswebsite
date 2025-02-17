@@ -9,24 +9,26 @@ import VideosSection from "./components/VideosSection";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#faf7f2] bg-[url('/images/background.svg')] bg-repeat">
-      <Header />
+    <div>
+      <div className="min-h-screen bg-[#f0f0f0] bg-[url('/images/new-background.svg')] bg-cover">
+        <Header />
 
-      <main className="container mx-auto px-4 py-6 space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <FeaturedGame />
-          <GamesList />
-        </div>
+        <main className="container mx-auto px-6 py-8 space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <FeaturedGame />
+            <GamesList />
+          </div>
 
-        <ArticleGrid />
-        <LevelUpBanner />
+          <ArticleGrid />
+          <LevelUpBanner />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <ArticlesSection />
-          <VideosSection />
-        </div>
-      </main>
-      <Footer />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <ArticlesSection />
+            <VideosSection />
+          </div>
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }

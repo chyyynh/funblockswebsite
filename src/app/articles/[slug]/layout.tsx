@@ -36,15 +36,15 @@ export async function generateMetadata({
     title: `Funblocks | ${article.metadata.title}`,
     description: article.metadata.summary || "Funblocks 专注于全链游戏的媒体",
     openGraph: {
-      title: article.metadata.title,
+      title: `Funblocks | ${article.metadata.title}`,
       description: article.metadata.summary || "Funblocks 专注于全链游戏的媒体",
       url: `/articles/${slug}`,
     },
     twitter: {
       card: "summary_large_image",
-      site: "@FunblocksXYZ", // 你的 Twitter 帳號
-      creator: "@FunblocksXYZ", // 你的 Twitter 作者帳號
-      title: article.metadata.title,
+      site: "@0xFunBlocksCN", // 你的 Twitter 帳號
+      creator: "@0xFunBlocksCN", // 你的 Twitter 作者帳號
+      title: `Funblocks | ${article.metadata.title}`,
       description: article.metadata.summary,
       images: [article.metadata.image],
     },
