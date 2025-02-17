@@ -73,22 +73,6 @@ export default function Header() {
         </div>
       </div>
       <MobileMenu isOpen={isMobileMenuOpen} />
-      <div className="w-full">
-        <Image
-          src="/images/header.svg"
-          alt="Header SVG"
-          width={1440}
-          height={200}
-          className="hidden sm:block w-full"
-        />
-        <Image
-          src="/images/header_mobile.svg"
-          alt="Header Mobile SVG"
-          width={768}
-          height={200}
-          className="block sm:hidden w-full" // 手機版顯示
-        />
-      </div>
     </header>
   );
 }

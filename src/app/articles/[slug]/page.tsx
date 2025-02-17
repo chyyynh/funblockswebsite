@@ -1,50 +1,12 @@
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import RelatedBadges from "@/app/components/articles/related-badge";
+import remarkGfm from "remark-gfm";
 import { Sidebar } from "@/app/components/articles/sidebar";
 import { compileMDX } from "next-mdx-remote/rsc";
-import { Metadata } from "next";
-import { getStaticProps, getStaticParams } from "@/lib/supabase/getStaticProps";
-
-export async function generateStaticParams() {
-  const allslug = await getStaticParams();
-  return allslug;
-}
+import { getStaticProps } from "@/lib/supabase/getStaticProps";
 
 export type Params = Promise<{ slug: string }>;
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Params;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const { props } = await getStaticProps(slug);
-  const article = props.article;
-
-  if (!article) {
-    console.error("Error fetching blog posts:", props.error);
-  }
-
-  return {
-    metadataBase: new URL("https://funblocks.website"),
-    title: `Funblocks | ${article.metadata.title}`,
-    description: article.metadata.summary || "Funblocks 专注于全链游戏的媒体",
-    openGraph: {
-      title: article.metadata.title,
-      description: article.metadata.summary || "Funblocks 专注于全链游戏的媒体",
-      url: `/articles/${slug}`,
-    },
-    twitter: {
-      card: "summary_large_image",
-      site: "@FunblocksXYZ", // 你的 Twitter 帳號
-      creator: "@FunblocksXYZ", // 你的 Twitter 作者帳號
-      title: article.metadata.title,
-      description: article.metadata.summary,
-      images: [article.metadata.image],
-    },
-  };
-}
 
 export default async function ArticlePage({ params }: { params: Params }) {
   const { slug } = await params;
@@ -58,7 +20,12 @@ export default async function ArticlePage({ params }: { params: Params }) {
 
   const { content: mdxContent } = await compileMDX({
     source: article.content,
-    options: { parseFrontmatter: true },
+    options: {
+      parseFrontmatter: true,
+      mdxOptions: {
+        remarkPlugins: [remarkGfm],
+      },
+    },
   });
 
   return (

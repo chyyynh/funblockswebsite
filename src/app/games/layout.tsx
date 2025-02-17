@@ -48,13 +48,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
+    <div lang="zh-TW">
+      <main
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
         <Analytics />
-      </body>
-    </html>
+      </main>
+    </div>
   );
 }
