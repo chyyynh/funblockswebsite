@@ -117,8 +117,14 @@ export default {
             paddingLeft: "1rem",
             color: "#374151",
           },
-          "ul > li::before": {
-            backgroundColor: "#60a5fa",
+          ul: {
+            paddingLeft: "20px", // 確保列表項目有足夠的內邊距
+          },
+
+          "ul > li": {
+            listStyleType: "none", // 禁用預設的列表符號
+            position: "relative", // 讓 ::before 可以正確定位
+            fontSize: "1.1rem",
           },
           code: {
             backgroundColor: "#f3f4f6",
@@ -135,5 +141,23 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    function (options: { addComponents: any }) {
+      const { addComponents } = options;
+      addComponents({
+        ".prose ul > li::before": {
+          content: '"•"', // 使用圓點符號
+          color: "black", // 設定圓點顏色為黑色
+          fontSize: "16px", // 圓點大小
+          marginRight: "10px", // 文字與圓點的間距
+          marginLeft: "-20px", // 圓點位置的水平偏移
+          position: "absolute", // 設定圓點為絕對定位
+          left: "0", // 保證圓點在左邊
+          top: "50%", // 垂直居中
+          transform: "translateY(-50%)", // 完全垂直居中
+        },
+      });
+    },
+  ],
 } satisfies Config;
