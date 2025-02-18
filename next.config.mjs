@@ -38,6 +38,11 @@ const nextConfig = {
         hostname: "www.evefrontier.com",
         pathname: "/**", // 匹配所有路徑
       },
+      {
+        protocol: "https",
+        hostname: "imgur.com",
+        pathname: "/**", // 匹配所有路徑
+      },
     ],
   },
 };
