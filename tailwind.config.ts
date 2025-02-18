@@ -71,10 +71,10 @@ export default {
       DEFAULT: {
         css: {
           color: "#333",
-          fontFamily: ["Noto Sans CJK", "Noto Sans", "sans-serif"], // 直接設置字型
+          fontFamily: ["Noto Sans CJK", "Noto Sans", "sans-serif"],
           fontWeight: "400",
-          lineHeight: "1.75", // 增加行距讓中文更易讀
-          letterSpacing: "0.02em", // 微調字距
+          lineHeight: "1.75",
+          letterSpacing: "0.02em",
           h1: {
             fontSize: "2rem",
             fontWeight: "800",
@@ -120,24 +120,23 @@ export default {
             fontSize: "1.1rem",
           },
           ol: {
-            paddingLeft: "0.75rem",
+            paddingLeft: "2rem",
             fontSize: "1.1rem",
             marginBottom: "1.5rem",
           },
           "ol > li": {
-            listStyleType: "decimal", // 強制顯示數字標號
-            listStylePosition: "inside", // 確保數字標號在列表項內部
+            listStyleType: "decimal",
+            position: "relative",
             fontSize: "1.1rem",
           },
           ul: {
-            paddingLeft: "0.75rem",
+            paddingLeft: "2rem",
             fontSize: "1.1rem",
             marginBottom: "1.5rem",
           },
           "ul > li": {
-            listStyleType: "disc", // 恢復圓點符號
-            listStylePosition: "inside", // 確保數字標號在列表項內部
-            position: "relative", // 讓 ::before 可以正確定位
+            listStyleType: "disc",
+            position: "relative",
             fontSize: "1.1rem",
           },
           code: {
