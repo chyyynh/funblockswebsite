@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArticleCard } from "./article-card";
 import { formatDate } from "../../../lib/post";
-import { getServerSideProps } from "@/lib/supabase/getStaticProps";
+import { getAllArticles } from "@/lib/supabase/getStaticProps";
 
-const allBlogs = await getServerSideProps(5);
+const allBlogs = await getAllArticles(5);
 
 export function Sidebar() {
   return (

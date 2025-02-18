@@ -4,11 +4,19 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { Sidebar } from "@/app/components/articles/sidebar";
 import { formatDate } from "../../lib/utils";
-import { getServerSideProps } from "@/lib/supabase/getStaticProps";
+// import { getAllArticleSlugs } from "@/lib/supabase/getArticleBySlug";
+import { getAllArticles } from "@/lib/supabase/getStaticProps";
 
-const allBlogs = await getServerSideProps();
+export const revalidate = 300; // Revalidate every 30 minutes
 
-export default function ArticlesPage() {
+export async function generateStaticParams() {
+  const allBlogs = await getAllArticles();
+  return allBlogs;
+}
+
+export default async function ArticlesPage() {
+  const allBlogs = await getAllArticles();
+
   return (
     <div className="flex flex-col min-h-screen bg-[#f9f6f1] bg-[url('/images/background.svg')]">
       <Header />

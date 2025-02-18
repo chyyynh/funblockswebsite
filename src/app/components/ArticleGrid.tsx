@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { getServerSideProps } from "@/lib/supabase/getStaticProps";
+import { getAllArticles } from "@/lib/supabase/getStaticProps";
 
-const articles = await getServerSideProps(3);
+const articles = await getAllArticles(3);
 
 export default function ArticleGrid() {
   return (
