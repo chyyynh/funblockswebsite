@@ -40,7 +40,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "imgur.com",
+        hostname: "i.imgur.com",
         pathname: "/**", // 匹配所有路徑
       },
     ],
