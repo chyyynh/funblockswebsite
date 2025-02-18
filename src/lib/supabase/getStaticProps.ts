@@ -66,7 +66,7 @@ export async function gerRelated() {
   return relatedData;
 }
 
-export async function getServerSideProps(num?: number) {
+export async function getAllArticles(num?: number) {
   const { data: articles, error } = await supabase.from("articles").select("*");
   if (articles) {
     articles.sort((a, b) => {
