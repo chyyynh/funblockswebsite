@@ -78,20 +78,20 @@ export default {
           h1: {
             fontSize: "2rem",
             fontWeight: "800",
-            lineHeight: "2",
             letterSpacing: "0.03em",
+            marginBottom: "1rem",
           },
           h2: {
             fontSize: "1.75rem",
             fontWeight: "800",
-            lineHeight: "2",
             letterSpacing: "0.03em",
+            marginBottom: "1rem",
           },
           h3: {
             fontSize: "1.5rem",
             fontWeight: "600",
-            lineHeight: "2",
             letterSpacing: "0.02em",
+            marginBottom: "1rem",
           },
           p: {
             fontSize: "1.1rem",
