@@ -43,6 +43,11 @@ const nextConfig = {
         hostname: "i.imgur.com",
         pathname: "/**", // 匹配所有路徑
       },
+      {
+        protocol: "https",
+        hostname: "supercell.com",
+        pathname: "/**", // 匹配所有路徑
+      },
     ],
   },
 };
