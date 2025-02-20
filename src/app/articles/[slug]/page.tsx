@@ -56,10 +56,10 @@ export default async function ArticlePage({ params }: { params: Params }) {
                   remarkPlugins={[remarkGfm]}
                   rehypePlugins={[rehypeHighlight, rehypeRaw]} // 讓 HTML 可用
                   components={{
-                    iframe: ({ node, ...props }) => (
+                    iframe: ({ ...props }) => (
                       <div className="flex justify-center">
                         <div className="relative w-10/12 items-center overflow-hidden rounded-lg aspect-video mb-6">
-                          <iframe {...props} className="w-full h-full" />
+                          <iframe {...props} className="w-full h-full " />
                         </div>
                       </div>
                     ),

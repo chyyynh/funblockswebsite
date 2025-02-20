@@ -105,8 +105,9 @@ export async function getGameByID(id: number) {
 
 export async function getAllTutorials(num?: number) {
   const { data: tutorials, error } = await supabase
-    .from("tutorials")
-    .select("*");
+    .from("articles")
+    .select("*")
+    .eq("type", "tutorial"); // Check if related_tag contains "tutorial"
   if (tutorials) {
     tutorials.sort((a, b) => {
       if (new Date(a.created_at) > new Date(b.created_at)) {
