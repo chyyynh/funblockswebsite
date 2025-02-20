@@ -140,15 +140,15 @@ export default {
             fontSize: "1.1rem",
           },
           code: {
-            backgroundColor: "#f3f4f6",
-            padding: "2px 4px",
-            borderRadius: "4px",
+            padding: "0 !important",
+            color: "inherit" /* 讓它繼承語法高亮的顏色 */,
           },
           pre: {
-            backgroundColor: "#1f2937",
-            color: "#f9fafb",
+            border: "1px solid #e2e8f0",
+            overflow: "auto",
             padding: "1rem",
             borderRadius: "6px",
+            marginBottom: "1.5rem",
           },
           table: {
             borderCollapse: "collapse", // 確保表格邊框不重疊

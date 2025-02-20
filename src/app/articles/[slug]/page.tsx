@@ -1,13 +1,19 @@
-import Header from "@/app/components/Header";
-import Footer from "@/app/components/Footer";
-import RelatedBadges from "@/app/components/articles/related-badge";
+import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Sidebar } from "@/app/components/articles/sidebar";
-import { compileMDX } from "next-mdx-remote/rsc";
+import rehypeHighlight from "rehype-highlight";
+import rehypeRaw from "rehype-raw";
+
 import {
   getArticleBySlug,
   getAllArticleSlugs,
 } from "@/lib/supabase/getArticleBySlug";
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
+import { Sidebar } from "@/app/components/articles/sidebar";
+import RelatedBadges from "@/app/components/articles/related-badge";
+
+import "highlight.js/styles/github.css";
+
 // import { getStaticProps } from "@/lib/supabase/getStaticProps";
 
 export const revalidate = 300; // Revalidate every 30 minutes
@@ -26,16 +32,6 @@ export default async function ArticlePage({ params }: { params: Params }) {
   if (!article) {
     return <div>Article not found</div>;
   }
-
-  const { content: mdxContent } = await compileMDX({
-    source: article.content,
-    options: {
-      parseFrontmatter: true,
-      mdxOptions: {
-        remarkPlugins: [remarkGfm],
-      },
-    },
-  });
 
   return (
     <div className="flex flex-col min-h-screen bg-[#f9f6f1] md:bg-[url('/images/background.svg')]">
@@ -56,7 +52,21 @@ export default async function ArticlePage({ params }: { params: Params }) {
               </div>
               <RelatedBadges related_game={article.related_game} />
               <div className="prose max-w-none sm:prose-lg prose-img:rounded-none overflow-hidden">
-                {mdxContent}
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeHighlight, rehypeRaw]} // 讓 HTML 可用
+                  components={{
+                    iframe: ({ node, ...props }) => (
+                      <div className="flex justify-center">
+                        <div className="relative w-10/12 items-center overflow-hidden rounded-lg aspect-video mb-6">
+                          <iframe {...props} className="w-full h-full" />
+                        </div>
+                      </div>
+                    ),
+                  }}
+                >
+                  {article.content}
+                </ReactMarkdown>
               </div>
             </div>
           </article>
