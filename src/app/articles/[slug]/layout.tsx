@@ -35,6 +35,8 @@ export async function generateMetadata({
     metadataBase: new URL("https://funblocks.website"),
     title: `Funblocks | ${article.metadata.title}`,
     description: article.metadata.summary || "Funblocks 专注于全链游戏的媒体",
+    keywords: article.metadata.keyword || "", // 設置焦點關鍵字
+    robots: "index, follow", // 設定可編製索引，根據需要調整
     openGraph: {
       title: `Funblocks | ${article.metadata.title}`,
       description: article.metadata.summary || "Funblocks 专注于全链游戏的媒体",
