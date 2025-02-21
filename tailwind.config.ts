@@ -98,6 +98,7 @@ export default {
             lineHeight: "1.75",
             letterSpacing: "0.04em",
             marginBottom: "1.5rem",
+            textAlign: "justify", // 默認設置段落文字兩端對齊
           },
           strong: {
             fontSize: "1.1rem",
@@ -123,21 +124,28 @@ export default {
             paddingLeft: "2rem",
             fontSize: "1.1rem",
             marginBottom: "1.5rem",
+            textAlign: "justify",
           },
           "ol > li": {
             listStyleType: "decimal",
             position: "relative",
             fontSize: "1.1rem",
+            marginBottom: "0.5rem",
+          },
+          "ol > li > ol > li": {
+            marginBottom: "0rem !important",
           },
           ul: {
             paddingLeft: "2rem",
             fontSize: "1.1rem",
             marginBottom: "1.5rem",
+            textAlign: "justify",
           },
           "ul > li": {
             listStyleType: "disc",
             position: "relative",
             fontSize: "1.1rem",
+            marginBottom: "0.5rem",
           },
           code: {
             padding: "0 !important",
@@ -145,7 +153,6 @@ export default {
           },
           pre: {
             border: "1px solid #e2e8f0",
-            overflow: "auto",
             padding: "1rem",
             borderRadius: "6px",
             marginBottom: "1.5rem",

@@ -1,8 +1,3 @@
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import rehypeHighlight from "rehype-highlight";
-import rehypeRaw from "rehype-raw";
-
 import {
   getArticleBySlug,
   getAllArticleSlugs,
@@ -11,6 +6,7 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { Sidebar } from "@/app/components/articles/sidebar";
 import RelatedBadges from "@/app/components/articles/related-badge";
+import MarkdownContent from "@/app/components/articles/markdownContent";
 
 import "highlight.js/styles/github.css";
 
@@ -51,22 +47,8 @@ export default async function ArticlePage({ params }: { params: Params }) {
                 <span>{article.metadata.publishedAt}</span>
               </div>
               <RelatedBadges related_game={article.related_game} />
-              <div className="prose max-w-none sm:prose-lg prose-img:rounded-none overflow-hidden">
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  rehypePlugins={[rehypeHighlight, rehypeRaw]} // 讓 HTML 可用
-                  components={{
-                    iframe: ({ ...props }) => (
-                      <div className="flex justify-center">
-                        <div className="relative w-10/12 items-center overflow-hidden rounded-lg aspect-video mb-6">
-                          <iframe {...props} className="w-full h-full " />
-                        </div>
-                      </div>
-                    ),
-                  }}
-                >
-                  {article.content}
-                </ReactMarkdown>
+              <div className="prose max-w-none sm:prose-lg overflow-hidden">
+                <MarkdownContent content={article.content} />
               </div>
             </div>
           </article>

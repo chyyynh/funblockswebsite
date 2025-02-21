@@ -32,7 +32,7 @@ export async function generateMetadata({
   }
 
   return {
-    metadataBase: new URL("https://funblocks.website"),
+    metadataBase: new URL("https://www.funblocks.website"),
     title: `Funblocks | ${article.metadata.title}`,
     description: article.metadata.summary || "Funblocks 专注于全链游戏的媒体",
     keywords: article.metadata.keyword || "", // 設置焦點關鍵字
