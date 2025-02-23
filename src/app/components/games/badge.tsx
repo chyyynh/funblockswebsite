@@ -23,8 +23,8 @@ export function Badge({ type, className = "" }: TechBadgeProps) {
   const hasLogo = type in techLogos;
 
   return (
-    <span
-      className={`text-xs md:text-sm p-1 rounded-none inline-flex items-center gap-1 ${className}`}
+    <div
+      className={`p-1 rounded-none inline-flex items-center gap-1.5 ${className}`}
     >
       {hasLogo && (
         <Image
@@ -36,7 +36,7 @@ export function Badge({ type, className = "" }: TechBadgeProps) {
         />
       )}
       <div className="text-sm">{type}</div>
-    </span>
+    </div>
   );
 }
 

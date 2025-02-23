@@ -39,3 +39,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 NextJS mdx content: https://nextjs.org/docs/app/building-your-application/configuring/mdx
 remark-gfm: mdx compile 有連結自動變成 urls
+rehypeUnwrapImages: 可以讓 <img> 不要編譯在 <p> 底下

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 
 // shadcn components
@@ -24,6 +24,7 @@ export interface Game {
   id: number;
   title: string;
   type: string;
+  status: string;
   image: string;
   engine: string;
   blockchain: string;
@@ -67,34 +68,22 @@ export default function Page() {
     fetchGames();
   }, []);
 
-  const filterGamesByCategory = (
-    games: Game[],
-    category: keyof FilterType,
-    filterValues: string[]
-  ) => {
-    if (filterValues.length === 0) {
-      return games;
-    }
-    return games.filter((game) =>
-      filterValues.includes(game[category] as string)
-    );
-  };
-
-  useMemo(() => {
+  useEffect(() => {
     let result = allGames;
-
     if (searchTerm) {
       result = result.filter((game) =>
         game.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
-
-    result = filterGamesByCategory(result, "engine", filters.engine);
-    result = filterGamesByCategory(result, "blockchain", filters.blockchain);
-    result = filterGamesByCategory(result, "gameStudio", filters.gameStudio);
-
-    setFilteredGames(result); // 使用 setFilteredGames 更新狀態
-    return result; // 返回 result
+    result = result.filter(
+      (game) =>
+        (filters.engine.length === 0 || filters.engine.includes(game.engine)) &&
+        (filters.blockchain.length === 0 ||
+          filters.blockchain.includes(game.blockchain)) &&
+        (filters.gameStudio.length === 0 ||
+          filters.gameStudio.includes(game.gameStudio))
+    );
+    setFilteredGames(result);
   }, [allGames, searchTerm, filters]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -119,7 +108,11 @@ export default function Page() {
     key: keyof FilterType;
     options: string[];
   }[] = [
-    { label: "Engine", key: "engine", options: ["MUD", "Dojo", "PoP"] },
+    {
+      label: "Engine",
+      key: "engine",
+      options: ["MUD", "Dojo", "PoP"],
+    },
     {
       label: "Blockchain",
       key: "blockchain",
@@ -133,15 +126,16 @@ export default function Page() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#FAF9F6] bg-[url('/images/background.svg')] bg-repeat">
+    <div className="min-h-screen sm:bg-[#FAF9F6] sm:bg-[url('/images/background.svg')] bg-repeat">
       <Header />
       <main className="container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
-          <div className="flex-1 space-y-8">
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="p-6">
+          <div className="flex-1 space-y-8 max-w-full">
+            <div className="bg-white rounded-none shadow-none overflow-hidden">
+              <div className="sm:p-6">
                 <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-2">
-                  <div className="relative w-full sm:w-[300px]">
+                  {/* Search with fixed width */}
+                  <div className="relative w-full sm:w-[200px] ">
                     <Input
                       className="pl-8"
                       placeholder="Search Games"
@@ -151,9 +145,14 @@ export default function Page() {
                     />
                     <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
                   </div>
-                  <div className="flex flex-auto gap-2 overflow-x-auto whitespace-nowrap">
+
+                  {/* Filter Buttons container with responsive width */}
+                  <div className="flex gap-2 overflow-x-auto w-full sm:w-[calc(100%-432px)] max-w-full scrollbar-thin">
                     {filterOptions.map((filter) => (
-                      <div key={filter.key} className="flex flex-col">
+                      <div
+                        key={filter.key}
+                        className="flex flex-col flex-shrink-0"
+                      >
                         <div className="flex flex-nowrap gap-2">
                           {filter.options.map((option) => (
                             <Button
@@ -161,7 +160,7 @@ export default function Page() {
                               onClick={() =>
                                 handleFilterChange(filter.key, option)
                               }
-                              className={`rounded-lg border border-gray-300  ${
+                              className={`w-auto rounded-lg border border-gray-300 px-0.5 whitespace-nowrap ${
                                 filters[filter.key].includes(option)
                                   ? "bg-[#F3B43B] text-black hover:bg-[#F3B43B]"
                                   : "bg-white text-black hover:bg-white"
@@ -175,28 +174,24 @@ export default function Page() {
                     ))}
                   </div>
 
-                  <Select value={sortBy} onValueChange={handleSort}>
-                    <SelectTrigger className="w-full sm:w-[180px]">
-                      <SelectValue placeholder="Sort By" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="newest">Newest</SelectItem>
-                      <SelectItem value="popular">Most Popular</SelectItem>
-                      <SelectItem value="rating">Highest Rating</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  {/* Sort Select with fixed width */}
+                  <div className="relative w-full sm:w-[200px] flex-shrink-0">
+                    <Select value={sortBy} onValueChange={handleSort}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Sort By" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="newest">Newest</SelectItem>
+                        <SelectItem value="popular">Most Popular</SelectItem>
+                        <SelectItem value="rating">Highest Rated</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
-
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {filteredGames.map((game) =>
-                    game.link && game.link.twitter ? (
-                      <div key={game.id}>
-                        <GameCard {...game} />
-                      </div>
-                    ) : (
-                      <GameCard key={game.id} {...game} />
-                    )
-                  )}
+                  {filteredGames.map((game) => (
+                    <GameCard key={game.id} {...game} />
+                  ))}
                 </div>
               </div>
             </div>
