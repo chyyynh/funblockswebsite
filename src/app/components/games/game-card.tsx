@@ -40,14 +40,16 @@ export function GameCard(props: GameCardProps) {
             <div className="absolute right-2 top-2 bg-white px-2 py-1 text-xs font-semibold min-w-[40px] text-center">
               {status}
             </div>
-            <Image
-              src={twitter_img.banner || "/placeholder.svg"}
-              alt={title}
-              width={400}
-              height={225}
-              className="aspect-video object-cover w-full h-[180px]"
-              priority
-            />
+            <Link href={`/games/${title}`} passHref>
+              <Image
+                src={twitter_img.banner || "/placeholder.svg"}
+                alt={title}
+                width={400}
+                height={225}
+                className="aspect-video object-cover w-full h-[180px]"
+                priority
+              />{" "}
+            </Link>
           </div>
           <div className="p-4 flex flex-col">
             <h3 className="text-lg font-semibold mb-2 line-clamp-1">{title}</h3>

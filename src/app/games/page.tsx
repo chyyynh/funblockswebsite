@@ -43,6 +43,7 @@ export interface Game {
 }
 
 type FilterType = {
+  status: string[];
   engine: string[];
   blockchain: string[];
   gameStudio: string[];
@@ -54,6 +55,7 @@ export default function Page() {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("newest");
   const [filters, setFilters] = useState<FilterType>({
+    status: [],
     engine: [],
     blockchain: [],
     gameStudio: [],
@@ -81,7 +83,8 @@ export default function Page() {
         (filters.blockchain.length === 0 ||
           filters.blockchain.includes(game.blockchain)) &&
         (filters.gameStudio.length === 0 ||
-          filters.gameStudio.includes(game.gameStudio))
+          filters.gameStudio.includes(game.gameStudio)) &&
+        (filters.status.length === 0 || filters.status.includes(game.status))
     );
     setFilteredGames(result);
   }, [allGames, searchTerm, filters]);
@@ -108,6 +111,11 @@ export default function Page() {
     key: keyof FilterType;
     options: string[];
   }[] = [
+    {
+      label: "Status",
+      key: "status",
+      options: ["play now"],
+    },
     {
       label: "Engine",
       key: "engine",

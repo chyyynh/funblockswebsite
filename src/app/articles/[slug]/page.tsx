@@ -10,8 +10,6 @@ import MarkdownContent from "@/app/components/articles/markdownContent";
 
 import "highlight.js/styles/github.css";
 
-// import { getStaticProps } from "@/lib/supabase/getStaticProps";
-
 export const revalidate = 300; // Revalidate every 30 minutes
 
 export async function generateStaticParams() {
