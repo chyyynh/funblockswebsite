@@ -18,7 +18,7 @@ export default async function ArticlesPage() {
   const allBlogs = await getAllArticles();
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#f9f6f1] bg-[url('/images/background.svg')]">
+    <div className="min-h-screen bg-[#f9f6f1] bg-[url('/images/background.svg')]">
       <Header />
       <div className="flex-grow container mx-auto px-4 py-6">
         <div className="grid gap-6 lg:grid-cols-[1fr_350px]">

@@ -40,10 +40,10 @@ export function Sidebar() {
             <ArticleCard
               key={i}
               isCompact
-              title={article.metadata.title} // 使用動態資料
+              title={article.metadata.title}
               author={article.metadata.author}
               link={article.metadata.link}
-              publishedAt={formatDate(article.metadata.publishedAt, false)} // 格式化日期
+              publishedAt={formatDate(article.metadata.publishedAt, false)}
             />
           ))}
         </div>
