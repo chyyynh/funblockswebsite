@@ -44,14 +44,6 @@ export default function Header() {
             >
               攻略
             </Link>
-            <Link
-              href="https://www.youtube.com/@0xfunblocks"
-              className="text-sm font-medium hover:text-blue-600"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              影片
-            </Link>
             <div className="hidden md:block">
               <Link
                 href="https://t.me/FunBlocks_TC"
@@ -59,7 +51,7 @@ export default function Header() {
                 rel="noopener noreferrer"
               >
                 <Button className="bg-blue-600 hover:bg-blue-700">
-                  立即加入
+                  加入頻道
                 </Button>
               </Link>
             </div>

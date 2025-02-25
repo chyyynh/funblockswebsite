@@ -28,7 +28,7 @@ export default async function ReviewsSection() {
               <Card className="h-full hover:bg-[#F3B43B] border sm:border border-none rounded-none shadow-none">
                 <CardContent className="p-0">
                   <div className="flex flex-row gap-y-0 items-center">
-                    <Link href={`/articles/${article.link}`}>
+                    <Link href={`/articles/${article.metadata.slug}`}>
                       <div className="relative w-24 md:w-48 shrink-0 aspect-[16/9] flex items-center justify-center">
                         <Image
                           src={article.metadata.image}
