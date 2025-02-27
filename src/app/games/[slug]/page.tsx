@@ -5,6 +5,7 @@ import Link from "next/link";
 import Header from "@/app/components/Header";
 import { GameInfo } from "@/app/components/games/gameIntro/gameinfo";
 import { GamePreview } from "@/app/components/games/gameIntro/gamePreview";
+import { GameTabs } from "@/app/components/games/gameIntro/gameTabs"; // Import the client component
 import { getGameByName } from "@/lib/supabase/getGame";
 
 /*
@@ -27,7 +28,7 @@ type Params = Promise<{ slug: string }>;
 
 export default async function GamePage({ params }: { params: Params }) {
   const { slug } = await params;
-  const game = await getGameByName(slug); // ✅ 確保 `await`
+  const game = await getGameByName(slug);
 
   {
     /*
@@ -101,6 +102,14 @@ export default async function GamePage({ params }: { params: Params }) {
               <GamePreview {...game} />
             </div>
           </div>
+        </div>
+
+        <div className="bg-white border border-black px-4 py-4 mt-4">
+          {/* Render the client component here */}
+          <GameTabs
+            gameIntroContent={<p>This is Game Introduction</p>}
+            assetIntroContent={<p>This is Asset Introduction</p>}
+          />
         </div>
 
         {/* Degen Stats */}
