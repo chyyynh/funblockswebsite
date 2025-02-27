@@ -17,6 +17,8 @@ export async function getGameByName(game: string) {
     .ilike("title", decodedGame) // 用 ilike 忽略大小寫
     .single(); // 避免 0 筆資料時報錯
 
+  // console.log("Game data:", data);
+
   if (error) {
     console.error("Error fetching article:", error);
     return null;

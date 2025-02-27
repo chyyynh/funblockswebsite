@@ -30,6 +30,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "video.twimg.com",
+        pathname: "/**", // 適配所有 Twitter 的圖片連結
+      },
+      {
+        protocol: "https",
         hostname: "hackmd.io",
         pathname: "/**", // 匹配所有路徑
       },

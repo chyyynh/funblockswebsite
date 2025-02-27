@@ -34,8 +34,10 @@ export function GameInfo(GameProps: GameProps) {
           className="object-cover"
         />
       </div>
-      <p className="text-black text-base mt-2 mb-2">{GameProps.description}</p>{" "}
+      <p className="text-black text-base mt-2 mb-2">{GameProps.description}</p>
+
       <Separator />
+
       {/* 遊戲相關連結 */}
       <div className="space-y-1 text-xl mt-1 mb-1">
         <div className="flex text-slate-400 justify-start gap-2">
@@ -77,11 +79,13 @@ export function GameInfo(GameProps: GameProps) {
           )}
         </div>
       </div>
+
       <Separator />
+
       {/* 遊戲相關資訊 */}
       <div className="space-y-1 text-sm mt-2 mb-2">
         <div className="flex justify-between">
-          <span className="text-slate-400">發行商:</span>
+          <span className="text-slate-400">遊戲工作室:</span>
           <span className="text-[#175BDB]">
             {GameProps.game_studio ? GameProps.game_studio : GameProps.title}
           </span>
@@ -96,7 +100,7 @@ export function GameInfo(GameProps: GameProps) {
       </div>
       {/* 遊戲標籤 */}
       <div className="flex justify-between">
-        <span className="mb-2 text-sm text-slate-400">遊戲標籤：</span>
+        <span className="text-sm text-slate-400">遊戲標籤:</span>
         <div className="flex gap-2">
           {GameProps.tags &&
             Array.isArray(GameProps.tags) &&
