@@ -7,8 +7,16 @@ import { GameInfo } from "@/app/components/games/gameIntro/gameinfo";
 import { GamePreview } from "@/app/components/games/gameIntro/gamePreview";
 import { GameTabs } from "@/app/components/games/gameIntro/gameTabs"; // Import the client component
 import { getGameByName } from "@/lib/supabase/getGame";
+import { getAllGames } from "@/lib/supabase/getStaticProps";
 
 type Params = Promise<{ slug: string }>;
+
+export async function generateStaticParams() {
+  const games = await getAllGames(); // 假設這個函數會回傳所有遊戲名稱
+  return games.map((game) => ({ slug: game.slug }));
+}
+
+export const revalidate = 60; // 60秒後重新生成靜態頁面
 
 export default async function GamePage({ params }: { params: Params }) {
   const { slug } = await params;
