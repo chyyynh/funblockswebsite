@@ -1,7 +1,7 @@
 "use clie";
 
 import type { Metadata } from "next";
-import { getGameByName } from "@/lib/supabase/getGame";
+import { getGameBySlug } from "@/lib/supabase/getGame";
 import ChakraProviderWrapper from "@/app/components/ChakraProviderWrapper";
 
 export type Params = Promise<{ slug: string }>;
@@ -12,7 +12,7 @@ export async function generateMetadata({
   params: Params;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const game = await getGameByName(slug);
+  const game = await getGameBySlug(slug);
 
   if (!game) {
     console.error("Error fetching blog posts:", game.error);

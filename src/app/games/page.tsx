@@ -23,6 +23,7 @@ import { Badge } from "@/app/components/games/badge";
 export interface Game {
   id: number;
   title: string;
+  slug: string;
   type: string;
   status: string;
   image: string;

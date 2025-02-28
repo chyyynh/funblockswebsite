@@ -89,6 +89,7 @@ export async function getAllGames() {
   if (!games) {
     console.log(error);
   }
+
   return games || []; // 確保返回值是陣列
 }
 

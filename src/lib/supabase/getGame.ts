@@ -9,12 +9,11 @@ if (!supabaseUrl || !supabaseKey) {
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-export async function getGameByName(game: string) {
-  const decodedGame = decodeURIComponent(game); // 確保 `%20` 轉換為空格
+export async function getGameBySlug(slug: string) {
   const { data, error } = await supabase
     .from("games")
     .select("*")
-    .ilike("title", decodedGame) // 用 ilike 忽略大小寫
+    .eq("slug", slug) // 用 ilike 忽略大小寫
     .single(); // 避免 0 筆資料時報錯
 
   // console.log("Game data:", data);
@@ -25,4 +24,15 @@ export async function getGameByName(game: string) {
   }
 
   return data;
+}
+
+export async function getAllGameSlugs() {
+  const { data: slugs, error } = await supabase.from("games").select("slug");
+
+  if (error) {
+    console.error("Failed to fetch game slugs:", error);
+    throw new Error("Unable to fetch game slugs");
+  }
+
+  return slugs.map((item) => ({ slug: item.slug })); // 回傳 [{ slug: "xxx" }]
 }

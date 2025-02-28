@@ -6,21 +6,20 @@ import Header from "@/app/components/Header";
 import { GameInfo } from "@/app/components/games/gameIntro/gameinfo";
 import { GamePreview } from "@/app/components/games/gameIntro/gamePreview";
 import { GameTabs } from "@/app/components/games/gameIntro/gameTabs"; // Import the client component
-import { getGameByName } from "@/lib/supabase/getGame";
-import { getAllGames } from "@/lib/supabase/getStaticProps";
+import { getGameBySlug, getAllGameSlugs } from "@/lib/supabase/getGame";
 
 type Params = Promise<{ slug: string }>;
 
 export async function generateStaticParams() {
-  const games = await getAllGames(); // 假設這個函數會回傳所有遊戲名稱
-  return games.map((game) => ({ slug: game.slug }));
+  const slugs = await getAllGameSlugs(); // 假設這個函數會回傳所有遊戲名稱
+  return slugs;
 }
 
 export const revalidate = 60; // 60秒後重新生成靜態頁面
 
 export default async function GamePage({ params }: { params: Params }) {
   const { slug } = await params;
-  const game = await getGameByName(slug);
+  const game = await getGameBySlug(slug);
 
   return (
     <div className="min-h-screen sm:bg-[#FAF9F6] sm:bg-[url('/images/background.svg')] bg-repeat">

@@ -9,6 +9,7 @@ import { Badge } from "@/app/components/games/badge";
 interface GameCardProps {
   id: number;
   title: string;
+  slug: string;
   image: string;
   blockchain: string;
   engine: string;
@@ -20,6 +21,7 @@ interface GameCardProps {
 
 export function GameCard(props: GameCardProps) {
   const {
+    slug,
     title = "Unknown",
     blockchain = "N/A",
     engine = "N/A",
@@ -40,7 +42,7 @@ export function GameCard(props: GameCardProps) {
             <div className="absolute right-2 top-2 bg-white px-2 py-1 text-xs font-semibold min-w-[40px] text-center">
               {status}
             </div>
-            <Link href={`/games/${title}`} passHref>
+            <Link href={`/games/${slug}`} passHref>
               <Image
                 src={twitter_img.banner || "/placeholder.svg"}
                 alt={title}
