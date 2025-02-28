@@ -1,19 +1,8 @@
 "use clie";
 
-import { ChakraProvider, defineConfig, createSystem } from "@chakra-ui/react";
 import type { Metadata } from "next";
 import { getGameByName } from "@/lib/supabase/getGame";
 import ChakraProviderWrapper from "@/app/components/ChakraProviderWrapper";
-
-const config = defineConfig({
-  theme: {
-    tokens: {
-      colors: {},
-    },
-  },
-});
-
-const system = createSystem(config);
 
 export type Params = Promise<{ slug: string }>;
 
