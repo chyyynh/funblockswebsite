@@ -34,7 +34,7 @@ export function GameInfo(GameProps: GameProps) {
           className="object-cover"
         />
       </div>
-      <p className="text-black text-base mt-2 mb-2">{GameProps.description}</p>
+      <p className="text-black text-sm mt-2 mb-2">{GameProps.description}</p>
 
       <Separator />
 

@@ -25,12 +25,12 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "pbs.twimg.com",
+        hostname: "video.twimg.com",
         pathname: "/**", // 適配所有 Twitter 的圖片連結
       },
       {
         protocol: "https",
-        hostname: "video.twimg.com",
+        hostname: "pbs.twimg.com",
         pathname: "/**", // 適配所有 Twitter 的圖片連結
       },
       {

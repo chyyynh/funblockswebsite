@@ -14,16 +14,6 @@ export default async function GamePage({ params }: { params: Params }) {
   const { slug } = await params;
   const game = await getGameByName(slug);
 
-  {
-    /*
-  const degenStats = {
-    degenPlayers: "8.7K",
-    riskyPlays: "1.5M",
-    highScores: "450K",
-  };
-  */
-  }
-
   return (
     <div className="min-h-screen sm:bg-[#FAF9F6] sm:bg-[url('/images/background.svg')] bg-repeat">
       <Header />
@@ -42,7 +32,7 @@ export default async function GamePage({ params }: { params: Params }) {
                 />
               </div>
               <div>
-                <h1 className="text-xl sm:text-3xl font-semibold">
+                <h1 className="text-xl text-black sm:text-3xl font-semibold">
                   {game.title}
                 </h1>
               </div>
@@ -56,8 +46,11 @@ export default async function GamePage({ params }: { params: Params }) {
                   rel="noopener noreferrer"
                   className="block group"
                 >
-                  <Button variant="outline" className="hover:bg-[#F3B43B]">
-                    Play
+                  <Button
+                    variant="outline"
+                    className="bg-transparent text-black font-semibold hover:bg-[#F3B43B]"
+                  >
+                    PLAY
                   </Button>
                 </Link>
               ) : (
@@ -83,12 +76,9 @@ export default async function GamePage({ params }: { params: Params }) {
           </div>
         </div>
 
-        <div className="bg-white border border-black px-4 py-4 mt-4">
+        <div className="bg-white border border-black p-4 mt-4">
           {/* Render the client component here */}
-          <GameTabs
-            gameIntroContent={<p>This is Game Introduction</p>}
-            assetIntroContent={<p>This is Asset Introduction</p>}
-          />
+          <GameTabs />
         </div>
       </div>
     </div>
