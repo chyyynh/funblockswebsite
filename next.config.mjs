@@ -1,4 +1,9 @@
-import createMDX from "@next/mdx";
+import { fileURLToPath } from "url";
+// import { dirname } from "path";
+
+// ESM 版本的 __filename 和 __dirname
+const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -55,11 +60,19 @@ const nextConfig = {
       },
     ],
   },
+
+  webpack: (config) => {
+    config.cache = {
+      type: "filesystem",
+      buildDependencies: {
+        config: [__filename],
+      },
+      store: "pack", // 使用 PackFileCacheStrategy
+      compression: "gzip", // 啟用壓縮以減少快取大小
+    };
+    return config;
+  },
 };
 
-const withMDX = createMDX({
-  // Add markdown plugins here, as desired
-});
-
 // Merge MDX config with Next.js config
-export default withMDX(nextConfig);
+export default nextConfig;

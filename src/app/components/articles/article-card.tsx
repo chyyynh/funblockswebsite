@@ -37,10 +37,10 @@ export function ArticleCard({
           {!isCompact && summary && (
             <p className="mt-2 text-sm text-muted-foreground">{summary}</p>
           )}
-          <div className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
-            <span>{author}</span>
-            <span>•</span>
-            <span>{publishedAt}</span>
+          <div className="mt-2 flex flex-nowrap items-center text-xs text-muted-foreground">
+            <span className="line-clamp-1">{author}</span>
+            <span>.</span>
+            <span className="line-clamp-1">{publishedAt}</span>
           </div>
         </div>
       </div>

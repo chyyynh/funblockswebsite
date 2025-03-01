@@ -33,3 +33,17 @@ export async function getAllArticleSlugs() {
 
   return allslug;
 }
+
+export async function getRelatedArticle(id: number) {
+  const { data, error } = await supabase
+    .from("articles")
+    .select("*")
+    .eq("related_game", id);
+
+  if (error) {
+    console.error("Error fetching article:", error);
+    return null;
+  }
+
+  return data;
+}

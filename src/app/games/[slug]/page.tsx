@@ -6,6 +6,7 @@ import Header from "@/app/components/Header";
 import { GameInfo } from "@/app/components/games/gameIntro/gameinfo";
 import { GamePreview } from "@/app/components/games/gameIntro/gamePreview";
 import { GameTabs } from "@/app/components/games/gameIntro/gameTabs"; // Import the client component
+import { GameRelated } from "@/app/components/games/gameIntro/gameRelated";
 import { getGameBySlug, getAllGameSlugs } from "@/lib/supabase/getGame";
 
 type Params = Promise<{ slug: string }>;
@@ -23,7 +24,9 @@ export default async function GamePage({ params }: { params: Params }) {
 
   return (
     <div className="min-h-screen sm:bg-[#FAF9F6] sm:bg-[url('/images/background.svg')] bg-repeat">
-      <Header />
+      <div className="sticky top-0 z-50">
+        <Header />
+      </div>
 
       <div className="container mx-auto px-4 sm:px-32 py-4">
         <div className="bg-white border border-black px-4 py-4 justify-between">
@@ -83,9 +86,14 @@ export default async function GamePage({ params }: { params: Params }) {
           </div>
         </div>
 
-        <div className="bg-white border border-black p-4 mt-4">
+        <div className="flex flex-col sm:flex-row gap-4 mt-4">
           {/* Render the client component here */}
-          <GameTabs />
+          <div className="sm:w-8/12 bg-white border border-black p-4">
+            <GameTabs />
+          </div>
+          <div className="flex flex-col bg-white border border-black p-4 sm:block sm:w-4/12">
+            <GameRelated {...game} />
+          </div>
         </div>
       </div>
     </div>

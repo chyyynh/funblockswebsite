@@ -49,95 +49,59 @@ export function GamePreview(GameProps: GameProps) {
   // 渲染媒體內容的組件
   const MediaContent = ({
     src,
-    isMain = false,
+    preview,
   }: {
     src: string;
-    isMain?: boolean;
+    preview: boolean;
   }) => {
     if (isVideo(src)) {
       return (
         <div className="relative w-full h-full">
-          {/* Video Player */}
-          <ReactPlayer
-            url={src}
-            playing={isMain}
-            muted={isMain}
-            loop={isMain}
-            controls={true}
-            width="100%"
-            height="100%"
-            className="object-cover transition-opacity duration-500 ease-in-out opacity-100"
-          />
-        </div>
-      );
-    }
-    return (
-      <Image
-        src={src}
-        alt="Game Media"
-        fill
-        layout={isMain ? "fill" : undefined}
-        className="object-cover transition-all duration-300 ease-in-out"
-      />
-    );
-  };
-
-  // 渲染媒體內容的組件
-  const MediaPreview = ({ src }: { src: string }) => {
-    if (isVideo(src)) {
-      return (
-        <div className="relative w-full h-full">
-          {/* Video Player */}
-          <PlayCircle className="absolute inset-0 m-auto text-white w-12 h-12" />
+          {preview && (
+            <PlayCircle className="absolute inset-0 m-auto text-white w-12 h-12" />
+          )}
           <div style={{ pointerEvents: "none" }}>
             <ReactPlayer
               url={src}
-              playing={false} // 保持影片不播放
-              controls={false} // 不顯示控制器
+              playing={!preview} // 保持影片不播放
+              controls={!preview} // 不顯示控制器
               width="100%"
               height="100%"
-              className="object-cover transition-all duration-300 ease-in-out"
+              className="object-cover"
             />
           </div>
         </div>
       );
     }
-    return (
-      <Image
-        src={src}
-        alt="Game Media"
-        fill
-        className="object-cover transition-all duration-300 ease-in-out"
-      />
-    );
+    return <Image src={src} alt="Game Media" fill className="object-cover" />;
   };
 
   return (
     <div className="bg-white w-full">
       {/* 主顯示區域 */}
       <div className="relative aspect-video overflow-hidden mb-2">
-        {/* 只有在點擊後才顯示 ReactPlayer */}
-        <MediaContent src={selectedMedia} isMain={true} />
+        <MediaContent src={selectedMedia} preview={false} />
       </div>
 
       {/* 縮圖選擇區域 */}
       <div className="flex gap-2 overflow-x-auto pb-2">
-        {GameProps.display_media?.map((media, i) => (
-          <div
-            key={i}
-            className="relative shrink-0 cursor-pointer"
-            onClick={() => handleMediaClick(media)}
-          >
-            <div className="relative h-24 w-40 overflow-hidden rounded-none">
-              <MediaPreview src={media} />
-            </div>
-            {selectedMedia === media && (
-              <div className="absolute inset-0 flex items-center justify-center border border-spacing-5 bg-black/40">
-                <div className=" text-white"></div>
+        {GameProps.display_media &&
+          GameProps.display_media.map((media, i) => (
+            <div
+              key={i}
+              className="relative shrink-0 cursor-pointer"
+              onClick={() => handleMediaClick(media)}
+            >
+              <div className="relative h-24 w-40 overflow-hidden rounded-none">
+                <MediaContent src={media} preview={true} />
               </div>
-            )}
-          </div>
-        ))}
+              {selectedMedia === media && (
+                <div className="absolute inset-0 flex items-center justify-center border border-spacing-5 bg-black/40">
+                  <div className=" text-white"></div>
+                </div>
+              )}
+            </div>
+          ))}
       </div>
     </div>
   );

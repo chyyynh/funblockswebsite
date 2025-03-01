@@ -31,6 +31,7 @@ export function GameInfo(GameProps: GameProps) {
           src={GameProps.twitter_img.banner}
           alt="Game Banner"
           fill
+          priority
           className="object-cover"
         />
       </div>

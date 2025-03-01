@@ -18,7 +18,9 @@ export default async function ArticlesPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#f9f6f1] bg-[url('/images/background.svg')]">
-      <Header />
+      <div className="sticky top-0 z-50">
+        <Header />
+      </div>
       <div className="flex-grow container mx-auto px-4 py-6">
         <div className="grid gap-6 lg:grid-cols-[1fr_350px]">
           <main>

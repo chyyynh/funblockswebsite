@@ -14,7 +14,6 @@ export default function FeaturedGame() {
               src="/images/bolt-banner.jpg"
               alt="BOLT Game"
               fill
-              objectFit="cover"
               className="object-cover rounded-lg"
             />
           </div>

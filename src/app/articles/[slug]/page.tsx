@@ -29,7 +29,9 @@ export default async function ArticlePage({ params }: { params: Params }) {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#f9f6f1] md:bg-[url('/images/background.svg')]">
-      <Header />
+      <div className="sticky top-0 z-50">
+        <Header />
+      </div>
       <div className="flex-grow container mx-auto gap px-4 py-6 max-w-4xl">
         <main>
           <article className="bg-white py-8 px-6 rounded-none mb-8">

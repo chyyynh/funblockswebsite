@@ -136,7 +136,9 @@ export default function Page() {
 
   return (
     <div className="min-h-screen sm:bg-[#FAF9F6] sm:bg-[url('/images/background.svg')] bg-repeat">
-      <Header />
+      <div className="sticky top-0 z-50">
+        <Header />
+      </div>
       <main className="container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="flex-1 space-y-8 max-w-full">
