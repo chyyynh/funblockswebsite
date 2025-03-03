@@ -32,7 +32,7 @@ export function Badge({ type, className = "" }: TechBadgeProps) {
           alt={type}
           width={15}
           height={15}
-          className="object-contain"
+          className="object-contain rounded-full"
         />
       )}
       <div className="text-sm">{type}</div>

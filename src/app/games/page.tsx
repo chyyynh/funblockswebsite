@@ -1,7 +1,9 @@
 "use client";
 
+import type React from "react";
+
 import { useState, useEffect } from "react";
-import { Search } from "lucide-react";
+import { Search, Grid, List } from "lucide-react";
 
 // shadcn components
 import { Input } from "@/components/ui/input";
@@ -13,10 +15,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 // self built components
 import Header from "@/app/components/Header";
 import { GameCard } from "@/app/components/games/game-card";
+import { GameList } from "@/app/components/games/game-list";
 import { getAllGames } from "@/lib/supabase/getStaticProps";
 import { Badge } from "@/app/components/games/badge";
 
@@ -50,11 +54,14 @@ type FilterType = {
   gameStudio: string[];
 };
 
+type LayoutType = "grid" | "list";
+
 export default function Page() {
   const [allGames, setAllGames] = useState<Game[]>([]);
   const [filteredGames, setFilteredGames] = useState<Game[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("newest");
+  const [layout, setLayout] = useState<LayoutType>("grid");
   const [filters, setFilters] = useState<FilterType>({
     status: [],
     engine: [],
@@ -105,6 +112,12 @@ export default function Page() {
         ? prev[category].filter((item) => item !== value)
         : [...prev[category], value],
     }));
+  };
+
+  const handleLayoutChange = (value: string) => {
+    if (value === "grid" || value === "list") {
+      setLayout(value);
+    }
   };
 
   const filterOptions: {
@@ -185,25 +198,91 @@ export default function Page() {
                     ))}
                   </div>
 
-                  {/* Sort Select with fixed width */}
-                  <div className="relative w-full sm:w-[200px] flex-shrink-0">
-                    <Select value={sortBy} onValueChange={handleSort}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Sort By" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="newest">Newest</SelectItem>
-                        <SelectItem value="popular">Most Popular</SelectItem>
-                        <SelectItem value="rating">Highest Rated</SelectItem>
-                      </SelectContent>
-                    </Select>
+                  {/* Layout Toggle and Sort Select */}
+                  <div className="flex items-center gap-2 w-full sm:w-auto">
+                    <ToggleGroup
+                      type="single"
+                      value={layout}
+                      onValueChange={(value: string) => {
+                        handleLayoutChange(value as LayoutType);
+                      }}
+                      className="border rounded-md"
+                    >
+                      <ToggleGroupItem
+                        value="grid"
+                        aria-label="Grid view"
+                        className={`${
+                          layout === "grid" ? "bg-muted" : "hover:bg-muted/50"
+                        }`}
+                      >
+                        <Grid className="h-4 w-4" />
+                      </ToggleGroupItem>
+                      <ToggleGroupItem
+                        value="list"
+                        aria-label="List view"
+                        className={`${
+                          layout === "list" ? "bg-muted" : "hover:bg-muted/50"
+                        }`}
+                      >
+                        <List className="h-4 w-4" />
+                      </ToggleGroupItem>
+                    </ToggleGroup>
+
+                    <div className="relative w-full sm:w-[200px] flex-shrink-0">
+                      <Select value={sortBy} onValueChange={handleSort}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Sort By" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="newest">Newest</SelectItem>
+                          <SelectItem value="popular">Most Popular</SelectItem>
+                          <SelectItem value="rating">Highest Rated</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {filteredGames.map((game) => (
-                    <GameCard key={game.id} {...game} />
-                  ))}
-                </div>
+
+                {/* Conditional rendering based on layout */}
+                {layout === "grid" ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {filteredGames.map((game) => (
+                      <GameCard key={game.id} {...game} />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="overflow-x-auto">
+                    <table className="w-full border-collapse">
+                      <thead>
+                        <tr className="bg-gray-100">
+                          <th className="py-2 px-4 text-left border-b w-12">
+                            #
+                          </th>
+                          <th className="py-2 px-4 text-left border-b">
+                            Game Name
+                          </th>
+                          <th className="py-2 px-4 text-center border-b">
+                            Players
+                          </th>
+                          <th className="py-2 px-4 text-center border-b">
+                            Follower
+                          </th>
+                          <th className="py-2 px-4 text-center border-b">
+                            Release Phase
+                          </th>
+                          <th className="py-2 px-4 text-right border-b">
+                            Rating
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {filteredGames.map((game) => (
+                          <GameList key={game.id} {...game} />
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
               </div>
             </div>
           </div>
