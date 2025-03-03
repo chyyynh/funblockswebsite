@@ -7,7 +7,7 @@ const articles = await getAllArticles(3);
 
 export default function ArticleGrid() {
   return (
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+    <div className="grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-6">
       {articles.map((article, index: number) => (
         <Link
           key={index}
@@ -16,12 +16,12 @@ export default function ArticleGrid() {
         >
           <Card className="border border-black rounded-none h-full hover:bg-[#F3B43B]">
             <CardContent className="p-4">
-              <div className="flex flex-row gap-4 md:flex-col md:gap-0">
+              <div className="flex flex-row gap-2 sm:flex-col sm:gap-0">
                 <div className="flex-1 min-w-0">
-                  <h2 className="text-lg font-semibold mb-2 line-clamp-2">
+                  <h2 className="text-sm sm:text-lg font-semibold mb-2 line-clamp-2">
                     {article.metadata.title}
                   </h2>
-                  <p className="text-gray-600 line-clamp-2 text-sm">
+                  <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">
                     {article.metadata.summary}
                   </p>
                 </div>

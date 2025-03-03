@@ -24,21 +24,12 @@ export const metadata: Metadata = {
     description:
       "FunBlocks 全鏈遊戲列表，包含遊戲類型、引擎、區塊鏈、遊戲工作室。",
     url: "https://funblocks.website/games",
-    images: [
-      {
-        url: "/images/games_screenshot.png",
-        width: 1200,
-        height: 630,
-        alt: "Open Graph Image Alt Text",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "FunBlocks | 全鏈遊戲列表",
     description:
       "FunBlocks 全鏈遊戲列表，包含遊戲類型、引擎、區塊鏈、遊戲工作室。",
-    images: ["/images/games_screenshot.png"],
   },
 };
 

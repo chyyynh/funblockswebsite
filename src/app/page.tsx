@@ -6,6 +6,7 @@ import ArticleGrid from "./components/ArticleGrid";
 import LevelUpBanner from "./components/LevelUpBanner";
 import ArticlesSection from "./components/TutorialSection";
 import VideosSection from "./components/VideosSection";
+// import Intro from "./components/Intro";
 
 export default function Home() {
   return (

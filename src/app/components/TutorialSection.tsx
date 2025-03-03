@@ -44,10 +44,10 @@ export default async function ReviewsSection() {
                           href={`/articles/${article.link}`}
                           className="hover:underline line-clamp-1"
                         >
-                          <h2 className="text-lg font-semibold mb-2 line-clamp-1">
+                          <h2 className="text-sm sm:text-lg font-semibold mb-2 line-clamp-1">
                             {article.metadata.title}
                           </h2>
-                          <p className="text-gray-600 line-clamp-2 text-sm">
+                          <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">
                             {article.metadata.summary}
                           </p>
                         </Link>

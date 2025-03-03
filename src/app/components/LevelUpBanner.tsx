@@ -1,6 +1,6 @@
 export default function LevelUpBanner() {
   return (
-    <div className="bg-blue-400 p-8 relative overflow-hidden border border-black rounded-none">
+    <div className="bg-blue-400 p-8 relative overflow-hidden border border-black rounded-none hidden sm:block">
       <div className="max-w-2xl relative z-10">
         <h2 className="text-2xl font-bold text-black mb-2">增強遊戲體驗!</h2>
         <p className="text-black/80">
