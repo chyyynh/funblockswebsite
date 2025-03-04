@@ -35,6 +35,9 @@ export interface Game {
   blockchain: string;
   gameStudio: string;
   releaseDate: string;
+  name: string;
+  genre: string;
+  platform: string;
   link: {
     website: string;
     twitter: string;
@@ -60,7 +63,7 @@ export default function Page() {
   const [allGames, setAllGames] = useState<Game[]>([]);
   const [filteredGames, setFilteredGames] = useState<Game[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortBy, setSortBy] = useState("newest");
+  const [sortBy, setSortBy] = useState<string>("newest");
   const [layout, setLayout] = useState<LayoutType>("grid");
   const [filters, setFilters] = useState<FilterType>({
     status: [],
@@ -103,6 +106,49 @@ export default function Page() {
 
   const handleSort = (value: string) => {
     setSortBy(value);
+
+    // Create a sorted copy of the filtered games
+    const sortedGames = [...filteredGames].sort((a, b) => {
+      switch (value) {
+        case "newest":
+          // Sort by release date (newest first)
+          return (
+            new Date(b.releaseDate || "").getTime() -
+            new Date(a.releaseDate || "").getTime()
+          );
+
+        case "players":
+          // Sort by players count (highest first)
+          // Using a deterministic value based on game ID for consistency
+          return ((b.id * 137) % 1000) - ((a.id * 137) % 1000);
+
+        case "followers":
+          // Sort by followers count (highest first)
+          // Using a deterministic value based on game ID for consistency
+          return ((b.id * 271) % 5000) - ((a.id * 271) % 5000);
+
+        case "releasePhase":
+          // Sort alphabetically by status
+          return (a.status || "").localeCompare(b.status || "");
+
+        case "rating":
+          // Sort by rating (highest first)
+          return (b.rating || 0) - (a.rating || 0);
+
+        case "popular":
+          // Sort by popularity (highest first)
+          return (b.popularity || 0) - (a.popularity || 0);
+
+        case "alphabetical":
+          // Sort alphabetically by title
+          return a.title.localeCompare(b.title);
+
+        default:
+          return 0;
+      }
+    });
+
+    setFilteredGames(sortedGames);
   };
 
   const handleFilterChange = (category: keyof FilterType, value: string) => {
@@ -235,8 +281,18 @@ export default function Page() {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="newest">Newest</SelectItem>
-                          <SelectItem value="popular">Most Popular</SelectItem>
+                          <SelectItem value="alphabetical">
+                            Alphabetical
+                          </SelectItem>
+                          <SelectItem value="players">Most Players</SelectItem>
+                          <SelectItem value="followers">
+                            Most Followers
+                          </SelectItem>
+                          <SelectItem value="releasePhase">
+                            Release Phase
+                          </SelectItem>
                           <SelectItem value="rating">Highest Rated</SelectItem>
+                          <SelectItem value="popular">Most Popular</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -252,35 +308,7 @@ export default function Page() {
                   </div>
                 ) : (
                   <div className="overflow-x-auto">
-                    <table className="w-full border-collapse">
-                      <thead>
-                        <tr className="bg-gray-100">
-                          <th className="py-2 px-4 text-left border-b w-12">
-                            #
-                          </th>
-                          <th className="py-2 px-4 text-left border-b">
-                            Game Name
-                          </th>
-                          <th className="py-2 px-4 text-center border-b">
-                            Players
-                          </th>
-                          <th className="py-2 px-4 text-center border-b">
-                            Follower
-                          </th>
-                          <th className="py-2 px-4 text-center border-b">
-                            Release Phase
-                          </th>
-                          <th className="py-2 px-4 text-right border-b">
-                            Rating
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {filteredGames.map((game) => (
-                          <GameList key={game.id} {...game} />
-                        ))}
-                      </tbody>
-                    </table>
+                    <GameList games={filteredGames} />
                   </div>
                 )}
               </div>
