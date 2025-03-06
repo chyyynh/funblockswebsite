@@ -147,6 +147,9 @@ export default {
             fontSize: "1.1rem",
             marginBottom: "0.5rem",
           },
+          hr: {
+            marginBottom: "1.5rem",
+          },
           code: {
             padding: "0 !important",
             color: "inherit" /* 讓它繼承語法高亮的顏色 */,
