@@ -32,10 +32,7 @@ export default async function RelatedBadges({
 
   return (
     <div className="mb-4 space-y-6 rounded-lg bg-[#f9f6f1] p-2">
-      <Link
-        href={game.link.website || game.link.twitter || "#"}
-        target="_blank"
-      >
+      <Link href={`/games/${game.slug}`} target="_blank">
         <div className="flex flex-row gap-1 w-full">
           <div className="flex flex-row gap-2 rounded-lg h-full w-full">
             <div className="flex items-center gap-3">
