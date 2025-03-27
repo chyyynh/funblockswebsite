@@ -8,6 +8,7 @@ import Script from "next/script";
 import { Noto_Sans_TC, Noto_Sans_JP } from "next/font/google";
 
 import { GoogleAnalytics } from "./components/GoogleAnalytics";
+import WagmiWrapper from "./components/wagmiWrapper";
 
 const notoSansTC = Noto_Sans_TC({
   weight: ["400", "700"],
@@ -92,8 +93,8 @@ export default function RootLayout({
       <body
         className={`${notoSansTC.className} ${notoSansJP.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <GoogleAnalytics GA_TRACKING_ID="G-9CCVHKK8W2" />
-        {children}
+        <GoogleAnalytics GA_TRACKING_ID="G-9CCVHKK8W2" />{" "}
+        <WagmiWrapper>{children}</WagmiWrapper>
         <Analytics />
         <SpeedInsights />
       </body>
