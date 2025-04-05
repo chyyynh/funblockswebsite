@@ -6,6 +6,16 @@ import { Menu } from "lucide-react";
 import { MobileMenu } from "./MobileMenu";
 import { Button } from "@/components/ui/button";
 
+import { useAccount } from "wagmi";
+import { Account } from "@/app/components/wagmi/account";
+import { WalletOptions } from "@/app/components/wagmi/wallet-option";
+
+function ConnectWallet() {
+  const { isConnected } = useAccount();
+  if (isConnected) return <Account />;
+  return <WalletOptions />;
+}
+
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -62,6 +72,7 @@ export default function Header() {
           >
             <Menu className="h-6 w-6" />
           </button>
+          <ConnectWallet />
         </div>
       </div>
       <MobileMenu isOpen={isMobileMenuOpen} />
